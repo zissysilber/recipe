@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CPUFramework;
+﻿using System.Data;
+
 
 namespace RecipeWinForms
 {
@@ -17,15 +9,14 @@ namespace RecipeWinForms
         {
             InitializeComponent();
             btnSearch.Click += BtnSearch_Click;
-            CPUWindowsFormFramework.WindowsFormUtility.FormatGridForSearchResults(gRecipe);
+            WindowsFormUtility.FormatGridForSearchResults(gRecipe);
             gRecipe.CellDoubleClick += GRecipe_CellDoubleClick;
             btnNew.Click += BtnNew_Click;
         }
 
         private void SearchForRecipe(string recipename)
         {
-            string sql = "select RecipeID, RecipeName from Recipe r where r.RecipeName like '%" + recipename + "%'";
-            DataTable dt = SQLUtility.GetDataTable(sql);
+            DataTable dt = Recipe.SearchRecipes(recipename);
             gRecipe.DataSource = dt;
             gRecipe.Columns["RecipeID"].Visible = false;
         }
