@@ -24,7 +24,7 @@ namespace RecipeWinForms
         {
             DataTable dtusers = Recipe.GetUsersList();
             DataTable dtcuisine = Recipe.GetCuisineList();
-            DataTable dtrecipe = Recipe.Load(recipeid);
+            dtrecipe = Recipe.Load(recipeid);
             if (recipeid == 0)
             {
                 dtrecipe.Rows.Add();
