@@ -47,7 +47,7 @@
             btnSave = new Button();
             btnDelete = new Button();
             lstCuisineName = new ComboBox();
-            lstUserName = new ComboBox();
+            lstUsersName = new ComboBox();
             lblRecipeImage = new Label();
             label1 = new Label();
             lblRecipeStatus = new Label();
@@ -76,7 +76,7 @@
             tblMain.Controls.Add(txtRecipeName, 1, 1);
             tblMain.Controls.Add(tblControl, 0, 10);
             tblMain.Controls.Add(lstCuisineName, 1, 3);
-            tblMain.Controls.Add(lstUserName, 1, 2);
+            tblMain.Controls.Add(lstUsersName, 1, 2);
             tblMain.Controls.Add(lblRecipeImage, 1, 8);
             tblMain.Controls.Add(label1, 0, 1);
             tblMain.Controls.Add(lblRecipeStatus, 1, 9);
@@ -229,6 +229,7 @@
             txtDateDrafted.Margin = new Padding(0, 0, 6, 0);
             txtDateDrafted.MinimumSize = new Size(0, 25);
             txtDateDrafted.Name = "txtDateDrafted";
+            txtDateDrafted.ReadOnly = true;
             txtDateDrafted.Size = new Size(317, 31);
             txtDateDrafted.TabIndex = 7;
             // 
@@ -241,6 +242,7 @@
             txtDatePublished.Margin = new Padding(0, 0, 6, 0);
             txtDatePublished.MinimumSize = new Size(0, 25);
             txtDatePublished.Name = "txtDatePublished";
+            txtDatePublished.ReadOnly = true;
             txtDatePublished.Size = new Size(317, 31);
             txtDatePublished.TabIndex = 8;
             // 
@@ -254,6 +256,7 @@
             txtDateArchived.Margin = new Padding(0, 0, 6, 0);
             txtDateArchived.MinimumSize = new Size(0, 25);
             txtDateArchived.Name = "txtDateArchived";
+            txtDateArchived.ReadOnly = true;
             txtDateArchived.Size = new Size(317, 31);
             txtDateArchived.TabIndex = 9;
             // 
@@ -325,15 +328,15 @@
             lstCuisineName.Size = new Size(317, 30);
             lstCuisineName.TabIndex = 5;
             // 
-            // lstUserName
+            // lstUsersName
             // 
-            lstUserName.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lstUserName.FormattingEnabled = true;
-            lstUserName.Location = new Point(170, 68);
-            lstUserName.Margin = new Padding(0, 3, 3, 3);
-            lstUserName.Name = "lstUserName";
-            lstUserName.Size = new Size(317, 30);
-            lstUserName.TabIndex = 4;
+            lstUsersName.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lstUsersName.FormattingEnabled = true;
+            lstUsersName.Location = new Point(170, 68);
+            lstUsersName.Margin = new Padding(0, 3, 3, 3);
+            lstUsersName.Name = "lstUsersName";
+            lstUsersName.Size = new Size(317, 30);
+            lstUsersName.TabIndex = 4;
             // 
             // lblRecipeImage
             // 
@@ -400,7 +403,7 @@
         private Button btnSave;
         private Button btnDelete;
         private ComboBox lstCuisineName;
-        private ComboBox lstUserName;
+        private ComboBox lstUsersName;
         private TextBox txtCalories;
         private TextBox txtDateDrafted;
         private TextBox txtDatePublished;

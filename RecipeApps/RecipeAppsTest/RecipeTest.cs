@@ -58,7 +58,7 @@ namespace RecipeAppsTest
 
             int cuisineid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 cuisineid from cuisine");
             Assume.That(cuisineid > 0, "can't run test, no cuisine in DB");
-            int userid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 userid from users");
+            int userid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 usersid from users");
             Assume.That(userid > 0, "can't run test, no users in DB");
 
 
@@ -69,7 +69,7 @@ namespace RecipeAppsTest
              testrecipename += currenttime.ToString();
 
             r["cuisineid"] = cuisineid;
-            r["userid"] = userid;
+            r["usersid"] = userid;
             r["RecipeName"] = testrecipename;
             r["Calories"] = 20;
             r["DateDrafted"] = "2020-10-10";
@@ -179,25 +179,6 @@ namespace RecipeAppsTest
 
         }
 
-        [Test]
-        public void ChangeDateArchivedExistingRecipe()
-        {
-            int recipeid = GetExistingRecipeId();
-            Assume.That(recipeid > 0, "no recipes in DB, can't run test");
-            DateTime datearchived = SQLUtility.GetFirstColumnFirstRowDateTime("select datearchived from recipe where recipeid = " + recipeid);
-            TestContext.WriteLine("datearchived for recipeid (" + recipeid + ") is (" + datearchived + ")");
-
-            datearchived = datearchived.AddYears(10);
-            TestContext.WriteLine("change datearchived to (" + datearchived + ")");
-            DataTable dt = Recipe.Load(recipeid);
-
-            dt.Rows[0]["datearchived"] = datearchived;
-            Recipe.Save(dt);
-
-            DateTime newdatetime = SQLUtility.GetFirstColumnFirstRowDateTime("select datearchived from recipe where recipeid = " + recipeid);
-            Assert.IsTrue(datearchived == newdatetime, "recipename for recipeid (" + recipeid + ") <> (" + newdatetime + ")");
-            TestContext.WriteLine("recipename for recipeid (" + recipeid + ") = (" + newdatetime + ")");
-        }
 
         private int GetExistingRecipeId()
         {

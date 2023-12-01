@@ -19,7 +19,7 @@ namespace RecipeWinForms
         }
 
 
-       
+
         public void ShowForm(int recipeid)
         {
             DataTable dtusers = Recipe.GetUsersList();
@@ -30,11 +30,7 @@ namespace RecipeWinForms
                 dtrecipe.Rows.Add();
             }
 
-            lstUserName.DataSource = dtusers;
-            lstUserName.ValueMember = "UserID";
-            lstUserName.DisplayMember = "UserName";
-            lstUserName.DataBindings.Add("SelectedValue", dtrecipe, lstUserName.ValueMember, false, DataSourceUpdateMode.OnPropertyChanged);
-
+            WindowsFormUtility.SetListBinding(lstUsersName, dtusers, dtrecipe, "Users");
             WindowsFormUtility.SetListBinding(lstCuisineName, dtcuisine, dtrecipe, "Cuisine");
             WindowsFormUtility.SetControlBinding(txtRecipeName, dtrecipe);
             WindowsFormUtility.SetControlBinding(txtCalories, dtrecipe);

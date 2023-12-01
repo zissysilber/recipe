@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,21 +28,20 @@ namespace RecipeSystem
             if (id > 0)
             {
                 sql = string.Join(Environment.NewLine, $"update recipe set",
-                    $"UserID = '{r["UserID"]}',",
+                    $"UsersID = '{r["UsersID"]}',",
                     $"CuisineID = '{r["CuisineID"]}',",
                     $"RecipeName = '{r["RecipeName"]}',",
-                    $"Calories = '{r["Calories"]}',",
-                    $"DateDrafted= '{r["DateDrafted"]}',",
-                    $"DatePublished = '{r["DatePublished"]}',",
-                    $"DateArchived= '{r["DateArchived"]}'",
-                    $"where RecipeID = {r["RecipeID"]} ");
+                    $"Calories = {r["Calories"]}",
+                    $"where RecipeID = {r["RecipeID"]}");
             }
             else
             {
-                sql = "insert Recipe(UserID, CuisineID, RecipeName, Calories, DateDrafted, DateArchived, DatePublished)";
-                sql += $"select '{r["UserID"]}', '{r["CuisineID"]}','{r["RecipeName"]}',{r["Calories"]},'{r["DateDrafted"]}','{r["DateArchived"]}','{r["DatePublished"]}'";
+                sql = "insert Recipe(UsersID, CuisineID, RecipeName, Calories)";
+                sql += $"select '{r["UsersID"]}', '{r["CuisineID"]}','{r["RecipeName"]}',{r["Calories"]}";
             }
 
+            Debug.Print("_________________");
+            Debug.Print(sql);
             SQLUtility.ExecuteSQL(sql);
         }
 
@@ -55,7 +55,7 @@ namespace RecipeSystem
 
         public static DataTable GetUsersList()
         {
-            DataTable dt = SQLUtility.GetDataTable("select UserID, Username from Users");
+            DataTable dt = SQLUtility.GetDataTable("select UsersID, Usersname from Users");
             return dt;
         }
 
@@ -67,7 +67,7 @@ namespace RecipeSystem
 
         public static DataTable Load(int recipeid)
         {
-            DataTable dt = SQLUtility.GetDataTable("select r.*, c.CuisineName, u.UserName from Recipe r join Users u on r.UserID = u.UserID join Cuisine c on r.CuisineID = c.CuisineID  where r.RecipeID = " + recipeid.ToString());
+            DataTable dt = SQLUtility.GetDataTable("select r.*, c.CuisineName, u.UsersName from Recipe r join Users u on r.UsersID = u.UsersID join Cuisine c on r.CuisineID = c.CuisineID  where r.RecipeID = " + recipeid.ToString());
             return dt;
         }
 
