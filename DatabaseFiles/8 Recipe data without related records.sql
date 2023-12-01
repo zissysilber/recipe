@@ -2,7 +2,7 @@ use HeartyHearthDB
 go
 
 
-Insert Users(UserName, FirstName, LastName)
+Insert Users(UsersName, FirstName, LastName)
 select 'Betty101', 'Betty', 'Baker'
 union select 'Cindy202', 'Cindy', 'Chef'
 union select 'Fay303', 'Fay', 'Foodie'
@@ -26,11 +26,11 @@ with x as(
     union select 'Fay303', 'French', 'Warm Cinnamon Milk', 175,  '10/01/2020', '12/01/2020', '12/01/2021'
 
 )
-Insert Recipe(UserID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UserID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
-on x.UserName = u.UserName
+on x.UserName = u.UsersName
 join Cuisine c 
 on x.Cuisine = c.CuisineName
 
@@ -38,11 +38,11 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UserName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '10/01/2005', DateArchived = '10/01/2005' 
 )
-Insert Recipe(UserID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UserID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
-on x.UserName = u.UserName
+on x.UserName = u.UsersName
 join Cuisine c 
 on x.Cuisine = c.CuisineName
 

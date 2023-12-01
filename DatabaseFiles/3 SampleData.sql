@@ -17,7 +17,7 @@ delete Cuisine
 delete Users
 
 
-Insert Users(UserName, FirstName, LastName)
+Insert Users(UsersName, FirstName, LastName)
 select 'Betty101', 'Betty', 'Baker'
 union select 'Cindy202', 'Cindy', 'Chef'
 union select 'Fay303', 'Fay', 'Foodie'
@@ -116,7 +116,7 @@ go
 
 ;
 with x as(
-    select UserName = 'Betty101', Cuisine = 'American', RecipeName = 'Chocolate Chip Cookies', Calories = 75, DateDrafted = '10/01/2005', DatePublished = '12/01/2005', DateArchived = null 
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Chocolate Chip Cookies', Calories = 75, DateDrafted = '10/01/2005', DatePublished = '12/01/2005', DateArchived = null 
     union select 'Betty101', 'French', 'Apple Yogurt Smoothie', 120,  '10/01/2006', null, '12/01/2006'
     union select 'Betty101', 'English', 'Cheese Bread', 165,  '10/21/2021', '12/21/2021', '1/2/2022' 
     union select 'Betty101', 'American', 'Butter Muffins', 185,  '01/01/2021', '01/02/2021', null 
@@ -127,11 +127,11 @@ with x as(
     union select 'Fay303', 'French', 'Cantaloupe and Feta Salad', 110,  '12/12/2020', '1/2/2021', null
     union select 'Fay303', 'Italian', 'Basic Balsamic Dressing', 30, '1/1/2022', null, null 
 )
-Insert Recipe(UserID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UserID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
-on x.UserName = u.UserName
+on x.UsersName = u.UsersName
 join Cuisine c 
 on x.Cuisine = c.CuisineName
 
@@ -479,11 +479,11 @@ on x.RecipeName = r.RecipeName
 
 go
 
-Insert Meal(UserID, MealName, IsActive)
-select u.UserID, 'Breakfast Bash', 1 from Users u where u.UserName = 'Betty101' 
-union select u.UserID, 'Favor in Flavor', 0 from Users u where u.UserName = 'Betty101'
-union select u.UserID, 'Supper''s a Picnic', 0 from Users u where u.UserName = 'Fay303'
-union select u.UserID, 'Lunch in the Lounge', 1 from Users u where u.UserName = 'Betty101'
+Insert Meal(UsersID, MealName, IsActive)
+select u.UsersID, 'Breakfast Bash', 1 from Users u where u.UsersName = 'Betty101' 
+union select u.UsersID, 'Favor in Flavor', 0 from Users u where u.UsersName = 'Betty101'
+union select u.UsersID, 'Supper''s a Picnic', 0 from Users u where u.UsersName = 'Fay303'
+union select u.UsersID, 'Lunch in the Lounge', 1 from Users u where u.UsersName = 'Betty101'
 go
 
 
@@ -548,11 +548,11 @@ on x.Recipe = r.RecipeName
 go
 
 
-Insert Cookbook(UserID, CookbookName, Price, IsActive)
-select u.UserID, 'Treats for Two', 30, 0 from Users u where u.UserName = 'Betty101'
-union select u.UserID, 'Supper 1-2-3', 36, 1 from Users u where u.UserName = 'Cindy202'
-union select u.UserID, 'Salad, Salad, Salad', 25, 1 from Users u where u.UserName = 'Fay303'
-union select u.UserID, 'Dairy Delights', 28, 0 from Users u where u.UserName = 'Betty101'
+Insert Cookbook(UsersID, CookbookName, Price, IsActive)
+select u.UsersID, 'Treats for Two', 30, 0 from Users u where u.UsersName = 'Betty101'
+union select u.UsersID, 'Supper 1-2-3', 36, 1 from Users u where u.UsersName = 'Cindy202'
+union select u.UsersID, 'Salad, Salad, Salad', 25, 1 from Users u where u.UsersName = 'Fay303'
+union select u.UsersID, 'Dairy Delights', 28, 0 from Users u where u.UsersName = 'Betty101'
 
 go
 
@@ -582,3 +582,4 @@ join Recipe r
 on x.Recipe = r.RecipeName
 
 
+select * from recipe

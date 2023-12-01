@@ -18,10 +18,10 @@ drop table if exists Users
 
 
 create table dbo.Users(
-    UserID int not null identity primary key,
-    UserName varchar(25) not null    
-        constraint User_name unique
-        constraint ck_Users_Username_cannot_be_blank check(UserName <> ''),   
+    UsersID int not null identity primary key,
+    UsersName varchar(25) not null    
+        constraint Users_name unique
+        constraint ck_Users_Usersname_cannot_be_blank check(UsersName <> ''),   
     FirstName varchar(30) not null constraint ck_Users_first_name_cannot_be_blank check(FirstName <> ''),
     LastName varchar (30) not null constraint ck_Users_last_name_cannot_be_blank check(LastName <> '')
 )
@@ -55,7 +55,7 @@ go
 
 create table dbo.Recipe(
     RecipeID int not null identity primary key,
-    UserID int not null constraint fk_Users_Recipe foreign key references Users(UserID),
+    UsersID int not null constraint fk_Users_Recipe foreign key references Users(UsersID),
     CuisineID int not null constraint fk_Cuisine_Recipe foreign key references Cuisine(CuisineID),
     RecipeName varchar(100) not null
         constraint u_RecipeName unique
@@ -64,16 +64,20 @@ create table dbo.Recipe(
         constraint ck_Recipe_Calories_must_be_greater_than_zero check(Calories > 0),
     DateDrafted datetime not null default getdate()
         constraint ck_Recipe_date_drafted_cannot_be_future_date check(DateDrafted<= getdate()),
-        --constraint ck_Recipe_date_drafted_cannot_be_after_date_published check(DatePublished >= DateDrafted),
+        constraint ck_Recipe_date_drafted_cannot_be_after_DatePublished check(DateDrafted < DatePublished),
     DatePublished datetime null
         constraint ck_Recipe_date_published_cannot_be_future_date check(DatePublished<= getdate()),
+    
     DateArchived datetime null
             constraint ck_Recipe_date_archived_cannot_be_future_date check(DateArchived<= getdate()),
+          constraint ck_Recipe_date_archived_must_be_after_date_drafted_and_date_published check(DateArchived > DatePublished)),
+          constraint ck_Recipe_date_archived_must_be_after_date_drafted_and_date_published check (DateArchived > DatePublished and DateArchived > DatePublished)
     RecipeImage as concat('recipe_', replace(RecipeName, ' ', '_'), '.jpg'),
     RecipeStatus as case
         when (DateArchived is null or DatePublished > DateArchived)  and DatePublished >= DateDrafted then 'Published'
         when (DatePublished is null or DateArchived >= DatePublished) and DateArchived >=  DateDrafted then 'Archived'
         else 'Drafted'
+    
      end
 )
 
@@ -103,7 +107,7 @@ go
 
 create table dbo.Meal(
     MealID int not null identity primary key,
-    UserID int not null constraint fk_Meal_User foreign key references Users(UserID),
+    UsersID int not null constraint fk_Meal_User foreign key references Users(UsersID),
     MealName varchar(100) 
         constraint u_Meal_MealName unique
         constraint ck_Meal_MealName_cannot_be_blank check(MealName <> ''),
@@ -144,7 +148,7 @@ go
 
 create table dbo.Cookbook(
     CookbookID int not null identity primary key,
-    UserID int not null constraint fk_Cookbook_Users foreign key references Users(UserID),
+    UsersID int not null constraint fk_Cookbook_Users foreign key references Users(UsersID),
     CookbookName varchar(100) not null 
         constraint u_Cookbook_Name unique
         constraint ck_Cookbook_Name_cannot_be_blank check(CookbookName <> ''),
