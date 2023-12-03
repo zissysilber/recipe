@@ -122,7 +122,7 @@ with x as(
     union select 'Betty101', 'American', 'Butter Muffins', 185,  '01/01/2021', '01/02/2021', null 
     union select 'Cindy202', 'American', 'Meat Stew', 150,  '05/05/2005', null, '07/07/2005' 
     union select 'Cindy202', 'Hungarian', 'Express Doughless Knishes', 150,  '09/09/2009', '10/10/2010', null 
-    union select 'Fay303', 'French', 'Meatball Bites', 175,  '10/01/2020', '12/01/2020', '12/01/2021'
+    union select 'Fay303', 'French', 'Meatball Bites', 175,  '10/01/2020', '12/01/2020', '12/01/2022'
     union select 'Fay303', 'American', 'Red Potato Salad', 180,  '01/01/2020', '01/02/2020', null 
     union select 'Fay303', 'French', 'Cantaloupe and Feta Salad', 110,  '12/12/2020', '1/2/2021', null
     union select 'Fay303', 'Italian', 'Basic Balsamic Dressing', 30, '1/1/2022', null, null 
