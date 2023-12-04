@@ -22,13 +22,27 @@ select 'English'
 
 
 
---constraint ck_Recipe_DatePublished_must_be_later_than_DateDrafted check(datediff(day, DateDrafted, DatePublished)> = 0),
---constraint ck_Recipe_DateArchived_must_be_later_than_DateDrafted check(datediff(day, DateDrafted, DateArchived) > = 0)
 
 --same day drafted and published
+
+--Test Scripts
+
+--same day
 ;
 with x as(
-    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies', Calories = 75, DateDrafted = '10/01/2005', DatePublished = '10/01/2005', DateArchived = null 
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '10/02/2005', DateArchived = '10/03/2005' 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
+
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies1', Calories = 75, DateDrafted = '10/01/2005', DatePublished = '10/01/2005', DateArchived = null 
 )
 Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
 select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
@@ -44,30 +58,125 @@ delete recipe
 -- later day drafted
 ;
 with x as(
-    select UserName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies', Calories = 75, DateDrafted = '10/01/2007', DatePublished = '12/01/2005', DateArchived = null 
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies', Calories = 75, DateDrafted = '10/01/2007', DatePublished = '12/01/2005', DateArchived = null 
 )
 Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
 select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
-on x.UserName = u.UsersName
+on x.UsersName = u.UsersName
 join Cuisine c 
 on x.Cuisine = c.CuisineName
 
 -- later day published
 ;
 with x as(
-    select UserName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies1', Calories = 75, DateDrafted = '10/01/2004', DatePublished = '12/01/2005', DateArchived = '12/01/2004' 
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies1', Calories = 75, DateDrafted = '10/01/2004', DatePublished = '12/01/2005', DateArchived = '12/01/2004' 
 )
 Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
 select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
-on x.UserName = u.UsersName
+on x.UsersName = u.UsersName
 join Cuisine c 
 on x.Cuisine = c.CuisineName
 
 delete recipe
 
-insert Recipe(UsersID, CuisineID, RecipeName, Calories)select '1', '1','test12/1/2023 10:34:55 AM',20'
-insert Recipe(UsersID, CuisineID, RecipeName, Calories)select '1', '1','test12/1/2023 10:34:55 AM',20'
+--future date drafted
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea1', Calories = 5, DateDrafted = '10/01/2025', DatePublished = '10/02/2005', DateArchived = '10/03/2005' 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
+
+--future date published
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '10/02/2025', DateArchived = '10/03/2025' 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
+
+
+--future date archived
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '10/02/2005', DateArchived = '10/03/2025' 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
+
+
+--date published before drafed
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '09/02/2005', DateArchived = '10/03/2005' 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
+
+
+--test date archived before published
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '09/02/2005', DateArchived = '08/03/2005' 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
+
+--with null values for date published
+
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = null, DateArchived = '10/03/2005' 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
+
+--with null values for date archived
+
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea3', Calories = 5, DateDrafted = '10/01/2005', DatePublished = null, DateArchived = null 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
+
+

@@ -53,4 +53,4 @@ on x.Cuisine = c.CuisineName
 
 
 
-select * from recipe
+select * from cuisine

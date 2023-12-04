@@ -63,19 +63,18 @@ create table dbo.Recipe(
     Calories int not null
         constraint ck_Recipe_Calories_must_be_greater_than_zero check(Calories > 0),
     DateDrafted datetime not null default getdate()
-        constraint ck_Recipe_date_drafted_cannot_be_future_date check(DateDrafted<= getdate()),
-    DatePublished datetime null
-        constraint ck_Recipe_date_published_cannot_be_future_date check(DatePublished<= getdate()),
-        constraint ck_Recipe_date_published_must_be_after_date_drafted check (DatePublished>=DateDrafted),
+		constraint ck_Recipe_date_drafted_cannot_be_future_date check(getdate()>= DateDrafted),
+	DatePublished datetime null
+		constraint ck_Recipe_date_published_cannot_be_future_date check(getdate()>= DatePublished),
     DateArchived datetime null
-        constraint ck_Recipe_date_archived_cannot_be_future_date check(DateArchived<= getdate()),
-        constraint ck_Recipe_date_archived_must_be_after_date_published check(DateArchived>=DatePublished), 
+		constraint ck_Recipe_date_archived_cannot_be_future_date check(getdate()>= DateArchived),
+	constraint ck_Recipe_dates_must_progress_sequentially check (DateDrafted <= DatePublished and DatePublished <= DateArchived),
     RecipeImage as concat('recipe_', replace(RecipeName, ' ', '_'), '.jpg'),
     RecipeStatus as case
-        when (DateArchived is null or DatePublished > DateArchived)  and DatePublished >= DateDrafted then 'Published'
-        when (DatePublished is null or DateArchived >= DatePublished) and DateArchived >=  DateDrafted then 'Archived'
-        else 'Drafted'
-        end
+       when (DateArchived is null and DatePublished is null) then 'Drafted'
+	   when (DateArchived is null and DatePublished is not null) then 'Published'
+	   else 'Archived'
+       end
 )
 go
 
