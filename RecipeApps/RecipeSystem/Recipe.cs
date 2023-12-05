@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,10 @@ namespace RecipeSystem
 
         public static DataTable SearchRecipes(string recipename)
         {
-            DataTable dt = SQLUtility.GetDataTable("select RecipeID, RecipeName from Recipe r where r.RecipeName like '%" + recipename + "%'");
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
+            cmd.Parameters["@recipename"].Value = recipename;
+            dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
 
@@ -55,13 +59,21 @@ namespace RecipeSystem
 
         public static DataTable GetUsersList()
         {
-            DataTable dt = SQLUtility.GetDataTable("select UsersID, Usersname from Users");
+            DataTable dt = new();
+            SqlConnection conn = new SqlConnection(SQLUtility.ConnectionString);
+            SqlCommand cmd = SQLUtility.GetSqlCommand("UsersGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
 
         public static DataTable GetCuisineList()
         {
-            DataTable dt = SQLUtility.GetDataTable("select * from Cuisine");
+            DataTable dt = new();
+            SqlConnection conn = new SqlConnection(SQLUtility.ConnectionString);
+            SqlCommand cmd = SQLUtility.GetSqlCommand("CuisineGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
 

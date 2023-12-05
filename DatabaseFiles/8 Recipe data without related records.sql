@@ -19,7 +19,7 @@ go
 
 ;
 with x as(
-    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Chocolate', Calories = 75, DateDrafted = '10/01/2005', DatePublished = '12/01/2005', DateArchived = null 
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Chocolate', Calories = 75, DateDrafted = '10/01/2005', DatePublished = '12/01/2005', DateArchived = '12/12/2021' 
     union select 'Betty101', 'French', 'Flavorful Tea', 120,  '10/01/2006', null, '12/01/2016'
     union select 'Cindy202', 'American', 'Lovely Lemonade', 150,  '05/05/2005', null, '07/07/2005' 
     union select 'Cindy202', 'Hungarian', 'Peanut Butter Smoothie', 150,  '09/09/2009', '10/10/2010', null 
@@ -49,8 +49,3 @@ on x.Cuisine = c.CuisineName
 
 
 
-
-
-
-
-select * from cuisine
