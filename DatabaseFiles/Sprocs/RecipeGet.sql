@@ -1,7 +1,9 @@
 create or alter procedure dbo.RecipeGet(@RecipeID int = 0, @RecipeName varchar(100) = '', @All bit = 0)
 as 
 begin
+--AF Formatting tip - it's nice to indent the code inside the sproc, it makes it clearer and easier to read
 select  @RecipeName = nullif(@RecipeName, '')
+--AF In a basic get sproc, you should return all columns in the table, include the other columns in the recipe table
 select r.RecipeID, r.RecipeName
 from Recipe r
 where r.RecipeID = @RecipeID

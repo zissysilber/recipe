@@ -1,7 +1,9 @@
 create or alter procedure dbo.UsersGet(@UsersID int = 0, @UsersName varchar(25) = '', @All bit = 0)
 as
 begin
+	--Af Formatting tip: It's good to have a line break between the 2 select statements, to make it more readable
 	select @UsersName = nullif(@UsersName,'')
+	--AF In a basic get sproc, you should return all columns in the table, include the other columns in the users table
 	select u.UsersID, u.UsersName
 	from Users u
 	where u.UsersID = @UsersID
