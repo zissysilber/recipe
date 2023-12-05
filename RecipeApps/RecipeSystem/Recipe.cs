@@ -60,6 +60,7 @@ namespace RecipeSystem
         public static DataTable GetUsersList()
         {
             DataTable dt = new();
+            //Af I don't think you need to be setting a sqlconnection here
             SqlConnection conn = new SqlConnection(SQLUtility.ConnectionString);
             SqlCommand cmd = SQLUtility.GetSqlCommand("UsersGet");
             cmd.Parameters["@All"].Value = 1;
@@ -70,6 +71,7 @@ namespace RecipeSystem
         public static DataTable GetCuisineList()
         {
             DataTable dt = new();
+            //Af I don't think you need to be setting a sqlconnection here
             SqlConnection conn = new SqlConnection(SQLUtility.ConnectionString);
             SqlCommand cmd = SQLUtility.GetSqlCommand("CuisineGet");
             cmd.Parameters["@All"].Value = 1;
@@ -79,6 +81,8 @@ namespace RecipeSystem
 
         public static DataTable Load(int recipeid)
         {
+            //AF You should use cpuframework to execute the recipeget sproc here too, you can pass in the recipeid so that it only returns that recipes's info
+            // You will need to add a few columns to the recipeget - like users and cuisine
             DataTable dt = SQLUtility.GetDataTable("select r.*, c.CuisineName, u.UsersName from Recipe r join Users u on r.UsersID = u.UsersID join Cuisine c on r.CuisineID = c.CuisineID  where r.RecipeID = " + recipeid.ToString());
             return dt;
         }
