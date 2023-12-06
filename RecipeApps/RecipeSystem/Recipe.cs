@@ -35,13 +35,14 @@ namespace RecipeSystem
                     $"UsersID = '{r["UsersID"]}',",
                     $"CuisineID = '{r["CuisineID"]}',",
                     $"RecipeName = '{r["RecipeName"]}',",
-                    $"Calories = {r["Calories"]}",
+                    $"Calories = {r["Calories"]},",
+                    $"DateDrafted = '{r["DateDrafted"]}'",
                     $"where RecipeID = {r["RecipeID"]}");
             }
             else
             {
-                sql = "insert Recipe(UsersID, CuisineID, RecipeName, Calories)";
-                sql += $"select '{r["UsersID"]}', '{r["CuisineID"]}','{r["RecipeName"]}',{r["Calories"]}";
+                sql = "insert Recipe(UsersID, CuisineID, RecipeName, Calories, DateDrafted)";
+                sql += $"select '{r["UsersID"]}', '{r["CuisineID"]}','{r["RecipeName"]}',{r["Calories"]}, '{r["DateDrafted"]}'";
             }
 
             Debug.Print("_________________");

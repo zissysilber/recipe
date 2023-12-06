@@ -68,12 +68,15 @@ create table dbo.Recipe(
 		constraint ck_Recipe_date_published_cannot_be_future_date check(getdate()>= DatePublished),
     DateArchived datetime null
 		constraint ck_Recipe_date_archived_cannot_be_future_date check(getdate()>= DateArchived),
-	constraint ck_Recipe_dates_must_progress_sequentially check (DateDrafted <= DatePublished and DatePublished <= DateArchived),
-    RecipeImage as concat('recipe_', replace(RecipeName, ' ', '_'), '.jpg'),
+	--constraint ck_Recipe_dates_must_progress_sequentially check (DateDrafted <= DatePublished and DatePublished <= DateArchived),
+    constraint ck_Recipe_dates_must_progress_sequentially check (DatePublished between DateDrafted and DateArchived),
+	constraint ck_Recipe_date_archived_must_be_after_date_drafted check(DateArchived>= DateDrafted),
+	RecipeImage as concat('recipe_', replace(RecipeName, ' ', '_'), '.jpg'),
     RecipeStatus as case
-       when (DateArchived is null and DatePublished is null) then 'Drafted'
-	   when (DateArchived is null and DatePublished is not null) then 'Published'
-	   else 'Archived'
+       when DateArchived is not null then 'Archived'
+	   else case 
+			when DatePublished is  not null  then 'Published'
+			else 'Drafted'
        end
 )
 go

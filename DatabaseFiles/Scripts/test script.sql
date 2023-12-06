@@ -179,4 +179,15 @@ on x.UsersName = u.UsersName
 join Cuisine c 
 on x.Cuisine = c.CuisineName
 
-
+--test null published date archived before drafted
+;
+with x as(
+    select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea3', Calories = 5, DateDrafted = '10/01/2005', DatePublished = null, DateArchived = '12/03/2005' 
+)
+Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+from x
+join Users u
+on x.UsersName = u.UsersName
+join Cuisine c 
+on x.Cuisine = c.CuisineName
