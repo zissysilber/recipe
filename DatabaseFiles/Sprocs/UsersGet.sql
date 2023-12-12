@@ -2,7 +2,8 @@ create or alter procedure dbo.UsersGet(@UsersID int = 0, @UsersName varchar(25) 
 as
 begin
 	select @UsersName = nullif(@UsersName,'')
-	select u.UsersID, u.UsersName
+
+	select u.UsersID, u.UsersName, u.FirstName, u.LastName
 	from Users u
 	where u.UsersID = @UsersID
 	or u.UsersName like '%' + @UsersName + '%'

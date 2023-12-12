@@ -106,8 +106,14 @@ namespace RecipeAppsTest
             DataTable dtafterdelete = SQLUtility.GetDataTable("select * from Recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid (" + recipeid + ") exists in DB");
             TestContext.WriteLine("record with recipeid (" + recipeid + ") does not exist in DB");
+        }
+
+        [Test]
+        public void DeleteRecipeWithForeignConstraint
+        {
 
         }
+
 
         [Test]
         public void GetListOfCuisine()
