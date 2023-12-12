@@ -90,13 +90,26 @@ namespace RecipeAppsTest
         [Test]
         public void DeleteRecipe()
         {
-            DataTable dt = SQLUtility.GetDataTable("select top 1 r.recipeid, r.recipename from recipe r ");
+            string sql = @"
+                select top 1 r.RecipeID, r.RecipeName from Recipe r 
+                left join RecipeIngredient ri on ri.RecipeID = r.RecipeID
+                left join RecipeDirection rd on rd.RecipeId = r.RecipeID
+                left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
+                left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
+                where ri.RecipeID is null
+                and rd.RecipeID is null
+                and cr.RecipeID is null
+                and mcr.RecipeID is null
+                order by r.RecipeID
+                ";
+
+            DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;
             string recipename = "";
             if (dt.Rows.Count > 0)
             {
                 recipeid = (int)dt.Rows[0]["recipeid"];
-                recipename = dt.Rows[0]["recipename"].ToString();
+                recipename = (string)dt.Rows[0]["recipename"];
             }
             Assume.That(recipeid > 0, "No recipe in DB, can't run test");
             TestContext.WriteLine("existing recipe with name " + recipename + " and recipe id (" + recipeid + ")");
@@ -109,9 +122,25 @@ namespace RecipeAppsTest
         }
 
         [Test]
-        public void DeleteRecipeWithForeignConstraint
+        public void DeleteRecipePublishedInCookbook()
         {
+            DataTable dt = SQLUtility.GetDataTable("select top 1 r.RecipeID, r.RecipeName from Recipe r join CookbookRecipe cr on cr.RecipeID = r.RecipeID");
+            int recipeid = 0;
+            string recipename = "";
 
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipename = (string)dt.Rows[0]["RecipeName"];
+            }
+
+            Assume.That(recipeid > 0, "Recipes published in cookbooks don't exist in DB, can't run test");
+            TestContext.WriteLine("existing recipe published in cookbook, with id = " + recipeid + " " + recipename);
+            TestContext.WriteLine("ensure that app cannot delete " + recipeid);
+
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
+
+            TestContext.WriteLine(ex.Message);
         }
 
 
@@ -165,7 +194,7 @@ namespace RecipeAppsTest
 
         }
         [Test]
-        public void ChangeRecipeNameExistingRecipe()
+        public void ChangeRecipeNameOfExistingRecipe()
         {
             int recipeid = GetExistingRecipeId();
             Assume.That(recipeid > 0, "no recipes in DB, can't run test");
@@ -182,6 +211,14 @@ namespace RecipeAppsTest
             string newrecipename = SQLUtility.GetFirstColumnFirstRowString("select recipename from recipe where recipeid = " + recipeid);
             Assert.IsTrue(newrecipename == recipename, "recipename for recipeid (" + recipeid + ") <> (" + newrecipename + ")");
             TestContext.WriteLine("recipename for recipeid (" + recipeid + ") = (" + newrecipename + ")");
+
+        }
+
+        
+
+        [Test]
+        public void CreateNewRecipeWithExistingName()
+        {
 
         }
 
