@@ -25,6 +25,9 @@ namespace RecipeWinForms
             gRecipe.Columns["DateDrafted"].Visible = false;
             gRecipe.Columns["DatePublished"].Visible = false;
             gRecipe.Columns["DateArchived"].Visible = false;
+            gRecipe.Columns["RecipeStatus"].Visible = false;
+            gRecipe.Columns["RecipeImage"].Visible = false;
+
 
         }
 
