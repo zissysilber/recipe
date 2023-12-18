@@ -91,16 +91,14 @@ namespace RecipeAppsTest
         public void DeleteRecipe()
         {
             string sql = @"
-                select top 1 r.RecipeID, r.RecipeName from Recipe r 
-                left join RecipeIngredient ri on ri.RecipeID = r.RecipeID
-                left join RecipeDirection rd on rd.RecipeId = r.RecipeID
-                left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
-                left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
-                where ri.RecipeID is null
-                and rd.RecipeID is null
-                and cr.RecipeID is null
-                and mcr.RecipeID is null
-                order by r.RecipeID
+    select top 1  r.recipeid, r.recipename
+	from recipe r
+	left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
+	left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
+	where mcr.RecipeID is null
+	and cr.RecipeID is null 
+	and ((r.RecipeStatus = 'Drafted') 
+	or (r.RecipeStatus = 'Archived' and DateAdd(day, 30, r.DateArchived) <= GetDate()))
                 ";
 
             DataTable dt = SQLUtility.GetDataTable(sql);
@@ -120,6 +118,8 @@ namespace RecipeAppsTest
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid (" + recipeid + ") exists in DB");
             TestContext.WriteLine("record with recipeid (" + recipeid + ") does not exist in DB");
         }
+
+
 
 
 
@@ -267,7 +267,38 @@ namespace RecipeAppsTest
 
             TestContext.WriteLine(ex.Message);
         }
-        
+
+        [Test]
+        public void DeleteRecipeArchivedLessThan30Days()
+        {
+            string sql = @"
+select top 1 r.RecipeID, r.RecipeName
+from recipe r
+left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
+left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
+where mcr.RecipeID is null
+and cr.RecipeID is null and 
+(r.RecipeStatus != 'Drafted' 
+or DateAdd(day, 30, r.DateArchived) >= GetDate())
+                ";
+
+            DataTable dt = SQLUtility.GetDataTable(sql);
+            int recipeid = 0;
+            string recipename = "";
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipename = (string)dt.Rows[0]["recipename"];
+            }
+            Assume.That(recipeid > 0, "No recipe in DB, can't run test");
+            TestContext.WriteLine("recipe with name " + recipename + " and recipe id (" + recipeid + ") archived less than 30 days.");
+            TestContext.WriteLine("ensure that app cannot delete recipe (" + recipeid + ")");
+
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
+            
+            TestContext.WriteLine(ex.Message);
+        }
+
         [Test]
         public void SaveRecipeWithZeroCalories()
         {
