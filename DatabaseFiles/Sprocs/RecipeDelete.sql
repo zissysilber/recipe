@@ -5,13 +5,9 @@ as
 begin
 	begin try
 		begin tran
-			delete Recipe
-			from Recipe r
-			left join Cuisine c 
-			on r.CuisineID = c.CuisineID
-			left join Users u
-			on u.UsersID = r.UsersID
-			where r.RecipeID = @RecipeID
+			delete RecipeDirection where RecipeID  = @RecipeID
+			delete RecipeIngredient where RecipeID = @RecipeID
+			delete Recipe where RecipeID = @RecipeID
 		commit
 	end try
 	begin catch
@@ -21,9 +17,4 @@ begin
 end
 go
 
-
-
-
-
-
-
+/*

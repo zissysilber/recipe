@@ -3,7 +3,7 @@ as
 begin
 	select  @RecipeName = nullif(@RecipeName, '')
 
-	select r.RecipeID, r.UsersID, r.CuisineID, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived
+	select r.RecipeID, r.UsersID, r.CuisineID, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage
 	from Recipe r
 	where r.RecipeID = @RecipeID
 	or r.RecipeName like '%'+ @RecipeName +'%'

@@ -301,7 +301,7 @@ namespace RecipeAppsTest
 
             DateTime advancedtime = DateTime.Now.AddYears(10);
             
-            TestContext.WriteLine("Change DateDrafted of recipe (" + recipeid + ") " + recipename + " to " + advancedtime + ")");
+            TestContext.WriteLine("Change DateDrafted of recipe (" + recipeid + ") " + recipename + " to " + advancedtime );
 
             dt.Rows[0]["DateDrafted"] = advancedtime;
             Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt));
