@@ -4,6 +4,7 @@
     {
 
         DataTable dtrecipe = new DataTable();
+        BindingSource bindsource = new BindingSource();
         public frmRecipe()
         {
             InitializeComponent();
@@ -18,6 +19,7 @@
             DataTable dtusers = Recipe.GetUsersList();
             DataTable dtcuisine = Recipe.GetCuisineList();
             dtrecipe = Recipe.Load(recipeid);
+            bindsource.DataSource = dtrecipe;
             if (recipeid == 0)
             {
                 dtrecipe.Rows.Add();
@@ -25,13 +27,13 @@
 
             WindowsFormUtility.SetListBinding(lstUsersName, dtusers, dtrecipe, "Users");
             WindowsFormUtility.SetListBinding(lstCuisineName, dtcuisine, dtrecipe, "Cuisine");
-            WindowsFormUtility.SetControlBinding(txtRecipeName, dtrecipe);
-            WindowsFormUtility.SetControlBinding(txtCalories, dtrecipe);
-            WindowsFormUtility.SetControlBinding(dtpDateDrafted, dtrecipe);
-            WindowsFormUtility.SetControlBinding(txtDateArchived, dtrecipe);
-            WindowsFormUtility.SetControlBinding(txtDatePublished, dtrecipe);
-            WindowsFormUtility.SetControlBinding(lblRecipeImage, dtrecipe);
-            WindowsFormUtility.SetControlBinding(lblRecipeStatus, dtrecipe);
+            WindowsFormUtility.SetControlBinding(txtRecipeName, bindsource);
+            WindowsFormUtility.SetControlBinding(txtCalories, bindsource);
+            WindowsFormUtility.SetControlBinding(txtDateDrafted, bindsource);
+            WindowsFormUtility.SetControlBinding(txtDateArchived, bindsource);
+            WindowsFormUtility.SetControlBinding(txtDatePublished, bindsource);
+            WindowsFormUtility.SetControlBinding(lblRecipeImage, bindsource);
+            WindowsFormUtility.SetControlBinding(lblRecipeStatus, bindsource);
 
             this.Show();
         }
@@ -43,6 +45,7 @@
             try
             {
                 Recipe.Save(dtrecipe);
+                bindsource.ResetBindings(false);
             }
             catch (Exception ex)
             {

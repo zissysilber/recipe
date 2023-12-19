@@ -50,7 +50,7 @@
             lblRecipeImage = new Label();
             label1 = new Label();
             lblRecipeStatus = new Label();
-            dtpDateDrafted = new DateTimePicker();
+            txtDateDrafted = new TextBox();
             tblMain.SuspendLayout();
             tblControl.SuspendLayout();
             SuspendLayout();
@@ -79,7 +79,7 @@
             tblMain.Controls.Add(lblRecipeImage, 1, 8);
             tblMain.Controls.Add(label1, 0, 1);
             tblMain.Controls.Add(lblRecipeStatus, 1, 9);
-            tblMain.Controls.Add(dtpDateDrafted, 1, 5);
+            tblMain.Controls.Add(txtDateDrafted, 1, 5);
             tblMain.Dock = DockStyle.Fill;
             tblMain.Location = new Point(0, 0);
             tblMain.Name = "tblMain";
@@ -360,14 +360,18 @@
             lblRecipeStatus.Size = new Size(334, 51);
             lblRecipeStatus.TabIndex = 34;
             // 
-            // dtpDateDrafted
+            // txtDateDrafted
             // 
-            dtpDateDrafted.Font = new Font("Garet Book", 11.99F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpDateDrafted.Format = DateTimePickerFormat.Short;
-            dtpDateDrafted.Location = new Point(161, 185);
-            dtpDateDrafted.Name = "dtpDateDrafted";
-            dtpDateDrafted.Size = new Size(314, 31);
-            dtpDateDrafted.TabIndex = 35;
+            txtDateDrafted.BackColor = Color.White;
+            txtDateDrafted.BorderStyle = BorderStyle.FixedSingle;
+            txtDateDrafted.Font = new Font("Garet Book", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDateDrafted.Location = new Point(158, 182);
+            txtDateDrafted.Margin = new Padding(0, 0, 6, 0);
+            txtDateDrafted.MinimumSize = new Size(0, 25);
+            txtDateDrafted.Name = "txtDateDrafted";
+            txtDateDrafted.ReadOnly = true;
+            txtDateDrafted.Size = new Size(317, 31);
+            txtDateDrafted.TabIndex = 7;
             // 
             // frmRecipe
             // 
@@ -409,6 +413,6 @@
         private Label lblRecipeImage;
         private Label label1;
         private Label lblRecipeStatus;
-        private DateTimePicker dtpDateDrafted;
+        private TextBox txtDateDrafted;
     }
 }
