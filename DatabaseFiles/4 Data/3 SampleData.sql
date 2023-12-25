@@ -135,6 +135,8 @@ on x.UsersName = u.UsersName
 join Cuisine c 
 on x.Cuisine = c.CuisineName
 
+
+
 ;
 with x as(
     select RecipeName = 'Chocolate Chip Cookies', MsmtAmt = '1', Msmt = 'cup', Ingredient = 'sugar', IngSeq = 1

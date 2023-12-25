@@ -31,16 +31,16 @@ select RecipeName =
     r.RecipeStatus, 
     DatePublished = isnull(convert(varchar, r.DatePublished, 21),''), 
     DateArchived = isnull(convert(varchar, r.DateArchived, 21),''), 
-    u.UserName, 
+    u.UsersName, 
     r.Calories, 
     TotalIngredients = count(ri.IngredientID)
 from Recipe r
 join RecipeIngredient ri
 on r.RecipeID = ri.RecipeID
 join Users u
-on r.UserID = u.UserID
+on r.UsersID = u.UsersID
 where r.RecipeStatus in ('Published', 'Archived')
-group by r.RecipeName, r.RecipeStatus, r.DatePublished, r.DateArchived, u.UserName, r.Calories
+group by r.RecipeName, r.RecipeStatus, r.DatePublished, r.DateArchived, u.UsersName, r.Calories
 order by r.RecipeStatus desc, r.RecipeName
 
 
