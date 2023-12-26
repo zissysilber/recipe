@@ -27,6 +27,7 @@ namespace RecipeWinForms
             mnuWindowTile.Click += MnuWindowTile_Click;
             mnuWindowCascade.Click += MnuWindowCascade_Click;
             this.Shown += FrmMain_Shown;
+            
 
         }
 
@@ -48,9 +49,9 @@ namespace RecipeWinForms
                     newfrm = f;
                 }
 
-                else if (frmtype == typeof(frmRecipe))
+                else if (frmtype == typeof(frmRecipeList))
                 {
-                    frmRecipe f = new();
+                    frmRecipeList f = new();
                     newfrm = f;
                 }
 
@@ -61,6 +62,7 @@ namespace RecipeWinForms
                     newfrm.FormClosed += Frm_FormClosed;
                     newfrm.TextChanged += Newfrm_TextChanged;
                     newfrm.Show();
+                    
                 }
             }
         }
@@ -97,7 +99,7 @@ namespace RecipeWinForms
 
         private void MnuRecipeList_Click(object? sender, EventArgs e)
         {
-            OpenForm(typeof(frmRecipe));
+            OpenForm(typeof(frmRecipeList));
         }
 
         private void MnuDashboard_Click(object? sender, EventArgs e)

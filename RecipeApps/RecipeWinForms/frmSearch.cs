@@ -39,7 +39,7 @@ namespace RecipeWinForms
                 id = (int)gRecipe.Rows[rowindex].Cells["RecipeID"].Value;
             }
             frmRecipe frm = new frmRecipe();
-            frm.ShowForm(id);
+            frm.LoadForm(id);
         }
 
         private void BtnSearch_Click(object? sender, EventArgs e)

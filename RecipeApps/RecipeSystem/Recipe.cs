@@ -67,6 +67,13 @@ namespace RecipeSystem
  
         }
 
+        public static DataTable GetRecipeSummary()
+        {
+            DataTable dt = DataMaintenance.GetDataList("RecipeSummary");
+            return dt; 
+        }
+
+
         
 
 

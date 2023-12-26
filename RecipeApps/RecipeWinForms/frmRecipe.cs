@@ -5,6 +5,7 @@
 
         DataTable dtrecipe = new DataTable();
         BindingSource bindsource = new BindingSource();
+        int recipeid = 0;
         public frmRecipe()
         {
             InitializeComponent();
@@ -14,10 +15,11 @@
 
 
 
-        public void ShowForm(int recipeid)
+        public void LoadForm(int recipeidval)
         {
             DataTable dtusers = Recipe.GetUsersList();
             DataTable dtcuisine = Recipe.GetCuisineList();
+            recipeid = recipeidval;
             dtrecipe = Recipe.Load(recipeid);
             bindsource.DataSource = dtrecipe;
             if (recipeid == 0)
@@ -30,11 +32,8 @@
             WindowsFormUtility.SetControlBinding(txtRecipeName, bindsource);
             WindowsFormUtility.SetControlBinding(txtCalories, bindsource);
             WindowsFormUtility.SetControlBinding(txtDateDrafted, bindsource);
-            WindowsFormUtility.SetControlBinding(txtDateArchived, bindsource);
-            WindowsFormUtility.SetControlBinding(txtDatePublished, bindsource);
-            WindowsFormUtility.SetControlBinding(lblRecipeImage, bindsource);
-            WindowsFormUtility.SetControlBinding(lblRecipeStatus, bindsource);
 
+            this.Text = dtrecipe.Rows[0]["RecipeName"].ToString();
             this.Show();
         }
 
@@ -80,6 +79,8 @@
             }
 
         }
+
+
 
         private void BtnSave_Click(object? sender, EventArgs e)
         {

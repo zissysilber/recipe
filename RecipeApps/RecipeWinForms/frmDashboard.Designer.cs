@@ -136,12 +136,12 @@
             dataGridViewCellStyle1.NullValue = null;
             gSummary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             gSummary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            gSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             gSummary.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             gSummary.BackgroundColor = Color.White;
             gSummary.BorderStyle = BorderStyle.None;
             gSummary.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Garet Book", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
@@ -173,9 +173,10 @@
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             gSummary.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(59, 74, 46);
-            dataGridViewCellStyle5.SelectionForeColor = Color.Empty;
             gSummary.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            gSummary.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             gSummary.RowTemplate.DividerHeight = 2;
             gSummary.RowTemplate.Height = 25;
             gSummary.ScrollBars = ScrollBars.Vertical;

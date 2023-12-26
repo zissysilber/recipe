@@ -46,7 +46,7 @@ namespace RecipeWinForms
 
         private void BtnRecipeList_Click(object? sender, EventArgs e)
         {
-            
+
         }
     }
 }
