@@ -18,7 +18,7 @@ drop table if exists Users
 
 
 create table dbo.Users(
-    UsersID int not null identity primary key,
+    UsersId int not null identity primary key,
     UsersName varchar(25) not null    
         constraint Users_name unique
         constraint ck_Users_Usersname_cannot_be_blank check(UsersName <> ''),   
@@ -28,7 +28,7 @@ create table dbo.Users(
 go
 
 create table dbo.Cuisine(
-    CuisineID int not null identity primary key,
+    CuisineId int not null identity primary key,
     CuisineName varchar(50) not null 
         constraint u_Cuisine_CuisineName unique
         constraint ck_Cuisine_CuisineName_cannot_be_blank check(CuisineName <>'')
@@ -36,7 +36,7 @@ create table dbo.Cuisine(
 go
 
 create table dbo.Ingredient( 
-    IngredientID int not null identity primary key,
+    IngredientId int not null identity primary key,
     IngredientName varchar(50) not null
         constraint ck_Ingredient_name_cannot_be_blank check(IngredientName <> '')
         constraint u_Ingredient_Name unique,
@@ -45,7 +45,7 @@ create table dbo.Ingredient(
 go
 
 create table dbo.Measurement(
-    MeasurementID int not null identity primary key,
+    MeasurementId int not null identity primary key,
     MeasurementName varchar(25) not null
         constraint ck_Measurement_MeasurementName_cannot_be_blank check(MeasurementName <> '') 
         constraint u_Measurement_MeasurementName unique 
@@ -54,9 +54,9 @@ create table dbo.Measurement(
 go
 
 create table dbo.Recipe(
-    RecipeID int not null identity primary key,
-    UsersID int not null constraint f_Users_Recipe foreign key references Users(UsersID),
-    CuisineID int not null constraint f_Cuisine_Recipe foreign key references Cuisine(CuisineID),
+    RecipeId int not null identity primary key,
+    UsersId int not null constraint f_Users_Recipe foreign key references Users(UsersId),
+    CuisineId int not null constraint f_Cuisine_Recipe foreign key references Cuisine(CuisineId),
     RecipeName varchar(100) not null
         constraint u_RecipeName unique
         constraint ck_Recipe_RecipeName_cannot_be_blank check(RecipeName <> ''),
@@ -83,31 +83,31 @@ go
 
 
 create table dbo.RecipeIngredient(
-    RecipeIngredientID int not null identity primary key,
-    RecipeID int not null constraint f_Recipe_RecipeIngredients foreign key references Recipe(RecipeID),
-    IngredientID int not null constraint f_Ingredient_RecipeIngredients foreign key references Ingredient(IngredientID),
-    MeasurementID int null constraint f_Measurement_RecipeIngredient foreign key references Measurement(MeasurementID), 
+    RecipeIngredientId int not null identity primary key,
+    RecipeId int not null constraint f_Recipe_RecipeIngredients foreign key references Recipe(RecipeId),
+    IngredientId int not null constraint f_Ingredient_RecipeIngredients foreign key references Ingredient(IngredientId),
+    MeasurementId int null constraint f_Measurement_RecipeIngredient foreign key references Measurement(MeasurementId), 
     MeasurementAmt varchar(10) not null,
     IngredientSequence int not null 
         constraint ck_RecipeIngredient_IngredientSequence_must_be_greater_than_zero check(IngredientSequence > 0),
-    constraint u_RecipeIngredient_Recipe_IngredientSequence unique(RecipeID, IngredientSequence)    
+    constraint u_RecipeIngredient_Recipe_IngredientSequence unique(RecipeId, IngredientSequence)    
 )
 go
 
 create table dbo.RecipeDirection(
-    RecipeDirectionID int not null identity primary key,
-    RecipeID int not null constraint f_Recipe_RecipeDirections foreign key references Recipe(RecipeID),
+    RecipeDirectionId int not null identity primary key,
+    RecipeId int not null constraint f_Recipe_RecipeDirections foreign key references Recipe(RecipeId),
     DirectionSequence int not null 
         constraint ck_RecipeDirections_Sequence_must_be_greater_than_zero check(DirectionSequence > 0),
     DirectionDesc varchar(200) not null 
         constraint ck_RecipeDirections_description_cannot_be_blank check(DirectionDesc <> ''),
-    constraint u_RecipeDirections_Recipe_sequence unique(RecipeID, DirectionSequence)
+    constraint u_RecipeDirections_Recipe_sequence unique(RecipeId, DirectionSequence)
 )
 go
 
 create table dbo.Meal(
-    MealID int not null identity primary key,
-    UsersID int not null constraint f_Users_Meal foreign key references Users(UsersID),
+    MealId int not null identity primary key,
+    UsersId int not null constraint f_Users_Meal foreign key references Users(UsersId),
     MealName varchar(100) 
         constraint u_Meal_MealName unique
         constraint ck_Meal_MealName_cannot_be_blank check(MealName <> ''),
@@ -119,7 +119,7 @@ create table dbo.Meal(
 go
 
 Create table dbo.Course(
-    CourseID int not null identity primary key,
+    CourseId int not null identity primary key,
     CourseName varchar(35) not null 
         constraint u_Course_CourseName unique
         constraint ck_Course_CourseName_cannot_be_blank check(CourseName <> ''),
@@ -130,25 +130,25 @@ Create table dbo.Course(
 go
 
 Create table dbo.MealCourse(
-    MealCourseID int not null identity primary key,
-    MealID int not null constraint f_Meal_MealCourse foreign key references Meal(MealID),
-    CourseID int not null constraint f_Course_MealCourse foreign key references Course(CourseID),   
-    constraint u_Meal_Course unique(MealID, CourseID)
+    MealCourseId int not null identity primary key,
+    MealId int not null constraint f_Meal_MealCourse foreign key references Meal(MealId),
+    CourseId int not null constraint f_Course_MealCourse foreign key references Course(CourseId),   
+    constraint u_Meal_Course unique(MealId, CourseId)
 )
 go
 
 create table dbo.MealCourseRecipe(
-    MealCourseRecipeID int not null identity primary key,
-    MealCourseID int not null constraint f_MealCourse_MealCourseRecipe foreign key references MealCourse(MealCourseID),
-    RecipeID int not null constraint f_Recipe_MealCourseRecipe foreign key references Recipe(RecipeID),
+    MealCourseRecipeId int not null identity primary key,
+    MealCourseId int not null constraint f_MealCourse_MealCourseRecipe foreign key references MealCourse(MealCourseId),
+    RecipeId int not null constraint f_Recipe_MealCourseRecipe foreign key references Recipe(RecipeId),
     IsMain bit not null default 1,
-    constraint u_MealCourseRecipe_MealCourse_Recipe unique(MealCourseID, RecipeID) 
+    constraint u_MealCourseRecipe_MealCourse_Recipe unique(MealCourseId, RecipeId) 
 )
 go
 
 create table dbo.Cookbook(
-    CookbookID int not null identity primary key,
-    UsersID int not null constraint f_Users_Cookbook foreign key references Users(UsersID),
+    CookbookId int not null identity primary key,
+    UsersId int not null constraint f_Users_Cookbook foreign key references Users(UsersId),
     CookbookName varchar(100) not null 
         constraint u_Cookbook_Name unique
         constraint ck_Cookbook_Name_cannot_be_blank check(CookbookName <> ''),
@@ -161,13 +161,13 @@ create table dbo.Cookbook(
 go
 
 create table dbo.CookbookRecipe(
-    CookbookRecipeID int not null identity primary key,
-    CookbookID int not null constraint f_Cookbook_CookbookRecipe foreign key references Cookbook(CookbookID),
-    RecipeID int not null constraint f_Recipe_CookbookRecipe foreign key references Recipe(RecipeID),
+    CookbookRecipeId int not null identity primary key,
+    CookbookId int not null constraint f_Cookbook_CookbookRecipe foreign key references Cookbook(CookbookId),
+    RecipeId int not null constraint f_Recipe_CookbookRecipe foreign key references Recipe(RecipeId),
     CookbookRecipeSequence int not null 
         constraint ck_CookbookRecipe_Sequence_must_be_greater_than_zero check(CookbookRecipeSequence > 0),
-    constraint u_CookbookRecipe_Cookbook_Sequence unique(CookbookID, CookbookRecipeSequence),
-    constraint u_Cookbook_Recipe unique(CookbookID, RecipeID)
+    constraint u_CookbookRecipe_Cookbook_Sequence unique(CookbookId, CookbookRecipeSequence),
+    constraint u_Cookbook_Recipe unique(CookbookId, RecipeId)
 )
 go
 

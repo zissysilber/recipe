@@ -1,5 +1,5 @@
 create or alter procedure dbo.RecipeDelete(
-	@RecipeID int,
+	@RecipeId int,
 	@Message varchar(500) = '' output
 
 )
@@ -8,7 +8,7 @@ begin
 	declare @return int = 0
 
 	if exists(select * from Recipe r 
-				where r.RecipeID = @RecipeID 
+				where r.RecipeId = @RecipeId 
 				 and (r.RecipeStatus = 'Published'
 				 or (r.RecipeStatus = 'Archived' and DateAdd(day, 30, r.DateArchived) >= GetDate()) ))
 				 
@@ -19,9 +19,9 @@ begin
 
 	begin try
 		begin tran
-			delete RecipeDirection where RecipeID  = @RecipeID
-			delete RecipeIngredient where RecipeID = @RecipeID
-			delete Recipe where RecipeID = @RecipeID
+			delete RecipeDirection where RecipeId  = @RecipeId
+			delete RecipeIngredient where RecipeId = @RecipeId
+			delete Recipe where RecipeId = @RecipeId
 		commit
 	end try
 	begin catch

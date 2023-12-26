@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.Design;
 
 namespace RecipeWinForms
 {
     public class FormManagement
     {
+        
         public void OpenForm(Type frmtype, int pkvalue = 0)
         {
             bool b = WindowsFormUtility.IsFormOpen(frmtype);
@@ -38,7 +40,8 @@ namespace RecipeWinForms
                 {
 
                     //newfrm.MdiParent = this.ParentForm;
-                    newfrm.WindowState = FormWindowState.Maximized;
+                    //frmMain frm = ParentForm
+                    //newfrm.WindowState = FormWindowState.Maximized;
                     //newfrm.FormClosed += Frm_FormClosed;
                     newfrm.Show();
 

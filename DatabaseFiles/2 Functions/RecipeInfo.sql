@@ -2,7 +2,7 @@
 Ex: Homemade Pizza (Italian) has 8 ingredients and 5 steps.
 */
 
-create or alter function dbo.RecipeInfo(@RecipeID int)
+create or alter function dbo.RecipeInfo(@RecipeId int)
 returns varchar(190)
 as
 
@@ -27,10 +27,10 @@ begin
 				end	
 			)
 from Recipe r
-join Cuisine c on c.CuisineID = r.CuisineID
-left join RecipeDirection rd on rd.RecipeID = r.RecipeID
-left join RecipeIngredient ri on ri.RecipeID = r.RecipeID
-where r.RecipeID = @RecipeID
+join Cuisine c on c.CuisineId = r.CuisineId
+left join RecipeDirection rd on rd.RecipeId = r.RecipeId
+left join RecipeIngredient ri on ri.RecipeId = r.RecipeId
+where r.RecipeId = @RecipeId
 group by r.RecipeName, c.CuisineName
 
 return @value
@@ -38,7 +38,7 @@ end
 go
 
 /*
-select RecipeInfo = dbo.RecipeInfo(r.RecipeID)
+select RecipeInfo = dbo.RecipeInfo(r.RecipeId)
 from recipe r
 
 */

@@ -26,8 +26,8 @@ with x as(
     union select 'Fay303', 'French', 'Warm Cinnamon Milk', 175,  '12/01/2023', '12/10/2023', '12/18/2023'
 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -38,8 +38,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '10/02/2005', DateArchived = '10/03/2005' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -55,8 +55,8 @@ with x as(
     union select 'Flavorful Tea', '1', 'tsp', 'sugar', 2
 
 )
-Insert RecipeIngredient(RecipeID, MeasurementAmt, MeasurementID, IngredientID, IngredientSequence)
-select r.RecipeID, x.MsmtAmt, m.MeasurementID, i.IngredientID, x.IngSeq
+Insert RecipeIngredient(RecipeId, MeasurementAmt, MeasurementId, IngredientId, IngredientSequence)
+select r.RecipeId, x.MsmtAmt, m.MeasurementId, i.IngredientId, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -71,8 +71,8 @@ with x as(
     select RecipeName = 'Flavorful Tea', DirectionSequence = 1, DirectionDesc = 'Boil water.' 
     union select 'Flavorful Tea', 2, 'Pour over tea bag and allow to stew.' 
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName

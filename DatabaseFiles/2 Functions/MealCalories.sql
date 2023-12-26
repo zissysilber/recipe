@@ -1,4 +1,4 @@
-create or alter function dbo.MealCalories(@MealID int)
+create or alter function dbo.MealCalories(@MealId int)
 returns varchar (110)
 as
 
@@ -7,10 +7,10 @@ begin
 
 	select @value = concat (m.MealName, ' - ', Sum(r.Calories) )
 	from MealCourseRecipe mcr
-	join MealCourse mc on mc.MealCourseID = mcr.MealCourseID
-	join Meal m on m.MealID = mc.MealID
-	join Recipe r on r.RecipeID = mcr.RecipeID
-	where m.MealID = @MealID
+	join MealCourse mc on mc.MealCourseId = mcr.MealCourseId
+	join Meal m on m.MealId = mc.MealId
+	join Recipe r on r.RecipeId = mcr.RecipeId
+	where m.MealId = @MealId
 	group by    m.MealName
 	
 	return @value
@@ -19,7 +19,7 @@ go
 
 
 /*
-select MealCalories =  dbo.MealCalories(m.MealID)
+select MealCalories =  dbo.MealCalories(m.MealId)
 from Meal m
 */
 

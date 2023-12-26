@@ -2,24 +2,24 @@
 --Test shows that will not delete
 declare @recipeid int
 
-select top 1 @recipeid = r.RecipeID
+select top 1 @recipeid = r.RecipeId
 from recipe r
-left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
-left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
-where mcr.RecipeID is null
-and cr.RecipeID is null and 
+left join MealCourseRecipe mcr on mcr.RecipeId = r.RecipeId
+left join CookbookRecipe cr on cr.RecipeId = r.RecipeId
+where mcr.RecipeId is null
+and cr.RecipeId is null and 
 (r.RecipeStatus != 'Drafted' 
 or DateAdd(day, 30, r.DateArchived) >= GetDate())
 
 
-select r.RecipeName from Recipe r where r.RecipeID = @recipeid
+select r.RecipeName from Recipe r where r.RecipeId = @recipeId
 
 declare @return int, @message varchar(500)
-exec @return =  RecipeDelete @Recipeid = @recipeid, @Message = @message output
+exec @return =  RecipeDelete @RecipeId = @recipeid, @Message = @message output
 
 select @return, @message
 
-select r.RecipeName from Recipe r where r.RecipeID = @recipeid
+select r.RecipeName from Recipe r where r.RecipeId = @recipeid
 
 go
 
@@ -27,31 +27,31 @@ go
 
 declare @recipeid int
 
-select top 1 @RecipeID = r.recipeid
+select top 1 @RecipeId = r.recipeId
 	from recipe r
-	left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
-	left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
-	where mcr.RecipeID is null
-	and cr.RecipeID is null 
+	left join MealCourseRecipe mcr on mcr.RecipeId = r.RecipeId
+	left join CookbookRecipe cr on cr.RecipeId = r.RecipeId
+	where mcr.RecipeId is null
+	and cr.RecipeId is null 
 	and ((r.RecipeStatus = 'Drafted') 
 	or (r.RecipeStatus = 'Archived' and DateAdd(day, 30, r.DateArchived) <= GetDate()))
 
-select r.RecipeName from Recipe r where r.RecipeID = @recipeid
+select r.RecipeName from Recipe r where r.RecipeId = @recipeid
 
 declare @return int, @message varchar(500)
-exec @return =  RecipeDelete @Recipeid = @recipeid, @Message = @message output
+exec @return =  RecipeDelete @RecipeId = @recipeid, @Message = @message output
 
 select @return, @message
 
-select r.RecipeName from Recipe r where r.RecipeID = @recipeid
+select r.RecipeName from Recipe r where r.RecipeId = @recipeid
 
 
 
 --Data that fits criteria
-select r.recipeid, r.RecipeName, r.RecipeStatus, r.DateArchived from recipe r
-left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
-left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
-where mcr.RecipeID is null
-and cr.RecipeID is null and 
+select r.recipeId, r.RecipeName, r.RecipeStatus, r.DateArchived from recipe r
+left join MealCourseRecipe mcr on mcr.RecipeId = r.RecipeId
+left join CookbookRecipe cr on cr.RecipeId = r.RecipeId
+where mcr.RecipeId is null
+and cr.RecipeId is null and 
 (r.RecipeStatus = 'Drafted' 
 or DateAdd(day, 30, r.DateArchived) <= GetDate())

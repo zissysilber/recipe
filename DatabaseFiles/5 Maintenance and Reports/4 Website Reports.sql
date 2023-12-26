@@ -11,7 +11,7 @@ b) Whenever you have a record for a specific item include the name of the pictur
 Home Page
     One resultset with number of recipes, meals, and cookbooks
 */
-select TotalRecipes = count(distinct r.RecipeID), TotalMeals = count(distinct m.MealID), TotalCookbooks = count(distinct c.CookbookID) 
+select TotalRecipes = count(distinct r.RecipeId), TotalMeals = count(distinct m.MealId), TotalCookbooks = count(distinct c.CookbookId) 
 from recipe r
 cross join Cookbook c
 cross join Meal m
@@ -33,12 +33,12 @@ select RecipeName =
     DateArchived = isnull(convert(varchar, r.DateArchived, 21),''), 
     u.UsersName, 
     r.Calories, 
-    TotalIngredients = count(ri.IngredientID)
+    TotalIngredients = count(ri.IngredientId)
 from Recipe r
 join RecipeIngredient ri
-on r.RecipeID = ri.RecipeID
+on r.RecipeId = ri.RecipeId
 join Users u
-on r.UsersID = u.UsersID
+on r.UsersId = u.UsersId
 where r.RecipeStatus in ('Published', 'Archived')
 group by r.RecipeName, r.RecipeStatus, r.DatePublished, r.DateArchived, u.UsersName, r.Calories
 order by r.RecipeStatus desc, r.RecipeName
@@ -51,19 +51,19 @@ Recipe details page:
     Show for a specific recipe (three result sets):      
 */        
 --a) Recipe header: recipe name, number of calories, number of ingredients and number of steps.
-select r.RecipeName, r.Calories, NumberOfIngredients = count(distinct ri.RecipeIngredientID), NumberofDirections = count(distinct rd.DirectionSequence), r.RecipeImage
+select r.RecipeName, r.Calories, NumberOfIngredients = count(distinct ri.RecipeIngredientId), NumberofDirections = count(distinct rd.DirectionSequence), r.RecipeImage
 from Recipe r
 join RecipeIngredient ri
-on r.RecipeID = ri.recipeID
+on r.RecipeId = ri.recipeId
 join RecipeDirection rd
-on r.RecipeID = rd.RecipeID
+on r.RecipeId = rd.RecipeId
 where r.RecipeName = 'Butter Muffins'
 group by r.RecipeName, r.Calories, r.RecipeImage
 
 --b) List of ingredients: show the measurement type and ingredient in one column, sorted by sequence. Ex. 1 Teaspoon Salt  
 select Ingredient = concat(ri.MeasurementAmt, 
                             case when m.MeasurementName is not null then concat(' ', m.MeasurementName) 
--- SM No need for else, concat() ignores null. And you really wont need the concat(' ', m.MeasurementName), you'll only need ' ', and adding measurement name after case, but the way you did is probably better.
+-- SM No need for else, concat() ignores null. And you really wont need the concat(' ', m.MeasurementName), you'll only need ' ', and adding measurement name after case, but the way you dId is probably better.
                                 else '' 
                                 end, 
                             ' ',
@@ -71,11 +71,11 @@ select Ingredient = concat(ri.MeasurementAmt,
                             i.IngredientImage
 from Recipe r
 join RecipeIngredient ri
-on r.RecipeID = ri.RecipeID
+on r.RecipeId = ri.RecipeId
 left join Measurement m
-on ri.MeasurementID = m.MeasurementID
+on ri.MeasurementId = m.MeasurementId
 join Ingredient i
-on ri.IngredientID = i.IngredientID
+on ri.IngredientId = i.IngredientId
 where r.RecipeName = 'Butter Muffins'
 order by ri.IngredientSequence
 
@@ -83,7 +83,7 @@ order by ri.IngredientSequence
 select rd.DirectionDesc
 from RecipeDirection rd
 join Recipe r
-on rd.RecipeID = r.RecipeID
+on rd.RecipeId = r.RecipeId
 where r.RecipeName = 'Butter Muffins'
 order by rd.DirectionSequence
 /*
@@ -93,16 +93,16 @@ order by rd.DirectionSequence
 Meal list page:
     All active meals, meal name, user that created meal, number of calories for the meal, number of courses, and number of recipes per each meal, sorted by name of meal
 */
-select m.MealName, u.UserName, MealCalories = sum(r.Calories), TotalCourses = count(distinct mc.MealCourseID), TotalRecipes = count(mr.RecipeID), m.MealImage
+select m.MealName, u.UserName, MealCalories = sum(r.Calories), TotalCourses = count(distinct mc.MealCourseId), TotalRecipes = count(mr.RecipeId), m.MealImage
 from Meal m
 join Users u
-on m.UserID = u.UserID
+on m.UserId = u.UserId
 join MealCourse mc
-on m.MealID = mc.MealID
+on m.MealId = mc.MealId
 join MealCourseRecipe mr
-on mc.MealCourseID = mr.MealCourseId
+on mc.MealCourseId = mr.MealCourseId
 join Recipe r
-on mr.RecipeID = r.RecipeID
+on mr.RecipeId = r.RecipeId
 where m.IsActive = 1
 group by m.MealName, u.UserName, m.MealImage
 order by m.MealName
@@ -117,12 +117,12 @@ Meal details page:
 select m.MealName, u.FirstName, u.LastName, m.DateCreated, m.MealImage
 from Meal m
 join Users u
-on m.UserID = u.UserID
+on m.UserId = u.UserId
 where m.MealName = 'Breakfast Bash'
 
 /*
         b) List of all recipes. 
-            Display in one column the course type, recipe, and for the main course show which dish is the main and which are side. 
+            Display in one column the course type, recipe, and for the main course show which dish is the main and which are sIde. 
 			In this format "Course Type: Main\Side dish - Recipe Name. Then main dishes should be bold, using the bold tags as shown below
                 ex: 
                     Appetizer: Mixed Greens
@@ -141,13 +141,13 @@ select  MealRecipe =
         r.RecipeImage
 from MealCourseRecipe mr
 join MealCourse mc
-on mr.MealCourseId = mc.MealCourseID
+on mr.MealCourseId = mc.MealCourseId
 join Course c
-on mc.CourseId = c.CourseID
+on mc.CourseId = c.CourseId
 join Recipe r
-on mr.RecipeID = r.RecipeID
+on mr.RecipeId = r.RecipeId
 join Meal m
-on mc.MealID = m.MealID
+on mc.MealId = m.MealId
 where m.MealName = 'Breakfast Bash'
 
 
@@ -157,12 +157,12 @@ where m.MealName = 'Breakfast Bash'
 Cookbook list page:
     Show all active cookbooks with author and number of recipes per book. Sorted by book name.
 */
-select c.CookbookName, u.FirstName, u.LastName,  TotalRecipes = count(cr.RecipeID), c.CookbookImage 
+select c.CookbookName, u.FirstName, u.LastName,  TotalRecipes = count(cr.RecipeId), c.CookbookImage 
 from Cookbook c
 join CookbookRecipe cr
-on c.CookbookID = cr.CookbookID
+on c.CookbookId = cr.CookbookId
 join Users u
-on c.UserID = u.UserID
+on c.UserId = u.UserId
 where c.IsActive = 1
 group by c.CookbookName, u.FirstName, u.LastName, c.CookbookImage
 order by c.CookbookName
@@ -172,30 +172,30 @@ order by c.CookbookName
 --Show for specific cookbook:
 
 --a) Cookbook header: cookbook name, user, date created, price, number of recipes.
-select c.CookbookName, u.UserName, c.DateCreated, c.Price, TotalRecipes = count(cr.RecipeID), c.CookbookImage 
+select c.CookbookName, u.UserName, c.DateCreated, c.Price, TotalRecipes = count(cr.RecipeId), c.CookbookImage 
 from Cookbook c
 join CookbookRecipe cr
-on c.CookbookID = cr.CookbookID
+on c.CookbookId = cr.CookbookId
 join Users u
-on c.UserID = u.UserID
+on c.UserId = u.UserId
 where c.CookbookName = 'Supper 1-2-3'
 group by c.CookbookName, u.UserName, c.DateCreated, c.Price, c.CookbookImage
 
 --b) List of all recipes in the correct order. Include recipe name, cuisine and number of ingredients and steps.  Note: User will click on recipe to see all ingredients and steps.
-select r.RecipeName, s.CuisineName, TotalIng = count(distinct ri.RecipeIngredientID), TotalDirections = count(distinct rd.RecipeDirectionID), r.RecipeImage
+select r.RecipeName, s.CuisineName, TotalIng = count(distinct ri.RecipeIngredientId), TotalDirections = count(distinct rd.RecipeDirectionId), r.RecipeImage
 from Cookbook c
 join CookbookRecipe cr
-on c.CookbookID = cr.CookbookID
+on c.CookbookId = cr.CookbookId
 join Users u
-on c.UserID = u.UserID
+on c.UserId = u.UserId
 join Recipe r
-on cr.RecipeID = r.RecipeID
+on cr.RecipeId = r.RecipeId
 join Cuisine s
-on r.CuisineID = s.CuisineID
+on r.CuisineId = s.CuisineId
 join RecipeIngredient ri
-on r.RecipeID  = ri.RecipeID
+on r.RecipeId  = ri.RecipeId
 join RecipeDirection rd
-on r.RecipeID = rd.RecipeID
+on r.RecipeId = rd.RecipeId
 where c.CookbookName = 'Supper 1-2-3'
 group by r.RecipeName, s.CuisineName, cr.CookbookRecipeSequence, r.RecipeImage
 order by cr.CookbookRecipeSequence
@@ -212,20 +212,20 @@ order by cr.CookbookRecipeSequence
         )   
     from CookbookRecipe cr
     join cookbook c
-    on cr.CookbookID = c.CookbookID
+    on cr.CookbookId = c.CookbookId
     join Recipe r
-    on cr.RecipeID = r.RecipeID
+    on cr.RecipeId = r.RecipeId
 
 --b) When the user clicks on a specific recipe they should see a list of the first ingredient of each recipe in the system, and a list of the last step in each recipe in the system
 ;
 with x as(
-    select  FirstIngredient = min(ri.IngredientSequence),  RecipeDirectionID = rd.RecipeID, HighestInstruction = max(rd.DirectionSequence)
+    select  FirstIngredient = min(ri.IngredientSequence),  RecipeDirectionId = rd.RecipeId, HighestInstruction = max(rd.DirectionSequence)
     from Recipe r
     join RecipeIngredient ri
-    on r.RecipeID = ri.RecipeID
+    on r.RecipeId = ri.RecipeId
     join RecipeDirection rd
-    on r.RecipeID = rd.RecipeID
-    group by rd.RecipeID
+    on r.RecipeId = rd.RecipeId
+    group by rd.RecipeId
 )
 select  RecipeName = concat(substring(upper(reverse(r.RecipeName)), 1, 1), substring(lower(reverse(r.RecipeName)), 2, 1000)),
         IngredientList = concat(ri.MeasurementAmt, 
@@ -237,13 +237,13 @@ select  RecipeName = concat(substring(upper(reverse(r.RecipeName)), 1, 1), subst
          rd.DirectionDesc
 from RecipeDirection rd
 join x
-on rd.RecipeID = x.RecipeDirectionID and x.HighestInstruction = rd.DirectionSequence
+on rd.RecipeId = x.RecipeDirectionId and x.HighestInstruction = rd.DirectionSequence
 join RecipeIngredient ri
-on rd.RecipeID = ri.RecipeID and x.FirstIngredient = ri.IngredientSequence
+on rd.RecipeId = ri.RecipeId and x.FirstIngredient = ri.IngredientSequence
 left join Measurement m
-on ri.MeasurementID = m.MeasurementID
+on ri.MeasurementId = m.MeasurementId
 join Ingredient i
-on ri.IngredientID = i.IngredientID
+on ri.IngredientId = i.IngredientId
 cross join Recipe r
 where r.RecipeName = 'Chocolate Chip Cookies'
 
@@ -256,7 +256,7 @@ where r.RecipeName = 'Chocolate Chip Cookies'
 select u.FirstName, u.LastName, TotalDrafted = count(r.DateDrafted), TotalPublished = count(r.DatePublished), TotalArchived = count(r.DateArchived)
 from Users u
 left join Recipe r
-on r.UserID = u.UserID
+on r.UserId = u.UserId
 group by u.FirstName, u.LastName
 
 
@@ -265,14 +265,14 @@ group by u.FirstName, u.LastName
 select FirstName = u.FirstName, LastName = u.LastName, TotalDrafted = count(r.DateDrafted), AvgDaysToPublish = avg(datediff(day, r.DateDrafted, r.DatePublished))
 from Users u
 left join Recipe r
-on r.UserID = u.UserID
+on r.UserId = u.UserId
 group by u.FirstName, u.LastName
 having count(r.DateDrafted) > 0
 
 
 
 --c) List of how many meals each user created and whether they're active or inactive. Show 0 if none
-select  u.FirstName, u.LastName, TotalMealsCreated = count(m.UserID), 
+select  u.FirstName, u.LastName, TotalMealsCreated = count(m.UserId), 
         IsActive = case m.IsActive 
             when 1 then 'Active' 
             when 0 then 'Inactive'
@@ -280,11 +280,11 @@ select  u.FirstName, u.LastName, TotalMealsCreated = count(m.UserID),
             end
 from Users u
 left join Meal m
-on m.UserID = u.UserID
+on m.UserId = u.UserId
 group by u.FirstName, u.LastName, m.IsActive
 
 --d) List of how many cookbooks each user created and whether they're active or inactive. Show 0 if none
-select u.FirstName, u.LastName, TotalCookbooks = count(c.UserID), 
+select u.FirstName, u.LastName, TotalCookbooks = count(c.UserId), 
         IsActive = case c.IsActive
             when 1 then 'Active' 
             when 0 then 'Inactive'
@@ -292,7 +292,7 @@ select u.FirstName, u.LastName, TotalCookbooks = count(c.UserID),
             end
 from Users u
 left join Cookbook c
-on c.UserID = u.UserID
+on c.UserId = u.UserId
 group by u.FirstName, u.LastName, c.IsActive
 
 --e) List of archived recipes that were never published, and how long it took for them to be archived.
@@ -305,14 +305,14 @@ and r.DatePublished is null
 --For user dashboard page:
 
 --a) Show number of the user's recipes, meals and cookbooks. 
-select u.FirstName, u.LastName, TotalRecipes = count(distinct r.RecipeID), TotalMeals = count( distinct m.MealID), TotalCookbook = count(distinct c.CookbookID)
+select u.FirstName, u.LastName, TotalRecipes = count(distinct r.RecipeId), TotalMeals = count( distinct m.MealId), TotalCookbook = count(distinct c.CookbookId)
 from Users u
 left join Recipe r
-on u.UserID = r.UserID
+on u.UserId = r.UserId
 left join Meal m
-on U.UserID = m.UserID
+on U.UserId = m.UserId
 left join Cookbook c
-on u.UserID = c.UserID
+on u.UserId = c.UserId
 where u.UserName = 'Betty101'
 group by u.FirstName, u.LastName
 
@@ -344,18 +344,18 @@ select distinct
             end
 from Users u
 left join Recipe r
-on u.UserID = r.UserID
+on u.UserId = r.UserId
 
 
 
 --c) Count of their recipes per cuisine. Show 0 for none.
 
 
-select U.UserName, c.CuisineName, TotalRecipes = count(r.UserID)
+select U.UserName, c.CuisineName, TotalRecipes = count(r.UserId)
 from Cuisine c
 cross join Users u
 left join Recipe r
-on c.CuisineID = r.CuisineID and u.UserID = r.UserID
+on c.CuisineId = r.CuisineId and u.UserId = r.UserId
 group by U.UserName, c.CuisineName
 order by u.UserName
 

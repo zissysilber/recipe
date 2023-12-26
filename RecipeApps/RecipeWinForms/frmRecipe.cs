@@ -4,6 +4,7 @@
     {
 
         DataTable dtrecipe = new DataTable();
+        DataTable dtrecipeusers = new();
         BindingSource bindsource = new BindingSource();
         int recipeid = 0;
         public frmRecipe()
@@ -31,12 +32,16 @@
             WindowsFormUtility.SetListBinding(lstCuisineName, dtcuisine, dtrecipe, "Cuisine");
             WindowsFormUtility.SetControlBinding(txtRecipeName, bindsource);
             WindowsFormUtility.SetControlBinding(txtCalories, bindsource);
-            WindowsFormUtility.SetControlBinding(txtDateDrafted, bindsource);
+
 
             this.Text = dtrecipe.Rows[0]["RecipeName"].ToString();
+
             this.Show();
+
+
         }
 
+  
 
         private void Save()
         {

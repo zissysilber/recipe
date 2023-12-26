@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RecipeWinForms
 {
@@ -27,8 +28,6 @@ namespace RecipeWinForms
             mnuWindowTile.Click += MnuWindowTile_Click;
             mnuWindowCascade.Click += MnuWindowCascade_Click;
             this.Shown += FrmMain_Shown;
-            
-
         }
 
         private void FrmMain_Shown(object? sender, EventArgs e)
@@ -55,19 +54,36 @@ namespace RecipeWinForms
                     newfrm = f;
                 }
 
+                else if(frmtype == typeof(frmRecipe))
+                {
+                    frmRecipe f = new();
+                    newfrm = f;
+                    f.LoadForm(pkvalue);
+                }
+
                 if (newfrm != null)
                 {
-                    newfrm.MdiParent = this;
+                    newfrm.MdiParent = this; 
                     newfrm.WindowState = FormWindowState.Maximized;
                     newfrm.FormClosed += Frm_FormClosed;
                     newfrm.TextChanged += Newfrm_TextChanged;
                     newfrm.Show();
-                    
                 }
+
+                WindowsFormUtility.SetupNav(tsMain);
             }
         }
 
-                private void MnuMaintEditData_Click(object? sender, EventArgs e)
+        private void Frm_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            WindowsFormUtility.SetupNav(tsMain);
+        }
+        private void Newfrm_TextChanged(object? sender, EventArgs e)
+        {
+            WindowsFormUtility.SetupNav(tsMain);
+        }
+
+        private void MnuMaintEditData_Click(object? sender, EventArgs e)
         {
 
         }
@@ -94,7 +110,7 @@ namespace RecipeWinForms
 
         private void MnuNewRecipe_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmRecipe));
         }
 
         private void MnuRecipeList_Click(object? sender, EventArgs e)
@@ -121,15 +137,9 @@ namespace RecipeWinForms
         {
             LayoutMdi(MdiLayout.TileVertical);
         }
-        private void Newfrm_TextChanged(object? sender, EventArgs e)
-        {
-            WindowsFormUtility.SetupNav(tsMain);
-        }
 
-        private void Frm_FormClosed(object? sender, FormClosedEventArgs e)
-        {
-            WindowsFormUtility.SetupNav(tsMain);
-        }
+
+
 
     }
 }

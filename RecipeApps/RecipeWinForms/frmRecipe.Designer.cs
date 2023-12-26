@@ -29,137 +29,221 @@
         private void InitializeComponent()
         {
             tblMain = new TableLayoutPanel();
-            lblUser = new Label();
-            lblCaptionCalories = new Label();
-            lblCaptionCurrentStatus = new Label();
-            lblCuisine = new Label();
-            txtCalories = new TextBox();
-            txtRecipeName = new TextBox();
-            tblControl = new TableLayoutPanel();
-            btnSave = new Button();
+            tblButtons = new TableLayoutPanel();
             btnDelete = new Button();
+            btnSave = new Button();
+            btnChangeStatus = new Button();
+            tblRecipeInfo = new TableLayoutPanel();
+            txtCalories = new TextBox();
             lstCuisineName = new ComboBox();
             lstUsersName = new ComboBox();
-            label1 = new Label();
-            txtDateDrafted = new TextBox();
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            tblRecipeTab = new TableLayoutPanel();
-            tabPage2 = new TabPage();
+            lblUser = new Label();
+            txtRecipeName = new TextBox();
+            lblRecipeName = new Label();
+            lblCuisine = new Label();
+            lblCalories = new Label();
+            tblRecipeStatus = new TableLayoutPanel();
+            lblRecipeStatusFill = new TextBox();
+            lblRecipeStatus = new Label();
+            lblStatusDates = new Label();
+            tblStatusDates = new TableLayoutPanel();
+            lblDrafted = new Label();
+            lblPublished = new Label();
+            lblArchived = new Label();
+            lblDateDrafted = new Label();
+            lblDatePublished = new Label();
+            lblDateArchived = new Label();
+            tbRecipeDetails = new TabControl();
+            tbIngredients = new TabPage();
+            tblIngredients = new TableLayoutPanel();
+            btnIngredientsSave = new Button();
+            gIngredients = new DataGridView();
+            tbSteps = new TabPage();
+            tblSteps = new TableLayoutPanel();
+            btnStepsSave = new Button();
+            gSteps = new DataGridView();
+            button1 = new Button();
+            dataGridView2 = new DataGridView();
+            tableLayoutPanel6 = new TableLayoutPanel();
             tblMain.SuspendLayout();
-            tblControl.SuspendLayout();
-            tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
+            tblButtons.SuspendLayout();
+            tblRecipeInfo.SuspendLayout();
+            tblRecipeStatus.SuspendLayout();
+            tblStatusDates.SuspendLayout();
+            tbRecipeDetails.SuspendLayout();
+            tbIngredients.SuspendLayout();
+            tblIngredients.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gIngredients).BeginInit();
+            tbSteps.SuspendLayout();
+            tblSteps.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gSteps).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tableLayoutPanel6.SuspendLayout();
             SuspendLayout();
             // 
             // tblMain
             // 
-            tblMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tblMain.AutoSize = true;
             tblMain.BackColor = Color.White;
-            tblMain.ColumnCount = 4;
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.3677139F));
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.4080715F));
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.6412563F));
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30.762331F));
-            tblMain.Controls.Add(lblUser, 1, 2);
-            tblMain.Controls.Add(lblCaptionCalories, 1, 4);
-            tblMain.Controls.Add(lblCaptionCurrentStatus, 1, 6);
-            tblMain.Controls.Add(lblCuisine, 1, 3);
-            tblMain.Controls.Add(txtCalories, 2, 4);
-            tblMain.Controls.Add(txtRecipeName, 2, 1);
-            tblMain.Controls.Add(tblControl, 1, 0);
-            tblMain.Controls.Add(lstCuisineName, 2, 3);
-            tblMain.Controls.Add(lstUsersName, 2, 2);
-            tblMain.Controls.Add(label1, 1, 1);
-            tblMain.Controls.Add(txtDateDrafted, 2, 6);
-            tblMain.Controls.Add(tabControl1, 1, 7);
+            tblMain.ColumnCount = 3;
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 62F));
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));
+            tblMain.Controls.Add(tblButtons, 1, 1);
+            tblMain.Controls.Add(tblRecipeInfo, 1, 3);
+            tblMain.Controls.Add(tblRecipeStatus, 1, 5);
+            tblMain.Controls.Add(tbRecipeDetails, 1, 7);
+            tblMain.Dock = DockStyle.Fill;
             tblMain.Location = new Point(0, 0);
+            tblMain.Margin = new Padding(3, 4, 3, 4);
             tblMain.Name = "tblMain";
-            tblMain.RowCount = 13;
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 7.02479362F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.82093668F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.68319559F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 5.096419F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.958678F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 3.030303F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.132231F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.860031F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.860031F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.132231F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 7.162534F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 39.9449043F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.860031F));
-            tblMain.Size = new Size(1538, 726);
-            tblMain.TabIndex = 0;
+            tblMain.RowCount = 9;
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 18F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 17F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 124F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 14F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 17F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 18F));
+            tblMain.Size = new Size(847, 699);
+            tblMain.TabIndex = 1;
             // 
-            // lblUser
+            // tblButtons
             // 
-            lblUser.AutoSize = true;
-            lblUser.BackColor = Color.Transparent;
-            lblUser.Dock = DockStyle.Fill;
-            lblUser.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUser.Location = new Point(293, 92);
-            lblUser.Margin = new Padding(0, 6, 3, 0);
-            lblUser.Name = "lblUser";
-            lblUser.Size = new Size(257, 28);
-            lblUser.TabIndex = 30;
-            lblUser.Text = "User";
-            lblUser.TextAlign = ContentAlignment.MiddleRight;
+            tblButtons.AutoSize = true;
+            tblButtons.ColumnCount = 5;
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 13.29607F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.4533663F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.6132622F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.6304646F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.13117F));
+            tblButtons.Controls.Add(btnDelete, 0, 0);
+            tblButtons.Controls.Add(btnSave, 0, 0);
+            tblButtons.Controls.Add(btnChangeStatus, 4, 0);
+            tblButtons.Dock = DockStyle.Fill;
+            tblButtons.Location = new Point(65, 22);
+            tblButtons.Margin = new Padding(3, 4, 3, 4);
+            tblButtons.Name = "tblButtons";
+            tblButtons.RowCount = 1;
+            tblButtons.RowStyles.Add(new RowStyle());
+            tblButtons.Size = new Size(709, 38);
+            tblButtons.TabIndex = 43;
             // 
-            // lblCaptionCalories
+            // btnDelete
             // 
-            lblCaptionCalories.AutoSize = true;
-            lblCaptionCalories.BackColor = Color.White;
-            lblCaptionCalories.Dock = DockStyle.Fill;
-            lblCaptionCalories.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCaptionCalories.Location = new Point(299, 160);
-            lblCaptionCalories.Margin = new Padding(6, 3, 2, 0);
-            lblCaptionCalories.Name = "lblCaptionCalories";
-            lblCaptionCalories.Size = new Size(252, 33);
-            lblCaptionCalories.TabIndex = 2;
-            lblCaptionCalories.Text = "Calories";
-            lblCaptionCalories.TextAlign = ContentAlignment.MiddleRight;
+            btnDelete.AutoSize = true;
+            btnDelete.Dock = DockStyle.Fill;
+            btnDelete.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDelete.Location = new Point(97, 4);
+            btnDelete.Margin = new Padding(3, 4, 3, 4);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(82, 31);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "&Delete";
+            btnDelete.UseVisualStyleBackColor = true;
             // 
-            // lblCaptionCurrentStatus
+            // btnSave
             // 
-            lblCaptionCurrentStatus.AutoSize = true;
-            lblCaptionCurrentStatus.BackColor = Color.White;
-            lblCaptionCurrentStatus.Dock = DockStyle.Fill;
-            lblCaptionCurrentStatus.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCaptionCurrentStatus.Location = new Point(299, 218);
-            lblCaptionCurrentStatus.Margin = new Padding(6, 3, 2, 0);
-            lblCaptionCurrentStatus.Name = "lblCaptionCurrentStatus";
-            lblCaptionCurrentStatus.Size = new Size(252, 27);
-            lblCaptionCurrentStatus.TabIndex = 4;
-            lblCaptionCurrentStatus.Text = "Current Status";
-            lblCaptionCurrentStatus.TextAlign = ContentAlignment.MiddleRight;
+            btnSave.AutoSize = true;
+            btnSave.BackColor = Color.White;
+            btnSave.Dock = DockStyle.Fill;
+            btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSave.Location = new Point(3, 4);
+            btnSave.Margin = new Padding(3, 4, 3, 4);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(88, 31);
+            btnSave.TabIndex = 1;
+            btnSave.Text = "&Save";
+            btnSave.UseVisualStyleBackColor = false;
             // 
-            // lblCuisine
+            // btnChangeStatus
             // 
-            lblCuisine.BackColor = Color.Transparent;
-            lblCuisine.Dock = DockStyle.Fill;
-            lblCuisine.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCuisine.Location = new Point(299, 123);
-            lblCuisine.Margin = new Padding(6, 3, 0, 0);
-            lblCuisine.Name = "lblCuisine";
-            lblCuisine.Size = new Size(254, 34);
-            lblCuisine.TabIndex = 13;
-            lblCuisine.Text = "Cuisine";
-            lblCuisine.TextAlign = ContentAlignment.MiddleRight;
+            btnChangeStatus.AutoSize = true;
+            btnChangeStatus.Dock = DockStyle.Fill;
+            btnChangeStatus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnChangeStatus.Location = new Point(547, 3);
+            btnChangeStatus.Name = "btnChangeStatus";
+            btnChangeStatus.Size = new Size(159, 33);
+            btnChangeStatus.TabIndex = 4;
+            btnChangeStatus.Text = "&Change Status...";
+            btnChangeStatus.UseVisualStyleBackColor = true;
+            // 
+            // tblRecipeInfo
+            // 
+            tblRecipeInfo.ColumnCount = 2;
+            tblRecipeInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.09128F));
+            tblRecipeInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.90872F));
+            tblRecipeInfo.Controls.Add(txtCalories, 1, 4);
+            tblRecipeInfo.Controls.Add(lstCuisineName, 1, 3);
+            tblRecipeInfo.Controls.Add(lstUsersName, 1, 2);
+            tblRecipeInfo.Controls.Add(lblUser, 0, 2);
+            tblRecipeInfo.Controls.Add(txtRecipeName, 1, 1);
+            tblRecipeInfo.Controls.Add(lblRecipeName, 0, 1);
+            tblRecipeInfo.Controls.Add(lblCuisine, 0, 3);
+            tblRecipeInfo.Controls.Add(lblCalories, 0, 4);
+            tblRecipeInfo.Dock = DockStyle.Fill;
+            tblRecipeInfo.Location = new Point(65, 85);
+            tblRecipeInfo.Margin = new Padding(3, 4, 3, 4);
+            tblRecipeInfo.Name = "tblRecipeInfo";
+            tblRecipeInfo.RowCount = 5;
+            tblRecipeInfo.RowStyles.Add(new RowStyle());
+            tblRecipeInfo.RowStyles.Add(new RowStyle());
+            tblRecipeInfo.RowStyles.Add(new RowStyle());
+            tblRecipeInfo.RowStyles.Add(new RowStyle());
+            tblRecipeInfo.RowStyles.Add(new RowStyle());
+            tblRecipeInfo.Size = new Size(709, 116);
+            tblRecipeInfo.TabIndex = 0;
             // 
             // txtCalories
             // 
             txtCalories.BackColor = Color.White;
             txtCalories.BorderStyle = BorderStyle.FixedSingle;
             txtCalories.Dock = DockStyle.Fill;
-            txtCalories.Font = new Font("Garet Book", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCalories.Location = new Point(553, 157);
+            txtCalories.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCalories.Location = new Point(248, 87);
             txtCalories.Margin = new Padding(0);
-            txtCalories.MinimumSize = new Size(0, 25);
+            txtCalories.MinimumSize = new Size(2, 25);
             txtCalories.Name = "txtCalories";
-            txtCalories.Size = new Size(218, 31);
-            txtCalories.TabIndex = 6;
+            txtCalories.Size = new Size(461, 29);
+            txtCalories.TabIndex = 41;
+            // 
+            // lstCuisineName
+            // 
+            lstCuisineName.Dock = DockStyle.Fill;
+            lstCuisineName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lstCuisineName.FormattingEnabled = true;
+            lstCuisineName.Location = new Point(248, 58);
+            lstCuisineName.Margin = new Padding(0);
+            lstCuisineName.Name = "lstCuisineName";
+            lstCuisineName.Size = new Size(461, 29);
+            lstCuisineName.TabIndex = 39;
+            // 
+            // lstUsersName
+            // 
+            lstUsersName.Dock = DockStyle.Fill;
+            lstUsersName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lstUsersName.FormattingEnabled = true;
+            lstUsersName.Location = new Point(248, 29);
+            lstUsersName.Margin = new Padding(0);
+            lstUsersName.Name = "lstUsersName";
+            lstUsersName.Size = new Size(461, 29);
+            lstUsersName.TabIndex = 37;
+            // 
+            // lblUser
+            // 
+            lblUser.AutoSize = true;
+            lblUser.BackColor = Color.Transparent;
+            lblUser.Dock = DockStyle.Fill;
+            lblUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblUser.Location = new Point(0, 37);
+            lblUser.Margin = new Padding(0, 8, 3, 0);
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(245, 21);
+            lblUser.TabIndex = 36;
+            lblUser.Text = "User";
+            lblUser.TextAlign = ContentAlignment.MiddleRight;
             // 
             // txtRecipeName
             // 
@@ -167,170 +251,383 @@
             txtRecipeName.BackColor = Color.FromArgb(188, 200, 135);
             txtRecipeName.BorderStyle = BorderStyle.FixedSingle;
             txtRecipeName.Dock = DockStyle.Fill;
-            txtRecipeName.Font = new Font("Garet Book", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
+            txtRecipeName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtRecipeName.ForeColor = SystemColors.ControlText;
-            txtRecipeName.Location = new Point(553, 51);
+            txtRecipeName.Location = new Point(248, 0);
             txtRecipeName.Margin = new Padding(0);
             txtRecipeName.Name = "txtRecipeName";
-            txtRecipeName.Size = new Size(218, 31);
-            txtRecipeName.TabIndex = 3;
+            txtRecipeName.Size = new Size(461, 29);
+            txtRecipeName.TabIndex = 35;
             // 
-            // tblControl
+            // lblRecipeName
             // 
-            tblControl.BackColor = Color.White;
-            tblControl.ColumnCount = 4;
-            tblMain.SetColumnSpan(tblControl, 2);
-            tblControl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tblControl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tblControl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tblControl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tblControl.Controls.Add(btnSave, 1, 0);
-            tblControl.Controls.Add(btnDelete, 2, 0);
-            tblControl.Dock = DockStyle.Fill;
-            tblControl.Location = new Point(299, 3);
-            tblControl.Margin = new Padding(6, 3, 6, 3);
-            tblControl.Name = "tblControl";
-            tblControl.RowCount = 1;
-            tblControl.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tblControl.Size = new Size(466, 45);
-            tblControl.TabIndex = 27;
+            lblRecipeName.AutoSize = true;
+            lblRecipeName.BackColor = Color.FromArgb(59, 74, 46);
+            lblRecipeName.Dock = DockStyle.Fill;
+            lblRecipeName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblRecipeName.ForeColor = SystemColors.HighlightText;
+            lblRecipeName.Location = new Point(0, 0);
+            lblRecipeName.Margin = new Padding(0);
+            lblRecipeName.Name = "lblRecipeName";
+            lblRecipeName.Size = new Size(248, 29);
+            lblRecipeName.TabIndex = 34;
+            lblRecipeName.Text = "       Recipe Name";
+            lblRecipeName.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // btnSave
+            // lblCuisine
             // 
-            btnSave.AutoSize = true;
-            btnSave.BackColor = Color.White;
-            btnSave.Dock = DockStyle.Fill;
-            btnSave.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSave.Location = new Point(119, 3);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(110, 39);
-            btnSave.TabIndex = 0;
-            btnSave.Text = "&Save";
-            btnSave.UseVisualStyleBackColor = false;
+            lblCuisine.AutoSize = true;
+            lblCuisine.Dock = DockStyle.Fill;
+            lblCuisine.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCuisine.Location = new Point(3, 58);
+            lblCuisine.Name = "lblCuisine";
+            lblCuisine.Size = new Size(242, 29);
+            lblCuisine.TabIndex = 42;
+            lblCuisine.Text = "Cuisine";
+            lblCuisine.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // btnDelete
+            // lblCalories
             // 
-            btnDelete.Dock = DockStyle.Fill;
-            btnDelete.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDelete.Location = new Point(235, 3);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(110, 39);
-            btnDelete.TabIndex = 2;
-            btnDelete.Text = "&Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            lblCalories.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblCalories.AutoSize = true;
+            lblCalories.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCalories.Location = new Point(3, 87);
+            lblCalories.Name = "lblCalories";
+            lblCalories.Size = new Size(242, 29);
+            lblCalories.TabIndex = 43;
+            lblCalories.Text = "Calories";
+            lblCalories.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // lstCuisineName
+            // tblRecipeStatus
             // 
-            lstCuisineName.Dock = DockStyle.Fill;
-            lstCuisineName.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lstCuisineName.FormattingEnabled = true;
-            lstCuisineName.Location = new Point(553, 120);
-            lstCuisineName.Margin = new Padding(0);
-            lstCuisineName.Name = "lstCuisineName";
-            lstCuisineName.Size = new Size(218, 30);
-            lstCuisineName.TabIndex = 5;
+            tblRecipeStatus.ColumnCount = 2;
+            tblRecipeStatus.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+            tblRecipeStatus.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+            tblRecipeStatus.Controls.Add(lblRecipeStatusFill, 1, 0);
+            tblRecipeStatus.Controls.Add(lblRecipeStatus, 0, 0);
+            tblRecipeStatus.Controls.Add(lblStatusDates, 0, 1);
+            tblRecipeStatus.Controls.Add(tblStatusDates, 1, 1);
+            tblRecipeStatus.Dock = DockStyle.Fill;
+            tblRecipeStatus.Location = new Point(65, 222);
+            tblRecipeStatus.Name = "tblRecipeStatus";
+            tblRecipeStatus.RowCount = 3;
+            tblRecipeStatus.RowStyles.Add(new RowStyle(SizeType.Percent, 33.720932F));
+            tblRecipeStatus.RowStyles.Add(new RowStyle(SizeType.Percent, 31.39535F));
+            tblRecipeStatus.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tblRecipeStatus.Size = new Size(709, 84);
+            tblRecipeStatus.TabIndex = 44;
             // 
-            // lstUsersName
+            // lblRecipeStatusFill
             // 
-            lstUsersName.Dock = DockStyle.Fill;
-            lstUsersName.Font = new Font("Garet Book", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lstUsersName.FormattingEnabled = true;
-            lstUsersName.Location = new Point(553, 86);
-            lstUsersName.Margin = new Padding(0);
-            lstUsersName.Name = "lstUsersName";
-            lstUsersName.Size = new Size(218, 30);
-            lstUsersName.TabIndex = 4;
+            lblRecipeStatusFill.AcceptsReturn = true;
+            lblRecipeStatusFill.BackColor = Color.FromArgb(188, 200, 135);
+            lblRecipeStatusFill.BorderStyle = BorderStyle.FixedSingle;
+            lblRecipeStatusFill.Dock = DockStyle.Fill;
+            lblRecipeStatusFill.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblRecipeStatusFill.ForeColor = SystemColors.ControlText;
+            lblRecipeStatusFill.Location = new Point(248, 0);
+            lblRecipeStatusFill.Margin = new Padding(0);
+            lblRecipeStatusFill.Name = "lblRecipeStatusFill";
+            lblRecipeStatusFill.Size = new Size(461, 29);
+            lblRecipeStatusFill.TabIndex = 36;
             // 
-            // label1
+            // lblRecipeStatus
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(59, 74, 46);
-            label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Garet Book", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.HighlightText;
-            label1.Location = new Point(293, 51);
-            label1.Margin = new Padding(0);
-            label1.Name = "label1";
-            label1.Size = new Size(260, 35);
-            label1.TabIndex = 33;
-            label1.Text = "       Recipe Name";
-            label1.TextAlign = ContentAlignment.MiddleRight;
+            lblRecipeStatus.AutoSize = true;
+            lblRecipeStatus.BackColor = Color.FromArgb(59, 74, 46);
+            lblRecipeStatus.Dock = DockStyle.Fill;
+            lblRecipeStatus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblRecipeStatus.ForeColor = SystemColors.HighlightText;
+            lblRecipeStatus.Location = new Point(0, 0);
+            lblRecipeStatus.Margin = new Padding(0);
+            lblRecipeStatus.Name = "lblRecipeStatus";
+            lblRecipeStatus.Size = new Size(248, 28);
+            lblRecipeStatus.TabIndex = 35;
+            lblRecipeStatus.Text = "Recipe Status";
+            lblRecipeStatus.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // txtDateDrafted
+            // lblStatusDates
             // 
-            txtDateDrafted.BackColor = Color.White;
-            txtDateDrafted.BorderStyle = BorderStyle.FixedSingle;
-            txtDateDrafted.Dock = DockStyle.Fill;
-            txtDateDrafted.Font = new Font("Garet Book", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDateDrafted.Location = new Point(553, 215);
-            txtDateDrafted.Margin = new Padding(0);
-            txtDateDrafted.MinimumSize = new Size(0, 25);
-            txtDateDrafted.Name = "txtDateDrafted";
-            txtDateDrafted.ReadOnly = true;
-            txtDateDrafted.Size = new Size(218, 31);
-            txtDateDrafted.TabIndex = 7;
+            lblStatusDates.AutoSize = true;
+            lblStatusDates.Dock = DockStyle.Fill;
+            lblStatusDates.Location = new Point(3, 28);
+            lblStatusDates.Name = "lblStatusDates";
+            lblStatusDates.Size = new Size(242, 26);
+            lblStatusDates.TabIndex = 37;
+            lblStatusDates.Text = "Status Dates";
+            lblStatusDates.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // tabControl1
+            // tblStatusDates
             // 
-            tblMain.SetColumnSpan(tabControl1, 2);
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(296, 400);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(472, 285);
-            tabControl1.TabIndex = 35;
+            tblStatusDates.ColumnCount = 3;
+            tblStatusDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tblStatusDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tblStatusDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tblStatusDates.Controls.Add(lblDrafted, 0, 0);
+            tblStatusDates.Controls.Add(lblPublished, 1, 0);
+            tblStatusDates.Controls.Add(lblArchived, 2, 0);
+            tblStatusDates.Controls.Add(lblDateDrafted, 0, 1);
+            tblStatusDates.Controls.Add(lblDatePublished, 1, 1);
+            tblStatusDates.Controls.Add(lblDateArchived, 2, 1);
+            tblStatusDates.Dock = DockStyle.Fill;
+            tblStatusDates.Location = new Point(248, 28);
+            tblStatusDates.Margin = new Padding(0);
+            tblStatusDates.Name = "tblStatusDates";
+            tblStatusDates.RowCount = 2;
+            tblRecipeStatus.SetRowSpan(tblStatusDates, 2);
+            tblStatusDates.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblStatusDates.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblStatusDates.Size = new Size(461, 56);
+            tblStatusDates.TabIndex = 38;
             // 
-            // tabPage1
+            // lblDrafted
             // 
-            tabPage1.Controls.Add(tblRecipeTab);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(464, 257);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
-            tabPage1.UseVisualStyleBackColor = true;
+            lblDrafted.AutoSize = true;
+            lblDrafted.BorderStyle = BorderStyle.FixedSingle;
+            lblDrafted.Dock = DockStyle.Fill;
+            lblDrafted.Location = new Point(0, 0);
+            lblDrafted.Margin = new Padding(0);
+            lblDrafted.Name = "lblDrafted";
+            lblDrafted.Size = new Size(153, 28);
+            lblDrafted.TabIndex = 0;
+            lblDrafted.Text = "Drafted";
+            lblDrafted.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // tblRecipeTab
+            // lblPublished
             // 
-            tblRecipeTab.ColumnCount = 2;
-            tblRecipeTab.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tblRecipeTab.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tblRecipeTab.Dock = DockStyle.Fill;
-            tblRecipeTab.Location = new Point(3, 3);
-            tblRecipeTab.Name = "tblRecipeTab";
-            tblRecipeTab.RowCount = 2;
-            tblRecipeTab.RowStyles.Add(new RowStyle(SizeType.Percent, 15.0579147F));
-            tblRecipeTab.RowStyles.Add(new RowStyle(SizeType.Percent, 84.9420853F));
-            tblRecipeTab.Size = new Size(458, 251);
-            tblRecipeTab.TabIndex = 0;
+            lblPublished.AutoSize = true;
+            lblPublished.BorderStyle = BorderStyle.FixedSingle;
+            lblPublished.Dock = DockStyle.Fill;
+            lblPublished.Location = new Point(153, 0);
+            lblPublished.Margin = new Padding(0);
+            lblPublished.Name = "lblPublished";
+            lblPublished.Size = new Size(153, 28);
+            lblPublished.TabIndex = 1;
+            lblPublished.Text = "Published";
+            lblPublished.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // tabPage2
+            // lblArchived
             // 
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(464, 256);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            lblArchived.AutoSize = true;
+            lblArchived.BorderStyle = BorderStyle.FixedSingle;
+            lblArchived.Dock = DockStyle.Fill;
+            lblArchived.Location = new Point(306, 0);
+            lblArchived.Margin = new Padding(0);
+            lblArchived.Name = "lblArchived";
+            lblArchived.Size = new Size(155, 28);
+            lblArchived.TabIndex = 2;
+            lblArchived.Text = "Archived";
+            lblArchived.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblDateDrafted
+            // 
+            lblDateDrafted.AutoSize = true;
+            lblDateDrafted.BackColor = Color.WhiteSmoke;
+            lblDateDrafted.BorderStyle = BorderStyle.FixedSingle;
+            lblDateDrafted.Dock = DockStyle.Fill;
+            lblDateDrafted.Location = new Point(0, 28);
+            lblDateDrafted.Margin = new Padding(0);
+            lblDateDrafted.Name = "lblDateDrafted";
+            lblDateDrafted.Size = new Size(153, 28);
+            lblDateDrafted.TabIndex = 3;
+            lblDateDrafted.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblDatePublished
+            // 
+            lblDatePublished.AutoSize = true;
+            lblDatePublished.BackColor = Color.WhiteSmoke;
+            lblDatePublished.BorderStyle = BorderStyle.FixedSingle;
+            lblDatePublished.Dock = DockStyle.Fill;
+            lblDatePublished.Location = new Point(153, 28);
+            lblDatePublished.Margin = new Padding(0);
+            lblDatePublished.Name = "lblDatePublished";
+            lblDatePublished.Size = new Size(153, 28);
+            lblDatePublished.TabIndex = 4;
+            lblDatePublished.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblDateArchived
+            // 
+            lblDateArchived.AutoSize = true;
+            lblDateArchived.BackColor = Color.WhiteSmoke;
+            lblDateArchived.BorderStyle = BorderStyle.FixedSingle;
+            lblDateArchived.Dock = DockStyle.Fill;
+            lblDateArchived.Location = new Point(306, 28);
+            lblDateArchived.Margin = new Padding(0);
+            lblDateArchived.Name = "lblDateArchived";
+            lblDateArchived.Size = new Size(155, 28);
+            lblDateArchived.TabIndex = 5;
+            lblDateArchived.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // tbRecipeDetails
+            // 
+            tbRecipeDetails.Controls.Add(tbIngredients);
+            tbRecipeDetails.Controls.Add(tbSteps);
+            tbRecipeDetails.Dock = DockStyle.Fill;
+            tbRecipeDetails.Location = new Point(65, 329);
+            tbRecipeDetails.Name = "tbRecipeDetails";
+            tbRecipeDetails.SelectedIndex = 0;
+            tbRecipeDetails.Size = new Size(709, 349);
+            tbRecipeDetails.TabIndex = 45;
+            // 
+            // tbIngredients
+            // 
+            tbIngredients.Controls.Add(tblIngredients);
+            tbIngredients.Location = new Point(4, 29);
+            tbIngredients.Name = "tbIngredients";
+            tbIngredients.Padding = new Padding(3);
+            tbIngredients.Size = new Size(701, 316);
+            tbIngredients.TabIndex = 0;
+            tbIngredients.Text = "Ingredients";
+            tbIngredients.UseVisualStyleBackColor = true;
+            // 
+            // tblIngredients
+            // 
+            tblIngredients.ColumnCount = 1;
+            tblIngredients.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblIngredients.Controls.Add(btnIngredientsSave, 0, 0);
+            tblIngredients.Controls.Add(gIngredients, 0, 1);
+            tblIngredients.Dock = DockStyle.Fill;
+            tblIngredients.Location = new Point(3, 3);
+            tblIngredients.Name = "tblIngredients";
+            tblIngredients.RowCount = 2;
+            tblIngredients.RowStyles.Add(new RowStyle());
+            tblIngredients.RowStyles.Add(new RowStyle(SizeType.Percent, 99.99999F));
+            tblIngredients.Size = new Size(695, 310);
+            tblIngredients.TabIndex = 0;
+            // 
+            // btnIngredientsSave
+            // 
+            btnIngredientsSave.AutoSize = true;
+            btnIngredientsSave.Location = new Point(3, 3);
+            btnIngredientsSave.Name = "btnIngredientsSave";
+            btnIngredientsSave.Size = new Size(103, 30);
+            btnIngredientsSave.TabIndex = 0;
+            btnIngredientsSave.Text = "S&ave";
+            btnIngredientsSave.UseVisualStyleBackColor = true;
+            // 
+            // gIngredients
+            // 
+            gIngredients.BackgroundColor = Color.White;
+            gIngredients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gIngredients.Dock = DockStyle.Fill;
+            gIngredients.Location = new Point(3, 39);
+            gIngredients.Name = "gIngredients";
+            gIngredients.RowTemplate.Height = 25;
+            gIngredients.Size = new Size(689, 268);
+            gIngredients.TabIndex = 1;
+            // 
+            // tbSteps
+            // 
+            tbSteps.Controls.Add(tblSteps);
+            tbSteps.Location = new Point(4, 24);
+            tbSteps.Name = "tbSteps";
+            tbSteps.Padding = new Padding(3);
+            tbSteps.Size = new Size(701, 321);
+            tbSteps.TabIndex = 1;
+            tbSteps.Text = "Steps";
+            tbSteps.UseVisualStyleBackColor = true;
+            // 
+            // tblSteps
+            // 
+            tblSteps.ColumnCount = 1;
+            tblSteps.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblSteps.Controls.Add(btnStepsSave, 0, 0);
+            tblSteps.Controls.Add(gSteps, 0, 1);
+            tblSteps.Dock = DockStyle.Fill;
+            tblSteps.Location = new Point(3, 3);
+            tblSteps.Name = "tblSteps";
+            tblSteps.RowCount = 2;
+            tblSteps.RowStyles.Add(new RowStyle());
+            tblSteps.RowStyles.Add(new RowStyle(SizeType.Percent, 99.99999F));
+            tblSteps.Size = new Size(695, 315);
+            tblSteps.TabIndex = 1;
+            // 
+            // btnStepsSave
+            // 
+            btnStepsSave.AutoSize = true;
+            btnStepsSave.Location = new Point(3, 3);
+            btnStepsSave.Name = "btnStepsSave";
+            btnStepsSave.Size = new Size(103, 30);
+            btnStepsSave.TabIndex = 0;
+            btnStepsSave.Text = "S&ave";
+            btnStepsSave.UseVisualStyleBackColor = true;
+            // 
+            // gSteps
+            // 
+            gSteps.BackgroundColor = Color.White;
+            gSteps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gSteps.Dock = DockStyle.Fill;
+            gSteps.Location = new Point(3, 39);
+            gSteps.Name = "gSteps";
+            gSteps.RowTemplate.Height = 25;
+            gSteps.Size = new Size(689, 273);
+            gSteps.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.AutoSize = true;
+            button1.Location = new Point(3, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(103, 30);
+            button1.TabIndex = 0;
+            button1.Text = "S&ave";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.BackgroundColor = Color.White;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Dock = DockStyle.Fill;
+            dataGridView2.Location = new Point(3, 39);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowTemplate.Height = 25;
+            dataGridView2.Size = new Size(194, 250);
+            dataGridView2.TabIndex = 1;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 1;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Controls.Add(button1, 0, 0);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(0, 0);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 2;
+            tableLayoutPanel6.Size = new Size(200, 100);
+            tableLayoutPanel6.TabIndex = 0;
             // 
             // frmRecipe
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1538, 726);
+            ClientSize = new Size(847, 699);
             Controls.Add(tblMain);
+            Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmRecipe";
             Text = "Recipe Info";
             tblMain.ResumeLayout(false);
             tblMain.PerformLayout();
-            tblControl.ResumeLayout(false);
-            tblControl.PerformLayout();
-            tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
+            tblButtons.ResumeLayout(false);
+            tblButtons.PerformLayout();
+            tblRecipeInfo.ResumeLayout(false);
+            tblRecipeInfo.PerformLayout();
+            tblRecipeStatus.ResumeLayout(false);
+            tblRecipeStatus.PerformLayout();
+            tblStatusDates.ResumeLayout(false);
+            tblStatusDates.PerformLayout();
+            tbRecipeDetails.ResumeLayout(false);
+            tbIngredients.ResumeLayout(false);
+            tblIngredients.ResumeLayout(false);
+            tblIngredients.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gIngredients).EndInit();
+            tbSteps.ResumeLayout(false);
+            tblSteps.ResumeLayout(false);
+            tblSteps.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gSteps).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            tableLayoutPanel6.ResumeLayout(false);
+            tableLayoutPanel6.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -338,22 +635,43 @@
         #endregion
 
         private TableLayoutPanel tblMain;
-        private Label lblCaptionCalories;
-        private Label lblCaptionCurrentStatus;
         private TableLayoutPanel tblControl;
-        private Button btnSave;
-        private Button btnDelete;
+        private TabControl tbRecipeDetails;
+        private TabPage tbIngredients;
+        private TableLayoutPanel tblRecipeTab;
+        private TabPage tbSteps;
+        private TableLayoutPanel tblStatusDates;
+        private TableLayoutPanel tblRecipeInfo;
+        private TextBox txtCalories;
         private ComboBox lstCuisineName;
         private ComboBox lstUsersName;
-        private TextBox txtCalories;
-        private TextBox txtRecipeName;
         private Label lblUser;
+        private TextBox txtRecipeName;
+        private Label lblRecipeName;
+        private TableLayoutPanel tblIngredients;
+        private TableLayoutPanel tblButtons;
+        private Button btnDelete;
+        private Button btnSave;
         private Label lblCuisine;
-        private Label label1;
-        private TextBox txtDateDrafted;
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TableLayoutPanel tblRecipeTab;
-        private TabPage tabPage2;
+        private Label lblCalories;
+        private TableLayoutPanel tblRecipeStatus;
+        private TextBox lblRecipeStatusFill;
+        private Label lblRecipeStatus;
+        private Label lblStatusDates;
+        private Label lblDrafted;
+        private Label lblPublished;
+        private Label lblArchived;
+        private Label lblDateDrafted;
+        private Label lblDatePublished;
+        private Label lblDateArchived;
+        private Button btnIngredientsSave;
+        private DataGridView gIngredients;
+        private TableLayoutPanel tblSteps;
+        private Button btnStepsSave;
+        private DataGridView gSteps;
+        private Button button1;
+        private DataGridView dataGridView2;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Button btnChangeStatus;
     }
 }

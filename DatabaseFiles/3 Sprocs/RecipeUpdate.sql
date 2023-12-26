@@ -1,7 +1,7 @@
 create or alter proc dbo.RecipeUpdate(
-	@RecipeID int output,
-	@UsersID int,
-	@CuisineID int,
+	@RecipeId int output,
+	@UsersId int,
+	@CuisineId int,
 	@RecipeName varchar (100),
 	@Calories int,
 	@DateDrafted datetime,
@@ -12,15 +12,15 @@ as
 begin
 	declare @return int = 0
 
-	select @RecipeID = isnull(@RecipeID, 0), @DateDrafted = isnull(@DateDrafted, GETDATE()), @DatePublished = nullif(@DatePublished, 0), @DateArchived = nullif(@DateArchived, 0)
+	select @RecipeId = isnull(@RecipeId, 0), @DateDrafted = isnull(@DateDrafted, GETDATE()), @DatePublished = nullif(@DatePublished, 0), @DateArchived = nullif(@DateArchived, 0)
 	
 	
-	if @RecipeID = 0
+	if @RecipeId = 0
 	begin
-		insert Recipe(UsersID, CuisineID, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
-		values(@UsersID, @CuisineID, @RecipeName, @Calories, @DateDrafted, @DatePublished, @DateArchived)
+		insert Recipe(UsersId, CuisineId, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
+		values(@UsersId, @CuisineId, @RecipeName, @Calories, @DateDrafted, @DatePublished, @DateArchived)
 
-		select @RecipeID = SCOPE_IDENTITY()
+		select @RecipeId = SCOPE_IDENTITY()
 	end
 	
 	else
@@ -28,14 +28,14 @@ begin
 	begin
 		update Recipe
 		set
-			UsersID = @UsersID, 
-			CuisineID = @CuisineID, 
+			UsersId = @UsersId, 
+			CuisineId = @CuisineId, 
 			RecipeName = @RecipeName, 
 			Calories = @Calories, 
 			DateDrafted = @DateDrafted, 
 			DatePublished = @DatePublished, 
 			DateArchived = @DateArchived 
-		where RecipeID = @RecipeID
+		where RecipeId = @RecipeId
 	end
 
 	return @return

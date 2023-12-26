@@ -2,12 +2,12 @@ Use HeartyHearthDB
 go
 
 
-create or alter procedure dbo.CuisineGet(@CuisineID int = 0, @CuisineName varchar(50) = '', @All bit = 0)
+create or alter procedure dbo.CuisineGet(@CuisineId int = 0, @CuisineName varchar(50) = '', @All bit = 0)
 as
 begin
-	select c.CuisineID, c.CuisineName
+	select c.CuisineId, c.CuisineName
 	from Cuisine c
-	where c.CuisineId = @CuisineID
+	where c.CuisineId = @CuisineId
 	or (@CuisineName <> '' and c.CuisineName like '%' + @CuisineName + '%')
 	or @All = 1
 end
@@ -19,7 +19,7 @@ exec CuisineGet
 
 exec CuisineGet @All = 1
 
-exec CuisineGet @CuisineID = 2
+exec CuisineGet @CuisineId = 2
 
 exec CuisineGet @CuisineName = null
 
@@ -27,8 +27,8 @@ exec CuisineGet @CuisineName = ''
 
 exec CuisineGet @CuisineName = 'm'
 
-declare @CuisineID int
-select top 1 @CuisineID = c.CuisineID from Cuisine c
-exec CuisineGet @CuisineID = @CuisineID
+declare @CuisineId int
+select top 1 @CuisineId = c.CuisineId from Cuisine c
+exec CuisineGet @CuisineId = @CuisineId
 
 */

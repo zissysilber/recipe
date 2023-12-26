@@ -1,15 +1,15 @@
 declare @recipeid int
 
-select top 1 @recipeid =  r.RecipeID
+select top 1 @recipeid =  r.RecipeId
 	from Recipe r
     join Cuisine c
-	on r.CuisineID = c.CuisineID
+	on r.CuisineId = c.CuisineId
 	join Users u
-	on u.UsersID = r.UsersID
+	on u.UsersId = r.UsersId
 
 
-select * from recipe r where r.RecipeID = @recipeid
+select * from recipe r where r.RecipeId = @recipeid
 
-exec RecipeDelete @RecipeID = @recipeid
+exec RecipeDelete @RecipeId = @recipeid
 
-select * from Recipe r where r.RecipeID = @recipeid
+select * from Recipe r where r.RecipeId = @recipeid

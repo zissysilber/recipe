@@ -18,9 +18,9 @@ namespace RecipeWinForms
         {
             DataTable dt = Recipe.SearchRecipes(recipename);
             gRecipe.DataSource = dt;
-            gRecipe.Columns["RecipeID"].Visible = false;
-            gRecipe.Columns["CuisineID"].Visible = false;
-            gRecipe.Columns["UsersID"].Visible = false;
+            gRecipe.Columns["RecipeId"].Visible = false;
+            gRecipe.Columns["CuisineId"].Visible = false;
+            gRecipe.Columns["UsersId"].Visible = false;
             gRecipe.Columns["Calories"].Visible = false;
             gRecipe.Columns["DateDrafted"].Visible = false;
             gRecipe.Columns["DatePublished"].Visible = false;
@@ -33,13 +33,13 @@ namespace RecipeWinForms
 
         private void ShowRecipeForm(int rowindex)
         {
-            int id = 0;
+            int Id = 0;
             if (rowindex > -1)
             {
-                id = (int)gRecipe.Rows[rowindex].Cells["RecipeID"].Value;
+                Id = (int)gRecipe.Rows[rowindex].Cells["RecipeId"].Value;
             }
             frmRecipe frm = new frmRecipe();
-            frm.LoadForm(id);
+            frm.LoadForm(Id);
         }
 
         private void BtnSearch_Click(object? sender, EventArgs e)

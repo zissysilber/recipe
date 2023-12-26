@@ -32,8 +32,8 @@ select 'English'
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '10/02/2005', DateArchived = '10/03/2005' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -44,8 +44,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies1', Calories = 75, DateDrafted = '10/01/2005', DatePublished = '10/01/2005', DateArchived = null 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -60,8 +60,8 @@ delete recipe
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies', Calories = 75, DateDrafted = '10/01/2007', DatePublished = '12/01/2005', DateArchived = null 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -73,8 +73,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'ChocoChip Cookies1', Calories = 75, DateDrafted = '10/01/2004', DatePublished = '12/01/2005', DateArchived = '12/01/2004' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -88,8 +88,8 @@ delete recipe
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea1', Calories = 5, DateDrafted = '10/01/2025', DatePublished = '10/02/2005', DateArchived = '10/03/2005' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -101,8 +101,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '10/02/2025', DateArchived = '10/03/2025' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -115,8 +115,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '10/02/2005', DateArchived = '10/03/2025' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -129,8 +129,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '09/02/2005', DateArchived = '10/03/2005' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -143,8 +143,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = '09/02/2005', DateArchived = '08/03/2005' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -157,8 +157,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea2', Calories = 5, DateDrafted = '10/01/2005', DatePublished = null, DateArchived = '10/03/2005' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -171,8 +171,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea3', Calories = 5, DateDrafted = '10/01/2005', DatePublished = null, DateArchived = null 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -184,8 +184,8 @@ on x.Cuisine = c.CuisineName
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Tea3', Calories = 5, DateDrafted = '10/01/2005', DatePublished = null, DateArchived = '12/03/2005' 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName

@@ -127,8 +127,8 @@ with x as(
     union select 'Fay303', 'French', 'Cantaloupe and Feta Salad', 110,  '12/12/2020', '1/2/2021', null
     union select 'Fay303', 'Italian', 'Basic Balsamic Dressing', 30, '1/1/2022', null, null 
 )
-Insert Recipe(UsersID, CuisineID, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
-select u.UsersID, c.CuisineID, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories,  DateDrafted, DatePublished, DateArchived)
+select u.UsersId, c.CuisineId, x.RecipeName, x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
 from x
 join Users u
 on x.UsersName = u.UsersName
@@ -148,8 +148,8 @@ with x as(
     union select 'Chocolate Chip Cookies', '1/2', 'tsp', 'baking soda', 7
     union select 'Chocolate Chip Cookies', '1', 'cup', 'chocolate chips', 8
 )
-Insert RecipeIngredient(RecipeID, MeasurementAmt, MeasurementID, IngredientID, IngredientSequence)
-select r.RecipeID, x.MsmtAmt, m.MeasurementID, i.IngredientID, x.IngSeq
+Insert RecipeIngredient(RecipeId, MeasurementAmt, MeasurementId, IngredientId, IngredientSequence)
+select r.RecipeId, x.MsmtAmt, m.MeasurementId, i.IngredientId, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -167,8 +167,8 @@ with x as(
     union select 'Apple Yogurt Smoothie', '2', 'tbsp', 'honey', 5
     union select 'Apple Yogurt Smoothie', '5-6', null, 'ice cubes', 6
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -188,8 +188,8 @@ with x as(
     union select 'Cheese Bread', 'pinch', 'of', 'salt', 6
 
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -210,8 +210,8 @@ with x as(
     union select 'Butter Muffins', '2', 'tsp', 'baking powder', 8
 
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -230,8 +230,8 @@ with x as(
     union select 'Meat Stew', '3/4', 'cup', 'brown sugar', 6
     union select 'Meat Stew', '2', 'tbsp', 'vinegar', 7
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -249,8 +249,8 @@ with x as(
     union select 'Meatball Bites', '1', null, 'egg', 5
 
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -271,8 +271,8 @@ with x as(
     union select 'Red Potato Salad', '2 to 3', 'sprigs', 'fresh dill', 8
 
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -294,8 +294,8 @@ with x as(
     union select 'Express Doughless Knishes', ' ', null, 'sesame seeds', 9
 
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -312,8 +312,8 @@ with x as(
     union select 'Cantaloupe and Feta Salad', '1/4 ', null, 'English cucumber', 3
 
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -330,8 +330,8 @@ with x as(
     union select 'Basic Balsamic Dressing', 'pinch', 'of', 'black pepper', 4
 
 )
-Insert RecipeIngredient(RecipeID, IngredientID, MeasurementID, MeasurementAmt, IngredientSequence)
-select r.RecipeID, i.IngredientID, m.MeasurementID, x.MsmtAmt, x.IngSeq
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -351,8 +351,8 @@ with x as(
     union select 'Chocolate Chip Cookies', 7, 'Roll into balls and place spread out on a cookie sheet.' 
     union select 'Chocolate Chip Cookies', 8, 'Bake on 350 for 10 min.' 
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -365,8 +365,8 @@ with x as(
     union select 'Apple Yogurt Smoothie', 4, 'Add apples and ice cubes.' 
     union select 'Apple Yogurt Smoothie', 5, 'Pour into glasses.' 
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -378,8 +378,8 @@ with x as(
     union select 'Cheese Bread', 3, 'Fill slits with cheese mixture.' 
     union select 'Cheese Bread', 4, 'Wrap bread into a foil and bake for 30 minutes.'
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -391,8 +391,8 @@ with x as(
     union select 'Butter Muffins', 3, 'Slowly add rest of ingredients and mix well.' 
     union select 'Butter Muffins', 4, 'Fill muffin pans 3/4 full and bake for 30 minutes.' 
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -404,8 +404,8 @@ with x as(
     union select 'Meat Stew', 3, 'In a small bowl, mix ketchup, brown sugar, and vinegar well.' 
     union select 'Meat Stew', 4, 'Cook at least 1 hour on a low flame.' 
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -419,8 +419,8 @@ with x as(
     union select 'Meatball Bites', 5, 'Repeat the process until you used up all of the puff pastry.'
     union select 'Meatball Bites', 6, 'Coat with egg wash. Then, place in the oven to bake for about 25 to 30 minutes.'
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -433,8 +433,8 @@ with x as(
     union select 'Red Potato Salad', 4, 'Refrigerate overnight for best results. Sprinkle with fresh dill immediately before serving.' 
   
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -448,8 +448,8 @@ with x as (
     union select 'Express Doughless Knishes', 5, 'Cut into two-and-a-half-inch squares.' 
 
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -460,8 +460,8 @@ with x as(
     union select 'Cantaloupe and Feta Salad', 2, 'Sprinkle feta and cucumber over the cantaloupe.' 
 
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -472,8 +472,8 @@ with x as(
     select RecipeName = 'Basic Balsamic Dressing', DirectionSequence = 1, DirectionDesc= 'Whisk together all dressing ingredients in a bowl.' 
     union select 'Basic Balsamic Dressing', 2, 'Drizzle over salad.' 
 )
-Insert RecipeDirection (RecipeID, DirectionSequence, DirectionDesc) 
-select r.RecipeID, x.DirectionSequence, x.DirectionDesc
+Insert RecipeDirection (RecipeId, DirectionSequence, DirectionDesc) 
+select r.RecipeId, x.DirectionSequence, x.DirectionDesc
 from x
 join Recipe r
 on x.RecipeName = r.RecipeName
@@ -481,11 +481,11 @@ on x.RecipeName = r.RecipeName
 
 go
 
-Insert Meal(UsersID, MealName, IsActive)
-select u.UsersID, 'Breakfast Bash', 1 from Users u where u.UsersName = 'Betty101' 
-union select u.UsersID, 'Favor in Flavor', 0 from Users u where u.UsersName = 'Betty101'
-union select u.UsersID, 'Supper''s a Picnic', 0 from Users u where u.UsersName = 'Fay303'
-union select u.UsersID, 'Lunch in the Lounge', 1 from Users u where u.UsersName = 'Betty101'
+Insert Meal(UsersId, MealName, IsActive)
+select u.UsersId, 'Breakfast Bash', 1 from Users u where u.UsersName = 'Betty101' 
+union select u.UsersId, 'Favor in Flavor', 0 from Users u where u.UsersName = 'Betty101'
+union select u.UsersId, 'Supper''s a Picnic', 0 from Users u where u.UsersName = 'Fay303'
+union select u.UsersId, 'Lunch in the Lounge', 1 from Users u where u.UsersName = 'Betty101'
 go
 
 
@@ -511,8 +511,8 @@ with x as(
     union select 'Lunch in the Lounge', 'Appetizer'
     union select 'Lunch in the Lounge', 'Salad'
 )
-Insert MealCourse(MealID, CourseID)
-select m.MealID, c.CourseID
+Insert MealCourse(MealId, CourseId)
+select m.MealId, c.CourseId
 from x
 join Meal m
 on x.MealName = m.MealName
@@ -534,27 +534,27 @@ with x as(
     union select 'Lunch in the Lounge', 'Salad', 'Cantaloupe and Feta Salad', 1
     union select 'Lunch in the Lounge', 'Salad', 'Basic Balsamic Dressing', 0
 )
-Insert MealCourseRecipe(MealCourseID, RecipeID, IsMain)
-select mc.MealCourseID, r.RecipeID, x.Main
+Insert MealCourseRecipe(MealCourseId, RecipeId, IsMain)
+select mc.MealCourseId, r.RecipeId, x.Main
 from x
 join Meal m
 on x.MealName = m.MealName
 join Course c
 on x.Course = c.CourseName
 join MealCourse mc
-on mc.CourseId = c.CourseID
-and mc.MealID = m.MealID
+on mc.CourseId = c.CourseId
+and mc.MealId = m.MealId
 join Recipe r
 on x.Recipe = r.RecipeName
 
 go
 
 
-Insert Cookbook(UsersID, CookbookName, Price, IsActive)
-select u.UsersID, 'Treats for Two', 30, 0 from Users u where u.UsersName = 'Betty101'
-union select u.UsersID, 'Supper 1-2-3', 36, 1 from Users u where u.UsersName = 'Cindy202'
-union select u.UsersID, 'Salad, Salad, Salad', 25, 1 from Users u where u.UsersName = 'Fay303'
-union select u.UsersID, 'Dairy Delights', 28, 0 from Users u where u.UsersName = 'Betty101'
+Insert Cookbook(UsersId, CookbookName, Price, IsActive)
+select u.UsersId, 'Treats for Two', 30, 0 from Users u where u.UsersName = 'Betty101'
+union select u.UsersId, 'Supper 1-2-3', 36, 1 from Users u where u.UsersName = 'Cindy202'
+union select u.UsersId, 'Salad, Salad, Salad', 25, 1 from Users u where u.UsersName = 'Fay303'
+union select u.UsersId, 'Dairy Delights', 28, 0 from Users u where u.UsersName = 'Betty101'
 
 go
 
@@ -575,8 +575,8 @@ with x as (
     union select 'Dairy Delights', 'Butter Muffins', 2 
     union select 'Dairy Delights', 'Cheese Bread', 3
 )
-Insert CookbookRecipe(CookbookID, RecipeID, CookbookRecipeSequence)
-select c.CookBookID, r.RecipeID, x.RecipeSeq
+Insert CookbookRecipe(CookbookId, RecipeId, CookbookRecipeSequence)
+select c.CookBookId, r.RecipeId, x.RecipeSeq
 from x
 join Cookbook c
 on x.Cookbook = c.CookbookName

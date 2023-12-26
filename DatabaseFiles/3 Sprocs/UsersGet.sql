@@ -1,13 +1,21 @@
-create or alter procedure dbo.UsersGet(@UsersID int = 0, @UsersName varchar(25) = '', @All bit = 0)
+create or alter procedure dbo.UsersGet(
+	@UsersId int = 0, 
+	@UsersName varchar(25) = '', 
+	@All bit = 0,
+	@IncludeBlank bit = 0,
+	@Message varchar(500) = ''  output)
 as
 begin
 	select @UsersName = nullif(@UsersName,'')
 
-	select u.UsersID, u.UsersName, u.FirstName, u.LastName
+	select u.UsersId, u.UsersName, u.FirstName, u.LastName
 	from Users u
-	where u.UsersID = @UsersID
+	where u.UsersId = @UsersId
 	or u.UsersName like '%' + @UsersName + '%'
 	or @All = 1
+	union select 0, 0, ' ', ' '
+	where @IncludeBlank = 1
+
 end
 go
 
@@ -17,7 +25,7 @@ exec UsersGet
 
 exec UsersGet @All = 1
 
-exec UsersGet @UsersID = 3
+exec UsersGet @UsersId = 3
 
 exec UsersGet @UsersName = ''
 
