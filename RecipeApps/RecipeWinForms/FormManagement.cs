@@ -9,44 +9,50 @@ namespace RecipeWinForms
 {
     public class FormManagement
     {
-        
-        public void OpenForm(Type frmtype, int pkvalue = 0)
+
+        //public void OpenForm(Type frmtype, int pkvalue = 0)
+        //{
+        //    bool b = WindowsFormUtility.IsFormOpen(frmtype);
+
+        //    if (b == false)
+        //    {
+        //        Form? newfrm = null;
+        //        if (frmtype == typeof(frmDashboard))
+        //        {
+        //            frmDashboard f = new();
+        //            newfrm = f;
+        //        }
+
+        //        else if (frmtype == typeof(frmRecipeList))
+        //        {
+        //            frmRecipeList f = new();
+        //            newfrm = f;
+        //        }
+
+        //        else if (frmtype == typeof(frmRecipe))
+        //        {
+        //            frmRecipe f = new();
+        //            newfrm = f;
+        //            f.LoadForm(pkvalue);
+        //        }
+
+        //        if (newfrm != null)
+        //        {
+
+        //            //newfrm.MdiParent = this.ParentForm;
+        //            //frmMain frm = ParentForm
+        //            //newfrm.WindowState = FormWindowState.Maximized;
+        //            //newfrm.FormClosed += Frm_FormClosed;
+        //            newfrm.Show();
+
+        //        }
+        //    }
+        //}
+
+        private void BindData(DataGridView grid, DataTable dt)
         {
-            bool b = WindowsFormUtility.IsFormOpen(frmtype);
-
-            if (b == false)
-            {
-                Form? newfrm = null;
-                if (frmtype == typeof(frmDashboard))
-                {
-                    frmDashboard f = new();
-                    newfrm = f;
-                }
-
-                else if (frmtype == typeof(frmRecipeList))
-                {
-                    frmRecipeList f = new();
-                    newfrm = f;
-                }
-
-                else if (frmtype == typeof(frmRecipe))
-                {
-                    frmRecipe f = new();
-                    newfrm = f;
-                    f.LoadForm(pkvalue);
-                }
-
-                if (newfrm != null)
-                {
-
-                    //newfrm.MdiParent = this.ParentForm;
-                    //frmMain frm = ParentForm
-                    //newfrm.WindowState = FormWindowState.Maximized;
-                    //newfrm.FormClosed += Frm_FormClosed;
-                    newfrm.Show();
-
-                }
-            }
+            grid.DataSource = dt;
+            WindowsFormUtility.FormatGridForSearchResults(grid);
         }
     }
 }

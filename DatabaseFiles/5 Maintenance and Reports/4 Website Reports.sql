@@ -5,7 +5,7 @@ Below is the layout of the pages on our website, please provide the SQL to produ
 
 Note: 
 a) When the word 'specific' is used, pick one record (of the appropriate type, recipe, meal, etc.) for the query. 
-The way the website works is that a list of items are displayed and then the user picks one and navigates to the "details" page.
+The way the website works is that a list of items are displayed and then the Users picks one and navigates to the "details" page.
 b) Whenever you have a record for a specific item include the name of the picture for that item. That is because the website will always show a picture of the item.
 
 Home Page
@@ -21,7 +21,7 @@ cross join Meal m
 Recipe list page:
     List of all Recipes that are either published or archived, published recipes should appear at the top. 
 	Archived recipes should appear gray. Surround the archived recipe with <span style="color:gray">recipe name</span>
-    In the resultset show the Recipe with its status, dates it was published and archived (blank if not archived), user, number of calories and number of ingredients.
+    In the resultset show the Recipe with its status, dates it was published and archived (blank if not archived), Users, number of calories and number of ingredients.
 */
 select RecipeName = 
     case
@@ -91,12 +91,12 @@ order by rd.DirectionSequence
 
 
 Meal list page:
-    All active meals, meal name, user that created meal, number of calories for the meal, number of courses, and number of recipes per each meal, sorted by name of meal
+    All active meals, meal name, Users that created meal, number of calories for the meal, number of courses, and number of recipes per each meal, sorted by name of meal
 */
-select m.MealName, u.UserName, MealCalories = sum(r.Calories), TotalCourses = count(distinct mc.MealCourseId), TotalRecipes = count(mr.RecipeId), m.MealImage
+select m.MealName, u.UsersName, MealCalories = sum(r.Calories), TotalCourses = count(distinct mc.MealCourseId), TotalRecipes = count(mr.RecipeId), m.MealImage
 from Meal m
 join Users u
-on m.UserId = u.UserId
+on m.UsersId = u.UsersId
 join MealCourse mc
 on m.MealId = mc.MealId
 join MealCourseRecipe mr
@@ -104,20 +104,20 @@ on mc.MealCourseId = mr.MealCourseId
 join Recipe r
 on mr.RecipeId = r.RecipeId
 where m.IsActive = 1
-group by m.MealName, u.UserName, m.MealImage
+group by m.MealName, u.UsersName, m.MealImage
 order by m.MealName
 
 
 /*
 Meal details page:
     Show for a specific meal:
-        a) Meal header: meal name, user, date created.
+        a) Meal header: meal name, Users, date created.
 
 */
 select m.MealName, u.FirstName, u.LastName, m.DateCreated, m.MealImage
 from Meal m
 join Users u
-on m.UserId = u.UserId
+on m.UsersId = u.UsersId
 where m.MealName = 'Breakfast Bash'
 
 /*
@@ -162,7 +162,7 @@ from Cookbook c
 join CookbookRecipe cr
 on c.CookbookId = cr.CookbookId
 join Users u
-on c.UserId = u.UserId
+on c.UsersId = u.UsersId
 where c.IsActive = 1
 group by c.CookbookName, u.FirstName, u.LastName, c.CookbookImage
 order by c.CookbookName
@@ -171,23 +171,23 @@ order by c.CookbookName
 --Cookbook details page:
 --Show for specific cookbook:
 
---a) Cookbook header: cookbook name, user, date created, price, number of recipes.
-select c.CookbookName, u.UserName, c.DateCreated, c.Price, TotalRecipes = count(cr.RecipeId), c.CookbookImage 
+--a) Cookbook header: cookbook name, Users, date created, price, number of recipes.
+select c.CookbookName, u.UsersName, c.DateCreated, c.Price, TotalRecipes = count(cr.RecipeId), c.CookbookImage 
 from Cookbook c
 join CookbookRecipe cr
 on c.CookbookId = cr.CookbookId
 join Users u
-on c.UserId = u.UserId
+on c.UsersId = u.UsersId
 where c.CookbookName = 'Supper 1-2-3'
-group by c.CookbookName, u.UserName, c.DateCreated, c.Price, c.CookbookImage
+group by c.CookbookName, u.UsersName, c.DateCreated, c.Price, c.CookbookImage
 
---b) List of all recipes in the correct order. Include recipe name, cuisine and number of ingredients and steps.  Note: User will click on recipe to see all ingredients and steps.
+--b) List of all recipes in the correct order. Include recipe name, cuisine and number of ingredients and steps.  Note: Users will click on recipe to see all ingredients and steps.
 select r.RecipeName, s.CuisineName, TotalIng = count(distinct ri.RecipeIngredientId), TotalDirections = count(distinct rd.RecipeDirectionId), r.RecipeImage
 from Cookbook c
 join CookbookRecipe cr
 on c.CookbookId = cr.CookbookId
 join Users u
-on c.UserId = u.UserId
+on c.UsersId = u.UsersId
 join Recipe r
 on cr.RecipeId = r.RecipeId
 join Cuisine s
@@ -216,7 +216,7 @@ order by cr.CookbookRecipeSequence
     join Recipe r
     on cr.RecipeId = r.RecipeId
 
---b) When the user clicks on a specific recipe they should see a list of the first ingredient of each recipe in the system, and a list of the last step in each recipe in the system
+--b) When the Users clicks on a specific recipe they should see a list of the first ingredient of each recipe in the system, and a list of the last step in each recipe in the system
 ;
 with x as(
     select  FirstIngredient = min(ri.IngredientSequence),  RecipeDirectionId = rd.RecipeId, HighestInstruction = max(rd.DirectionSequence)
@@ -252,27 +252,27 @@ where r.RecipeName = 'Chocolate Chip Cookies'
 
 --For site administration page: 5 separate reports
 
---a) List of how many recipes each user created per status. Show 0 if none
+--a) List of how many recipes each Users created per status. Show 0 if none
 select u.FirstName, u.LastName, TotalDrafted = count(r.DateDrafted), TotalPublished = count(r.DatePublished), TotalArchived = count(r.DateArchived)
 from Users u
 left join Recipe r
-on r.UserId = u.UserId
+on r.UsersId = u.UsersId
 group by u.FirstName, u.LastName
 
 
 
---b) List of how many recipes each user created and average amount of days that it took for the user's recipes to be published.
+--b) List of how many recipes each Users created and average amount of days that it took for the Users's recipes to be published.
 select FirstName = u.FirstName, LastName = u.LastName, TotalDrafted = count(r.DateDrafted), AvgDaysToPublish = avg(datediff(day, r.DateDrafted, r.DatePublished))
 from Users u
 left join Recipe r
-on r.UserId = u.UserId
+on r.UsersId = u.UsersId
 group by u.FirstName, u.LastName
 having count(r.DateDrafted) > 0
 
 
 
---c) List of how many meals each user created and whether they're active or inactive. Show 0 if none
-select  u.FirstName, u.LastName, TotalMealsCreated = count(m.UserId), 
+--c) List of how many meals each Users created and whether they're active or inactive. Show 0 if none
+select  u.FirstName, u.LastName, TotalMealsCreated = count(m.UsersId), 
         IsActive = case m.IsActive 
             when 1 then 'Active' 
             when 0 then 'Inactive'
@@ -280,11 +280,11 @@ select  u.FirstName, u.LastName, TotalMealsCreated = count(m.UserId),
             end
 from Users u
 left join Meal m
-on m.UserId = u.UserId
+on m.UsersId = u.UsersId
 group by u.FirstName, u.LastName, m.IsActive
 
---d) List of how many cookbooks each user created and whether they're active or inactive. Show 0 if none
-select u.FirstName, u.LastName, TotalCookbooks = count(c.UserId), 
+--d) List of how many cookbooks each Users created and whether they're active or inactive. Show 0 if none
+select u.FirstName, u.LastName, TotalCookbooks = count(c.UsersId), 
         IsActive = case c.IsActive
             when 1 then 'Active' 
             when 0 then 'Inactive'
@@ -292,7 +292,7 @@ select u.FirstName, u.LastName, TotalCookbooks = count(c.UserId),
             end
 from Users u
 left join Cookbook c
-on c.UserId = u.UserId
+on c.UsersId = u.UsersId
 group by u.FirstName, u.LastName, c.IsActive
 
 --e) List of archived recipes that were never published, and how long it took for them to be archived.
@@ -302,27 +302,27 @@ where r.RecipeStatus = 'Archived'
 and r.DatePublished is null
 
 
---For user dashboard page:
+--For Users dashboard page:
 
---a) Show number of the user's recipes, meals and cookbooks. 
+--a) Show number of the Users's recipes, meals and cookbooks. 
 select u.FirstName, u.LastName, TotalRecipes = count(distinct r.RecipeId), TotalMeals = count( distinct m.MealId), TotalCookbook = count(distinct c.CookbookId)
 from Users u
 left join Recipe r
-on u.UserId = r.UserId
+on u.UsersId = r.UsersId
 left join Meal m
-on U.UserId = m.UserId
+on U.UsersId = m.UsersId
 left join Cookbook c
-on u.UserId = c.UserId
-where u.UserName = 'Betty101'
+on u.UsersId = c.UsersId
+where u.UsersName = 'Betty101'
 group by u.FirstName, u.LastName
 
 
 
 --b) List of their recipes, display the status and the number of hours between the status it's in and the one before that. Show null if recipe has the status drafted.
 
--- SM Remove extra columns, and only show users that have recipes.
+-- SM Remove extra columns, and only show Users that have recipes.
 
---This sql for seeing all users and any recipes they may have
+--This sql for seeing all Users and any recipes they may have
 select distinct 
     u.FirstName, u.LastName, r.RecipeName, r.RecipeStatus, r.DateDrafted, r.DatePublished, r.DateArchived,
     HoursTimeLapse = case 
@@ -344,20 +344,20 @@ select distinct
             end
 from Users u
 left join Recipe r
-on u.UserId = r.UserId
+on u.UsersId = r.UsersId
 
 
 
 --c) Count of their recipes per cuisine. Show 0 for none.
 
 
-select U.UserName, c.CuisineName, TotalRecipes = count(r.UserId)
+select U.UsersName, c.CuisineName, TotalRecipes = count(r.UsersId)
 from Cuisine c
 cross join Users u
 left join Recipe r
-on c.CuisineId = r.CuisineId and u.UserId = r.UserId
-group by U.UserName, c.CuisineName
-order by u.UserName
+on c.CuisineId = r.CuisineId and u.UsersId = r.UsersId
+group by U.UsersName, c.CuisineName
+order by u.UsersName
 
 
  

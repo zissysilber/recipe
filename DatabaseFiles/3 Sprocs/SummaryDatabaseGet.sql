@@ -13,7 +13,7 @@ begin
 end
 go
 
-exec SummaryDatabaseGet
+
 
 
 

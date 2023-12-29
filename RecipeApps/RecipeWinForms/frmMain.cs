@@ -21,6 +21,7 @@ namespace RecipeWinForms
             mnuRecipeList.Click += MnuRecipeList_Click;
             mnuNewRecipe.Click += MnuNewRecipe_Click;
             mnuCloneRecipe.Click += MnuCloneRecipe_Click;
+            mnuMealsList.Click += MnuMealsList_Click;
             mnuCookbookList.Click += MnuCookbooksList_Click;
             mnuNewCookbook.Click += MnuNewCookbook_Click;
             mnuCookbookAutoCreate.Click += MnuCookbooksAutoCreate_Click;
@@ -29,6 +30,8 @@ namespace RecipeWinForms
             mnuWindowCascade.Click += MnuWindowCascade_Click;
             this.Shown += FrmMain_Shown;
         }
+
+
 
         private void FrmMain_Shown(object? sender, EventArgs e)
         {
@@ -54,16 +57,33 @@ namespace RecipeWinForms
                     newfrm = f;
                 }
 
-                else if(frmtype == typeof(frmRecipe))
+                else if (frmtype == typeof(frmRecipe))
                 {
                     frmRecipe f = new();
                     newfrm = f;
                     f.LoadForm(pkvalue);
                 }
 
+                else if (frmtype == typeof(frmCookbookList))
+                {
+                    frmCookbookList f = new();
+                    newfrm = f;
+                }
+
+                else if (frmtype == typeof(frmMealList))
+                {
+                    frmMealList f = new();
+                    newfrm = f;
+                }
+                else if (frmtype == typeof(frmCookbookDetail))
+                {
+                    frmCookbookDetail f = new();
+                    newfrm = f;
+                }
+
                 if (newfrm != null)
                 {
-                    newfrm.MdiParent = this; 
+                    newfrm.MdiParent = this;
                     newfrm.WindowState = FormWindowState.Maximized;
                     newfrm.FormClosed += Frm_FormClosed;
                     newfrm.TextChanged += Newfrm_TextChanged;
@@ -95,14 +115,17 @@ namespace RecipeWinForms
 
         private void MnuNewCookbook_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmCookbookDetail));
         }
 
         private void MnuCookbooksList_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmCookbookList));
         }
-
+        private void MnuMealsList_Click(object? sender, EventArgs e)
+        {
+            OpenForm(typeof(frmMealList));
+        }
         private void MnuCloneRecipe_Click(object? sender, EventArgs e)
         {
 
@@ -120,12 +143,7 @@ namespace RecipeWinForms
 
         private void MnuDashboard_Click(object? sender, EventArgs e)
         {
-
-        }
-
-        private void mnuFile_Click(object sender, EventArgs e)
-        {
-
+            OpenForm(typeof(frmDashboard));
         }
 
         private void MnuWindowCascade_Click(object? sender, EventArgs e)

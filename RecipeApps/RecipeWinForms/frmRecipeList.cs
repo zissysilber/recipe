@@ -18,7 +18,11 @@ namespace RecipeWinForms
             InitializeComponent();
             btnNewRecipe.Click += BtnNewRecipe_Click;
             this.Activated += FrmRecipeList_Activated;
+            gRecipeSummary.CellDoubleClick += GRecipeSummary_CellDoubleClick;
+            gRecipeSummary.KeyDown += GRecipeSummary_KeyDown;
+            
         }
+
 
 
         private void BindData()
@@ -27,43 +31,21 @@ namespace RecipeWinForms
             WindowsFormUtility.FormatGridForSearchResults(gRecipeSummary);
         }
 
-        public void OpenForm(Type frmtype, int pkvalue = 0)
+
+        private void ShowRecipeForm(int rowindex)
         {
-            bool b = WindowsFormUtility.IsFormOpen(frmtype);
-
-            if (b == false)
+            int id = 0;
+            if (rowindex > -1)
             {
-                Form? newfrm = null;
-                if (frmtype == typeof(frmDashboard))
-                {
-                    frmDashboard f = new();
-                    newfrm = f;
-                }
-
-                else if (frmtype == typeof(frmRecipeList))
-                {
-                    frmRecipeList f = new();
-                    newfrm = f;
-                }
-
-                else if (frmtype == typeof(frmRecipe))
-                {
-                    frmRecipe f = new();
-                    newfrm = f;
-                    f.LoadForm(pkvalue);
-                }
-
-                if (newfrm != null)
-                {
-
-                    newfrm.MdiParent = this.ParentForm;
-                    newfrm.WindowState = FormWindowState.Maximized;
-                    //newfrm.FormClosed += Frm_FormClosed;
-                    newfrm.Show();
-
-                }
+                id = WindowsFormUtility.GetIdFromGrid(gRecipeSummary, rowindex, "RecipeId");
+            }
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
         }
+
 
         private void FrmRecipeList_Activated(object? sender, EventArgs e)
         {
@@ -72,17 +54,22 @@ namespace RecipeWinForms
 
         private void BtnNewRecipe_Click(object? sender, EventArgs e)
         {
-            //is this the parent fornm that we want it to be a child of? NO
-
-
-
-            OpenForm(typeof(frmRecipe));
+            ShowRecipeForm(-1);
         }
-        //private void Frm_FormClosed(object? sender, FormClosedEventArgs e)
-        //{
-        //   WindowsFormUtility.SetupNav();
-        //}
 
+        private void GRecipeSummary_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && gRecipeSummary.ColumnCount > 0)
+            {
+                ShowRecipeForm(gRecipeSummary.SelectedRows[0].Index);
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void GRecipeSummary_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            ShowRecipeForm(e.RowIndex);
+        }
 
     }
 }

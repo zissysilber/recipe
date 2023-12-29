@@ -59,7 +59,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(9, 3, 0, 3);
-            menuStrip1.Size = new Size(1143, 31);
+            menuStrip1.Size = new Size(695, 31);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -73,7 +73,7 @@
             // mnuDashboard
             // 
             mnuDashboard.Name = "mnuDashboard";
-            mnuDashboard.Size = new Size(180, 26);
+            mnuDashboard.Size = new Size(156, 26);
             mnuDashboard.Text = "&Dashboard";
             // 
             // mnuRecipe
@@ -111,7 +111,7 @@
             // mnuMealsList
             // 
             mnuMealsList.Name = "mnuMealsList";
-            mnuMealsList.Size = new Size(180, 26);
+            mnuMealsList.Size = new Size(104, 26);
             mnuMealsList.Text = "Lis&t";
             // 
             // mnuCookbooks
@@ -149,7 +149,7 @@
             // mnuMaintEditData
             // 
             mnuMaintEditData.Name = "mnuMaintEditData";
-            mnuMaintEditData.Size = new Size(180, 26);
+            mnuMaintEditData.Size = new Size(142, 26);
             mnuMaintEditData.Text = "&Edit Data";
             // 
             // mnuWindow
@@ -175,7 +175,7 @@
             // 
             tsMain.Location = new Point(0, 31);
             tsMain.Name = "tsMain";
-            tsMain.Size = new Size(1143, 25);
+            tsMain.Size = new Size(695, 25);
             tsMain.TabIndex = 3;
             tsMain.Text = "toolStrip1";
             // 
@@ -183,7 +183,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1143, 690);
+            ClientSize = new Size(695, 690);
             Controls.Add(tsMain);
             Controls.Add(menuStrip1);
             Font = new Font("Garet Book", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
@@ -191,6 +191,7 @@
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
             Name = "frmMain";
             Text = "Hearty Hearth";
             menuStrip1.ResumeLayout(false);

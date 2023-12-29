@@ -1,8 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-
-
-
 namespace RecipeSystem
 {
     public class Recipe
@@ -73,12 +70,35 @@ namespace RecipeSystem
             return dt; 
         }
 
+        public static DateTime SetCurrentDateAsValue(DataTable dt,  String columnname)
+        {
+            DateTime date = DateTime.Now;
+            dt.Rows[0][columnname] = date;
 
-        
+            return date;
+        }
+
+        //public static string GetFirstColumnFirstRowString(string sql)
+        //{
+        //    string s = "";
+
+        //    DataTable dt = GetDataTable(sql);
+        //    if (dt.Rows.Count > 0 && dt.Columns.Count > 0)
+        //    {
+        //        if (dt.Rows[0][0] != DBNull.Value)
+        //        {
+        //            s = dt.Rows[0][0].ToString();
+        //        }
+
+        //    }
+
+        //    return s;
+        //}
 
 
-        
-        
+
+        //WindowsFormUtility.SetControlBinding(lblDateDrafted, bindsource);
+
 
     }
 }

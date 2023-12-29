@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace RecipeSystem
 {
-    public class RecipeUsers
+    public class Cookbook
     {
 
-        public static DataTable LoadRecipeUsers()
+        public static DataTable GetCookbookSummary()
         {
-            SqlCommand cmd = SQLUtility.GetSqlCommand("UsersGet");
+            SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookSummaryGet");
             return SQLUtility.GetDataTable(cmd);
         }
     }

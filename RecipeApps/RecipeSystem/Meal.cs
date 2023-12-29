@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RecipeSystem
 {
-    public class RecipeUsers
+    public class Meal
     {
-
-        public static DataTable LoadRecipeUsers()
+        public static DataTable GetMealSummary()
         {
-            SqlCommand cmd = SQLUtility.GetSqlCommand("UsersGet");
+            SqlCommand cmd = SQLUtility.GetSqlCommand("MealSummaryGet");
             return SQLUtility.GetDataTable(cmd);
         }
     }

@@ -4,9 +4,10 @@ create or alter proc dbo.RecipeUpdate(
 	@CuisineId int,
 	@RecipeName varchar (100),
 	@Calories int,
-	@DateDrafted datetime,
+	@DateDrafted datetime output,
 	@DatePublished datetime,
-	@DateArchived datetime
+	@DateArchived datetime,
+	@RecipeStatus varchar (10) output
 	)
 as
 begin
@@ -21,6 +22,8 @@ begin
 		values(@UsersId, @CuisineId, @RecipeName, @Calories, @DateDrafted, @DatePublished, @DateArchived)
 
 		select @RecipeId = SCOPE_IDENTITY()
+		select @DateDrafted = GetDate();
+		select @RecipeStatus = 'Drafted'
 	end
 	
 	else
@@ -34,7 +37,9 @@ begin
 			Calories = @Calories, 
 			DateDrafted = @DateDrafted, 
 			DatePublished = @DatePublished, 
-			DateArchived = @DateArchived 
+			DateArchived = @DateArchived
+			
+			
 		where RecipeId = @RecipeId
 	end
 
