@@ -38,3 +38,5 @@ select top 1 @UsersName = u.UsersName from Users U
 exec UsersGet @UsersName = @UsersName
 
 */
+
+select * from Users

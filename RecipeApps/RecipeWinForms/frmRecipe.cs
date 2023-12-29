@@ -7,9 +7,8 @@ namespace RecipeWinForms
     {
 
         DataTable dtrecipe = new DataTable();
-        DataTable dtrecipeusers = new();
         DataTable dtrecipeingredient = new();
-        DataTable dtrecipesteps = new();
+        DataTable dtrecipedirection = new();
         BindingSource bindsource = new BindingSource();
 
         string deletecolumnname = "deletecolumn";
@@ -20,7 +19,7 @@ namespace RecipeWinForms
             btnSave.Click += BtnSave_Click;
             btnDelete.Click += BtnDelete_Click;
             btnIngredientsSave.Click += BtnIngredientsSave_Click;
-            btnStepsSave.Click += BtnStepsSave_Click;
+            btnDirectionSave.Click += BtnDirectionSave_Click;
             this.Shown += FrmRecipe_Shown;
         }
 
@@ -53,7 +52,7 @@ namespace RecipeWinForms
             this.Text = GetRecipeDesc();
           
             LoadIngredientDetails();
-            LoadStepsDetails();
+            LoadDirectionDetails();
 
             SetButtonsEnabledBasedOnNewRecord();
 
@@ -72,13 +71,13 @@ namespace RecipeWinForms
             WindowsFormUtility.FormatGridForEdit(gIngredients, "Ingredient");
         }
 
-        private void LoadStepsDetails()
+        private void LoadDirectionDetails()
         {
-            dtrecipesteps = RecipeDetail.LoadRecipeDirectionByRecipeId(recipeid);
-            gSteps.Columns.Clear();
-            gSteps.DataSource = dtrecipesteps;
-            WindowsFormUtility.AddDeleteButtonToGrid(gSteps, deletecolumnname);
-            WindowsFormUtility.FormatGridForEdit(gSteps, "RecipeDirection");
+            dtrecipedirection = RecipeDetail.LoadRecipeDirectionByRecipeId(recipeid);
+            gDirection.Columns.Clear();
+            gDirection.DataSource = dtrecipedirection;
+            WindowsFormUtility.AddDeleteButtonToGrid(gDirection, deletecolumnname);
+            WindowsFormUtility.FormatGridForEdit(gDirection, "RecipeDirection");
         }
 
 
@@ -120,6 +119,18 @@ namespace RecipeWinForms
 
         }
 
+        private void SaveRecipeDirection()
+        {
+            try
+            {
+                RecipeDetail.SaveRecipeDirectionTable(dtrecipedirection, recipeid);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName);
+            }
+        }
+
         private void Delete()
         {
             var response = MessageBox.Show("Are you sure you want to delete this recipe?", Application.ProductName, MessageBoxButtons.YesNo);
@@ -150,7 +161,7 @@ namespace RecipeWinForms
             btnDelete.Enabled = b;
             btnChangeStatus.Enabled = b;
             btnIngredientsSave.Enabled = b;
-            btnStepsSave.Enabled = b;
+            btnDirectionSave.Enabled = b;
         }
 
         private string GetRecipeDesc()
@@ -174,10 +185,12 @@ namespace RecipeWinForms
             Delete();
         }
 
-        private void BtnStepsSave_Click(object? sender, EventArgs e)
+        private void BtnDirectionSave_Click(object? sender, EventArgs e)
         {
-            
+            SaveRecipeDirection();
         }
+
+
 
         private void BtnIngredientsSave_Click(object? sender, EventArgs e)
         {

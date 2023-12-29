@@ -37,6 +37,15 @@ namespace RecipeSystem
             SQLUtility.SaveDataTable(dt, "RecipeIngredientUpdate");
         }
 
+        public static void SaveRecipeDirectionTable(DataTable dt, int recipeid)
+        {
+            foreach (DataRow r in dt.Select("", "", DataViewRowState.Added | DataViewRowState.ModifiedCurrent))
+            {
+                r["RecipeId"] = recipeid;
+            }
+            SQLUtility.SaveDataTable(dt, "RecipeDirectionUpdate");
+        }
+
 
 
         //public static DataTable GetRecipeDirection()

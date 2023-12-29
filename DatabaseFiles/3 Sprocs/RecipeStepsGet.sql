@@ -10,7 +10,7 @@ begin
 
 	select @RecipeId = isnull(@RecipeId, 0)
 
-	select Step = rd.DirectionDesc, Sequence = rd.DirectionSequence 
+	select rd.RecipeDirectionId, rd.RecipeId, rd.DirectionDesc, rd.DirectionSequence 
 	from RecipeDirection rd
 	where @RecipeId = rd.RecipeId
 

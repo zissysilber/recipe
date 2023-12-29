@@ -1,10 +1,16 @@
-create or alter procedure dbo.RecipeGet(@RecipeId int = 0, @RecipeName varchar(100) = '', @All bit = 0)
+create or alter procedure dbo.RecipeGet(
+	@RecipeId int = 0, 
+	@RecipeName	varchar(100) = '',
+	@RecipeIngredientId int = 0,
+	@All bit = 0)
 as 
 begin
-	select  @RecipeName = nullif(@RecipeName, '')
+	select  @RecipeName = nullif(@RecipeName, ''), @RecipeIngredientId  = isnull(@RecipeIngredientId, 0)
 
 	select r.RecipeId, r.UsersId, r.CuisineId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage
 	from Recipe r
+
+
 	where r.RecipeId = @RecipeId
 	or r.RecipeName like '%'+ @RecipeName +'%'
 	or @All = 1
