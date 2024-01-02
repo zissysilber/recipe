@@ -22,7 +22,7 @@ namespace RecipeAppsTest
             TestContext.WriteLine("search for recipename that contains (" + recipename + ")");
             TestContext.WriteLine("ensure that app returns recipe with name that contains (" + recipename + ")");
 
-            DataTable dt = Recipe.SearchRecipes(recipename);
+            DataTable dt = Recipe.SearchRecipeByName(recipename);
 
             Assume.That(dt.Rows.Count > 0, "no recipes found, can't run test");
             string foundrecipename = dt.Rows[0]["recipename"].ToString();
@@ -39,7 +39,7 @@ namespace RecipeAppsTest
             TestContext.WriteLine("existing recipe with id = (" + recipeid + ")");
             TestContext.WriteLine("Ensure that app loads recipe (" + recipeid + ")");
 
-            DataTable dt = Recipe.Load(recipeid);
+            DataTable dt = Recipe.GetRecipeById(recipeid);
 
             int loadedid = (int)dt.Rows[0]["recipeid"];
             Assert.IsTrue(loadedid == recipeid, loadedid + " <> " + recipeid);
@@ -147,7 +147,7 @@ namespace RecipeAppsTest
             TestContext.WriteLine("num of users in DB = " + userscount);
             TestContext.WriteLine("ensure that num of rows return by app matches " + userscount);
 
-            DataTable dt = Recipe.GetUsersList();
+            DataTable dt = Users.GetUsersList();
 
             Assert.IsTrue(dt.Rows.Count == userscount, "num rows returned by app (" + dt.Rows.Count + ")" + " <> " + userscount);
             TestContext.WriteLine("number of rows in users returned by app = " + dt.Rows.Count);
@@ -163,7 +163,7 @@ namespace RecipeAppsTest
 
             calories = calories + 10;
             TestContext.WriteLine("change calories to (" + calories + ")");
-            DataTable dt = Recipe.Load(recipeid);
+            DataTable dt = Recipe.GetRecipeById(recipeid);
 
             dt.Rows[0]["calories"] = calories;
             Recipe.Save(dt);
@@ -183,7 +183,7 @@ namespace RecipeAppsTest
 
             recipename = recipename + "!!";
             TestContext.WriteLine("change recipename to (" + recipename + ")");
-            DataTable dt = Recipe.Load(recipeid);
+            DataTable dt = Recipe.GetRecipeById(recipeid);
 
             dt.Rows[0]["recipename"] = recipename;
             Recipe.Save(dt);

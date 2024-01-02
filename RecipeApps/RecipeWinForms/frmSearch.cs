@@ -16,7 +16,7 @@ namespace RecipeWinForms
 
         private void SearchForRecipe(string recipename)
         {
-            DataTable dt = Recipe.SearchRecipes(recipename);
+            DataTable dt = Recipe.SearchRecipeByName(recipename);
             gRecipe.DataSource = dt;
             gRecipe.Columns["RecipeId"].Visible = false;
             gRecipe.Columns["CuisineId"].Visible = false;

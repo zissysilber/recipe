@@ -5,7 +5,7 @@ namespace RecipeSystem
     public class Recipe
     {
 
-        public static DataTable SearchRecipes(string recipename)
+        public static DataTable SearchRecipeByName(string recipename)
         {
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
@@ -34,17 +34,6 @@ namespace RecipeSystem
             SQLUtility.ExecuteSQL(cmd);
         }
 
-
-        public static DataTable GetUsersList()
-        {
-            DataTable dt = new();
-            
-            SqlCommand cmd = SQLUtility.GetSqlCommand("UsersGet");
-            cmd.Parameters["@All"].Value = 1;
-            dt = SQLUtility.GetDataTable(cmd);
-            return dt;
-        }
-
         public static DataTable GetCuisineList()
         {
             DataTable dt = new();
@@ -54,7 +43,7 @@ namespace RecipeSystem
             return dt;
         }
 
-        public static DataTable Load(int recipeid)
+        public static DataTable GetRecipeById(int recipeid)
         {
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
@@ -64,41 +53,50 @@ namespace RecipeSystem
  
         }
 
+        public static DataTable CloneRecipe(int basedonrecipeid)
+        {
+
+            int newrecipeid = 0;
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeClone");
+            cmd.Parameters["@BasedOnRecipeId"].Value = basedonrecipeid;
+
+            SQLUtility.ExecuteSQL(cmd);
+            
+            newrecipeid =  (int)cmd.Parameters["@RecipeId"].Value;
+            return dt = GetRecipeById(newrecipeid);
+            
+        }
+
+        public static int GetRecipeIdFromTable(DataTable dt)
+        {
+            int recipeid =  SQLUtility.GetValueFromFirstRowAsInt(dt, "recipeid");
+            return recipeid;
+        }
+
         public static DataTable GetRecipeSummary()
         {
             DataTable dt = DataMaintenance.GetDataList("RecipeSummary");
             return dt; 
         }
 
-        public static DateTime SetCurrentDateAsValue(DataTable dt,  String columnname)
+        public static void UpdateStatus(DataTable dtrecipe, string columnname)
         {
-            DateTime date = DateTime.Now;
+            string newdate = SetCurrentDateAsValue(dtrecipe, columnname).ToString();
+            DataRow r = dtrecipe.Rows[0];
+            r[columnname] = newdate;
+            SQLUtility.SaveDataRow(r, "RecipeUpdate");
+
+        }
+
+        public static DateTime SetCurrentDateAsValue(DataTable dt,  string columnname)
+        {
+            DateTime date = DateTime.Now.Date;
             dt.Rows[0][columnname] = date;
 
             return date;
         }
 
-        //public static string GetFirstColumnFirstRowString(string sql)
-        //{
-        //    string s = "";
-
-        //    DataTable dt = GetDataTable(sql);
-        //    if (dt.Rows.Count > 0 && dt.Columns.Count > 0)
-        //    {
-        //        if (dt.Rows[0][0] != DBNull.Value)
-        //        {
-        //            s = dt.Rows[0][0].ToString();
-        //        }
-
-        //    }
-
-        //    return s;
-        //}
-
-
-
-        //WindowsFormUtility.SetControlBinding(lblDateDrafted, bindsource);
-
-
+    
     }
 }

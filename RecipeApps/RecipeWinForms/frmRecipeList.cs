@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.DirectoryServices.ActiveDirectory;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
     public partial class frmRecipeList : Form
     {
@@ -20,7 +9,7 @@ namespace RecipeWinForms
             this.Activated += FrmRecipeList_Activated;
             gRecipeSummary.CellDoubleClick += GRecipeSummary_CellDoubleClick;
             gRecipeSummary.KeyDown += GRecipeSummary_KeyDown;
-            
+
         }
 
 
@@ -41,7 +30,7 @@ namespace RecipeWinForms
             }
             if (this.MdiParent != null && this.MdiParent is frmMain)
             {
-                
+
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
         }

@@ -2,6 +2,8 @@ create or alter procedure dbo.RecipeGet(
 	@RecipeId int = 0, 
 	@RecipeName	varchar(100) = '',
 	@RecipeIngredientId int = 0,
+	@DatePublished date = '' output,
+	@IncludeBlank bit = 0,
 	@All bit = 0)
 as 
 begin

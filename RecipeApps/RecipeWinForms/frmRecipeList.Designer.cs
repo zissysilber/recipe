@@ -30,7 +30,7 @@ namespace RecipeWinForms
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             tblMain = new TableLayoutPanel();
             btnNewRecipe = new Button();
             gRecipeSummary = new DataGridView();
@@ -46,8 +46,8 @@ namespace RecipeWinForms
             tblMain.BackColor = Color.White;
             tblMain.ColumnCount = 4;
             tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.77802F));
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84.22198F));
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.2393913F));
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 79.76061F));
             tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tblMain.Controls.Add(btnNewRecipe, 1, 2);
             tblMain.Controls.Add(gRecipeSummary, 1, 4);
@@ -74,9 +74,9 @@ namespace RecipeWinForms
             btnNewRecipe.Location = new Point(24, 72);
             btnNewRecipe.Margin = new Padding(4);
             btnNewRecipe.Name = "btnNewRecipe";
-            btnNewRecipe.Size = new Size(137, 43);
+            btnNewRecipe.Size = new Size(178, 43);
             btnNewRecipe.TabIndex = 0;
-            btnNewRecipe.Text = "New Recipe";
+            btnNewRecipe.Text = "&New Recipe";
             btnNewRecipe.UseVisualStyleBackColor = true;
             // 
             // gRecipeSummary
@@ -87,8 +87,8 @@ namespace RecipeWinForms
             gRecipeSummary.Location = new Point(24, 162);
             gRecipeSummary.Margin = new Padding(4);
             gRecipeSummary.Name = "gRecipeSummary";
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            gRecipeSummary.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            gRecipeSummary.RowsDefaultCellStyle = dataGridViewCellStyle1;
             gRecipeSummary.RowTemplate.Height = 25;
             gRecipeSummary.Size = new Size(911, 415);
             gRecipeSummary.TabIndex = 1;
@@ -104,7 +104,7 @@ namespace RecipeWinForms
             lblRecipeList.Location = new Point(0, 0);
             lblRecipeList.Margin = new Padding(0);
             lblRecipeList.Name = "lblRecipeList";
-            lblRecipeList.Size = new Size(193, 46);
+            lblRecipeList.Size = new Size(206, 46);
             lblRecipeList.TabIndex = 2;
             lblRecipeList.Text = "    Recipe List";
             lblRecipeList.TextAlign = ContentAlignment.MiddleLeft;
@@ -115,10 +115,10 @@ namespace RecipeWinForms
             label1.BackColor = Color.FromArgb(188, 200, 135);
             tblMain.SetColumnSpan(label1, 2);
             label1.Dock = DockStyle.Fill;
-            label1.Location = new Point(165, 0);
+            label1.Location = new Point(206, 0);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(795, 46);
+            label1.Size = new Size(754, 46);
             label1.TabIndex = 3;
             // 
             // frmRecipeList

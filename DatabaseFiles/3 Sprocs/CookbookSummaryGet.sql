@@ -4,13 +4,13 @@ create or alter procedure dbo.CookbookSummaryGet(
 
 as
 begin
-	Select c.CookbookName, Author = u.UsersName, [Num Recipes] = count(cr.CookbookId), c.Price
+	Select c.CookbookId, c.CookbookName, Author = u.UsersName, [Num Recipes] = count(cr.CookbookId), c.Price
 	from Cookbook c
 	join Users u
 	on u.UsersId = c.UsersId
 	left join CookbookRecipe cr
 	on cr.CookbookId = c.CookbookId
-	group by c.CookbookName, u.UsersName, c.Price
+	group by c.CookbookId, c.CookbookName, u.UsersName, c.Price
 	order by c.CookbookName
 
 end

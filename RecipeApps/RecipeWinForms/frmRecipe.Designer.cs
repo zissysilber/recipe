@@ -121,11 +121,11 @@
             // 
             tblButtons.AutoSize = true;
             tblButtons.ColumnCount = 5;
-            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 13.29607F));
-            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.4533663F));
-            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.6132622F));
-            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.6304646F));
-            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.13117F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.2394772F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2235126F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.6081276F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 11.6110306F));
+            tblButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.317852F));
             tblButtons.Controls.Add(btnDelete, 0, 0);
             tblButtons.Controls.Add(btnSave, 0, 0);
             tblButtons.Controls.Add(btnChangeStatus, 4, 0);
@@ -143,10 +143,10 @@
             btnDelete.AutoSize = true;
             btnDelete.Dock = DockStyle.Fill;
             btnDelete.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDelete.Location = new Point(94, 4);
+            btnDelete.Location = new Point(108, 4);
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(79, 31);
+            btnDelete.Size = new Size(92, 31);
             btnDelete.TabIndex = 3;
             btnDelete.Text = "&Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             btnSave.Location = new Point(3, 4);
             btnSave.Margin = new Padding(3, 4, 3, 4);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(85, 31);
+            btnSave.Size = new Size(99, 31);
             btnSave.TabIndex = 1;
             btnSave.Text = "&Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -170,9 +170,9 @@
             btnChangeStatus.AutoSize = true;
             btnChangeStatus.Dock = DockStyle.Fill;
             btnChangeStatus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnChangeStatus.Location = new Point(531, 3);
+            btnChangeStatus.Location = new Point(490, 3);
             btnChangeStatus.Name = "btnChangeStatus";
-            btnChangeStatus.Size = new Size(155, 33);
+            btnChangeStatus.Size = new Size(196, 33);
             btnChangeStatus.TabIndex = 4;
             btnChangeStatus.Text = "&Change Status...";
             btnChangeStatus.UseVisualStyleBackColor = true;

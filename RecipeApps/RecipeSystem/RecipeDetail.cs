@@ -46,6 +46,10 @@ namespace RecipeSystem
             SQLUtility.SaveDataTable(dt, "RecipeDirectionUpdate");
         }
 
+        public static void SaveRecipeStatusDraft(DataTable dt, int recipeid)
+        {
+
+        }
 
 
         //public static DataTable GetRecipeDirection()

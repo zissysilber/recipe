@@ -79,7 +79,28 @@ namespace RecipeWinForms
                 {
                     frmCookbookDetail f = new();
                     newfrm = f;
+                    f.LoadForm(pkvalue);
                 }
+
+                else if (frmtype == typeof(frmChangeStatus))
+                {
+                    frmChangeStatus f = new();
+                    newfrm = f;
+                    f.LoadForm(pkvalue);
+                }
+
+                else if (frmtype == typeof(frmDataMaintenance))
+                {
+                    frmDataMaintenance f = new();
+                    newfrm = f;
+                }
+
+                else if (frmtype == typeof(frmCloneRecipe))
+                {
+                    frmCloneRecipe f = new();
+                    newfrm = f;
+                }
+
 
                 if (newfrm != null)
                 {
@@ -105,7 +126,7 @@ namespace RecipeWinForms
 
         private void MnuMaintEditData_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmDataMaintenance));
         }
 
         private void MnuCookbooksAutoCreate_Click(object? sender, EventArgs e)
@@ -128,7 +149,7 @@ namespace RecipeWinForms
         }
         private void MnuCloneRecipe_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmCloneRecipe));
         }
 
         private void MnuNewRecipe_Click(object? sender, EventArgs e)

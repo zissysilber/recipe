@@ -6,10 +6,10 @@ namespace RecipeWinForms
     public partial class frmRecipe : Form
     {
 
-        DataTable dtrecipe = new DataTable();
+        DataTable dtrecipe = new ();
         DataTable dtrecipeingredient = new();
         DataTable dtrecipedirection = new();
-        BindingSource bindsource = new BindingSource();
+        BindingSource bindsource = new ();
 
         string deletecolumnname = "deletecolumn";
         int recipeid = 0;
@@ -18,6 +18,7 @@ namespace RecipeWinForms
             InitializeComponent();
             btnSave.Click += BtnSave_Click;
             btnDelete.Click += BtnDelete_Click;
+            btnChangeStatus.Click += BtnChangeStatus_Click;
             btnIngredientsSave.Click += BtnIngredientsSave_Click;
             btnDirectionSave.Click += BtnDirectionSave_Click;
             this.Shown += FrmRecipe_Shown;
@@ -29,16 +30,17 @@ namespace RecipeWinForms
         {
             recipeid = recipeidval;
             this.Tag = recipeid;
-                      
-            dtrecipe = Recipe.Load(recipeid);
+
+            dtrecipe = Recipe.GetRecipeById(recipeid);
             bindsource.DataSource = dtrecipe;
-           
+
             if (recipeid == 0)
             {
                 dtrecipe.Rows.Add();
+                SetButtonsEnabledBasedOnNewRecord();
             }
 
-            DataTable dtusers = Recipe.GetUsersList();
+            DataTable dtusers = Users.GetUsersList();
             DataTable dtcuisine = Recipe.GetCuisineList();
             WindowsFormUtility.SetListBinding(lstUsersName, dtusers, dtrecipe, "Users");
             WindowsFormUtility.SetListBinding(lstCuisineName, dtcuisine, dtrecipe, "Cuisine");
@@ -50,11 +52,11 @@ namespace RecipeWinForms
             WindowsFormUtility.SetControlBinding(lblRecipeStatus, bindsource);
 
             this.Text = GetRecipeDesc();
-          
+
             LoadIngredientDetails();
             LoadDirectionDetails();
 
-            SetButtonsEnabledBasedOnNewRecord();
+
 
         }
 
@@ -82,6 +84,18 @@ namespace RecipeWinForms
 
 
 
+
+        public void LoadChangeStatusForm(int recipeid)
+        {
+            int id = recipeid;
+
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), id);
+
+            }
+        }
         private void Save()
         {
             bool b = false;
@@ -109,7 +123,7 @@ namespace RecipeWinForms
         private void SaveRecipeIngredient()
         {
             try
-             {
+            {
                 RecipeDetail.SaveRecipeIngredientTable(dtrecipeingredient, recipeid);
             }
             catch (Exception ex)
@@ -175,6 +189,11 @@ namespace RecipeWinForms
             return value;
         }
 
+        private void BtnChangeStatus_Click(object? sender, EventArgs e)
+        {
+
+            LoadChangeStatusForm(recipeid);
+        }
         private void BtnSave_Click(object? sender, EventArgs e)
         {
             Save();

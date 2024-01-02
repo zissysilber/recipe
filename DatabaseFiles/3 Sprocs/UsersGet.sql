@@ -8,12 +8,12 @@ as
 begin
 	select @UsersName = nullif(@UsersName,'')
 
-	select u.UsersId, u.UsersName, u.FirstName, u.LastName
+	select u.UsersId, u.FirstName, u.LastName, u.UsersName
 	from Users u
 	where u.UsersId = @UsersId
 	or u.UsersName like '%' + @UsersName + '%'
 	or @All = 1
-	union select 0, 0, ' ', ' '
+	union select 0, '', ' ', ' '
 	where @IncludeBlank = 1
 
 end
@@ -39,4 +39,3 @@ exec UsersGet @UsersName = @UsersName
 
 */
 
-select * from Users
