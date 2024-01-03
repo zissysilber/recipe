@@ -5,6 +5,7 @@
 
 
         BindingSource bindsource = new();
+        int newrecipeid = 0;
 
         public frmCloneRecipe()
         {
@@ -14,39 +15,29 @@
 
         }
 
-        private void BtnClone_Click(object? sender, EventArgs e)
-        {
-            CloneRecipe();
-        }
+
 
         private void BindData()
         {
-            WindowsFormUtility.SetListBinding(lstRecipeName, DataMaintenance.GetDataList("Recipe", true), null, "Recipe");
+            WindowsFormUtility.SetListBinding(lstRecipeName, Recipe.GetRecipeList(), null, "Recipe");
         }
 
         private void CloneRecipe()
         {
 
             int basedonrecipeid = WindowsFormUtility.GetIdFromComboBox(lstRecipeName);
-            int newrecipeid = 0;
             this.Tag = basedonrecipeid;
-            DataTable dtrecipe = new();
-            DataTable clonedrecipe = new();
+
             Cursor = Cursors.WaitCursor;
             try
             {
-                //See if can move this to Clone class?
-                clonedrecipe = Recipe.CloneRecipe(basedonrecipeid);
+                DataTable clonedrecipe = Recipe.CloneRecipeBasedOnId(basedonrecipeid);
                 newrecipeid = Recipe.GetRecipeIdFromTable(clonedrecipe);
-                dtrecipe = Recipe.GetRecipeById(newrecipeid);
+                DataTable dtrecipe = Recipe.GetRecipeById(newrecipeid);
                 bindsource.DataSource = dtrecipe;
 
-                if (this.MdiParent != null && this.MdiParent is frmMain)
-                {
-                    ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), newrecipeid);
+                LoadClonedRecipeForm();
 
-                    this.Close();
-                }
             }
             catch (Exception ex)
             {
@@ -56,6 +47,21 @@
             {
                 Cursor = Cursors.Default;
             }
+        }
+
+        private void LoadClonedRecipeForm()
+        {
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), newrecipeid);
+
+                this.Close();
+            }
+        }
+
+        private void BtnClone_Click(object? sender, EventArgs e)
+        {
+            CloneRecipe();
         }
 
     }

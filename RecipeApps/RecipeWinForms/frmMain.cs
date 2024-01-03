@@ -101,6 +101,12 @@ namespace RecipeWinForms
                     newfrm = f;
                 }
 
+                else if (frmtype == typeof(frmCreateCookbook))
+                {
+                    frmCreateCookbook f = new();
+                    newfrm = f;
+                }
+
 
                 if (newfrm != null)
                 {
@@ -131,7 +137,7 @@ namespace RecipeWinForms
 
         private void MnuCookbooksAutoCreate_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmCreateCookbook));
         }
 
         private void MnuNewCookbook_Click(object? sender, EventArgs e)

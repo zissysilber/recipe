@@ -1,10 +1,11 @@
-﻿namespace RecipeWinForms
+﻿using CPUFramework;
+
+namespace RecipeWinForms
 {
     public partial class frmChangeStatus : Form
     {
 
         private enum ChangeStatusButtonEnum { Draft, Publish, Archive }
-        ChangeStatusButtonEnum statusbutton;
         int recipeid = 0;
 
         DataTable dtrecipe = new();
@@ -31,6 +32,8 @@
             WindowsFormUtility.SetControlBinding(lblDatePublished, bindsource);
             WindowsFormUtility.SetControlBinding(lblDateArchived, bindsource);
             ChangeButtonStatus();
+
+            this.Text += " - " + GetRecipeDesc();
 
         }
 
@@ -89,6 +92,16 @@
                     btnArchive.Enabled = false;
                     break;
             }
+        }
+        private string GetRecipeDesc()
+        {
+            string value = "New Recipe";
+            int pkvalue = SQLUtility.GetValueFromFirstRowAsInt(dtrecipe, "RecipeId");
+            if (pkvalue > 0)
+            {
+                value = SQLUtility.GetValueFromFirstRowAsString(dtrecipe, "RecipeName");
+            }
+            return value;
         }
 
         private void BtnDraft_Click(object? sender, EventArgs e)

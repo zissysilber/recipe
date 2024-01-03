@@ -35,6 +35,15 @@ namespace RecipeSystem
             return dt;
         }
 
+        //public static DataTable GetCookbookbyId (int cookbookid)
+        //{
+        //    DataTable dt = new();
+        //    SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookGet");
+        //    cmd.Parameters["@CookbookId"].Value = cookbookid;
+        //    dt = SQLUtility.GetDataTable(cmd);
+        //    return dt;
+        //}
+
         public static void Save(DataTable dtcookbook)
         {
             if (dtcookbook.Rows.Count == 0)
@@ -54,6 +63,25 @@ namespace RecipeSystem
                 r["CookbookId"] = cookbookid;
             }
             SQLUtility.SaveDataTable(dt, "CookbookRecipeUpdate");
+        }
+
+        public static int GetCookbookIdFromTable(DataTable dt)
+        {
+            int cookbookid = SQLUtility.GetValueFromFirstRowAsInt(dt, "cookbookid");
+            return cookbookid;
+        }
+
+        public static DataTable CreateCookbookBasedOnUser(int basedonuserid)
+        {
+            int newcookbookid = 0;
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookCreate");
+            cmd.Parameters["@BasedOnUsersId"].Value = basedonuserid;
+
+            SQLUtility.ExecuteSQL(cmd);
+
+            newcookbookid = (int)cmd.Parameters["@CookbookId"].Value;
+            return dt = Load(newcookbookid);
         }
     }
 }

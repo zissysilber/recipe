@@ -128,7 +128,7 @@
             ClientSize = new Size(695, 690);
             Controls.Add(tableLayoutPanel1);
             Name = "frmCreateCookbook";
-            Text = "frmCreateCookbook";
+            Text = "Auto-Create a Cookbook";
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();

@@ -50,10 +50,19 @@ namespace RecipeSystem
             cmd.Parameters["@RecipeId"].Value = recipeid;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
- 
         }
 
-        public static DataTable CloneRecipe(int basedonrecipeid)
+        public static DataTable GetRecipeList()
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
+            cmd.Parameters["@All"].Value = 1;
+            cmd.Parameters["@IncludeBlank"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
+        public static DataTable CloneRecipeBasedOnId(int basedonrecipeid)
         {
 
             int newrecipeid = 0;
@@ -62,10 +71,11 @@ namespace RecipeSystem
             cmd.Parameters["@BasedOnRecipeId"].Value = basedonrecipeid;
 
             SQLUtility.ExecuteSQL(cmd);
-            
+            //need to do trycatch
+
             newrecipeid =  (int)cmd.Parameters["@RecipeId"].Value;
             return dt = GetRecipeById(newrecipeid);
-            
+   
         }
 
         public static int GetRecipeIdFromTable(DataTable dt)
