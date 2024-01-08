@@ -101,7 +101,7 @@ namespace RecipeSystem
 
         public static DateTime SetCurrentDateAsValue(DataTable dt,  string columnname)
         {
-            DateTime date = DateTime.Now.Date;
+            DateTime date = DateTime.Now;
             dt.Rows[0][columnname] = date;
 
             return date;

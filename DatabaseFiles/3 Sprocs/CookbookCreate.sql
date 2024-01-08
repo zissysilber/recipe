@@ -1,60 +1,87 @@
 create or alter proc dbo.CookbookCreate(
 	@CookbookId int = null output,
-	@Price int = 0,
-	@CookbookName varchar (50) = ' ',
-	@DateCreated date  = ' ' ,
 	@BasedOnUsersId int = 0,
 	@Message varchar (500) = ' ' output
 	)
 
 as 
 begin
-
+	
 	declare @return int = 0
 
-	select @CookbookName = concat('Recipes by ', u.FirstName, ' ', u.LastName) 
-	from Users u
+	select @BasedonUsersId = isnull(@BasedOnUsersId, 0)
+
+	if exists(select * from Users u
+				left join Recipe r
+				on r.UsersId = u.UsersId
+				where u.UsersId  = @BasedOnUsersId
+				and r.RecipeId is null)
+
+	begin
+		select @return = 1, @Message = 'Cookbook cannot be created because selected User does not have saved Recipes.'
+		goto finished
+	end
+
+	select @CookbookId = isnull(@CookbookId, 0), @BasedOnUsersId = isnull(@BasedOnUsersId, 0)
+	;
+	with x as(
+		select Users = u.Usersname, TotalRecipes = Count(r.RecipeId)
+		from Recipe r
+		join Users u
+		on r.UsersId = u.UsersId
+		where u.UsersId = @BasedOnUsersId
+		group by u.UsersName
+	)
+	Insert Cookbook(UsersId, CookbookName, Price, IsActive)
+	select u.UsersId, concat('Recipes by ', u.FirstName, ' ', u.LastName), x.TotalRecipes * 1.33, 1
+	from x
+	join Users u
+	on x.Users = u.UsersName
 	where u.UsersId = @BasedOnUsersId
 
-	declare @RecipesPerUser int
-	select @RecipesPerUser = dbo.RecipesPerUser((@BasedOnUsersId))
-	select @Price = @RecipesPerUser * 1.33
+	Select @CookbookId = SCOPE_IDENTITY() 
 
-	
-	select @DateCreated = GetDate()
-
-	insert Cookbook(UsersId, CookbookName, Price, DateCreated, IsActive)
-	select UsersId, @CookbookName, @Price, @DateCreated, IsActive
+	Insert CookBookRecipe(CookbookId, RecipeId, CookbookRecipeSequence)
+	select  @CookbookId , r.RecipeId, ROW_NUMBER() over (order by r.RecipeName)
 	from Cookbook c
-	where UsersId = @BasedOnUsersId
-
-	select @CookbookId = SCOPE_IDENTITY()
-
-	insert CookbookRecipe(CookbookId, RecipeId, CookbookRecipeSequence)
-	select @CookbookId, cr.RecipeId, cr.CookbookRecipeSequence
-	from CookbookRecipe cr
+	join Users u
+	on c.UsersId = u.UsersId
 	join Recipe r
-	on cr.RecipeId = r.RecipeId
-	order by r.RecipeName
+	on u.UsersId = r.UsersId
+	where c.CookbookName = concat('Recipes by ', u.FirstName, ' ', u.LastName) 
+	and u.UsersId = @BasedOnUsersId
 
-	return @CookbookId
+	select @return = @CookbookId
+
+	finished:
+	return @return
 
 end
 go
 
+/*
+select * from Cookbook
+select * from CookbookRecipe
 
---declare
---	@CookbookId int,
---	@Price int,
---	@CookbookName varchar,
---	@DateCreated varchar ,
---	@BasedOnUsersId int,
---	@i int,
---	@m varchar(500)
+delete CookbookRecipe
+from CookbookRecipe cr
+join Cookbook c
+on c.CookbookId = cr.CookbookId
+where c.CookbookName like '%Recipe%'
 
---select top 1 @BasedOnUsersId =  u.UsersId from Users u where u.UsersName like '%Betty%'
---select @CookbookName =  'Test'
---select @Price = u.UsersId from Users u where u.UsersName like '%Betty%'
+delete Cookbook
+from Cookbook c
+where c.CookbookName like '%Recipe%'
+
+declare @BasedOnUsersId int
+select top 1 @BasedOnUsersId = u.UsersId from Users u
+ 
+exec CookbookCreate 
+@BasedOnUsersId = @BasedOnUsersId
+
+select * from Cookbook
+*/
+
 
 
 

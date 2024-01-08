@@ -21,14 +21,19 @@ namespace RecipeWinForms
 
         int cookbookid = 0;
         string deletecol = "deletecolumn";
+
         public frmCookbookDetail()
         {
+
             InitializeComponent();
             btnCookbookSave.Click += BtnCookbookSave_Click;
             btnCookbookDelete.Click += BtnCookbookDelete_Click;
             btnCookbookDetailSave.Click += BtnCookbookDetailSave_Click;
             this.Shown += FrmCookbookDetail_Shown;
+            this.Activated += FrmCookbookDetail_Activated;
+
         }
+
 
         public void LoadForm(int cookbookidval)
         {
@@ -52,7 +57,6 @@ namespace RecipeWinForms
             this.Text = GetCookbookDesc();
 
             LoadCookbookRecipe();
-
 
         }
 
@@ -144,12 +148,23 @@ namespace RecipeWinForms
             btnCookbookDelete.Enabled = b;
             btnCookbookDetailSave.Enabled = b;
         }
+        public void BindData()
+        {
+            LoadCookbookRecipe();
+        }
 
         private void FrmCookbookDetail_Shown(object? sender, EventArgs e)
         {
             WindowsFormUtility.AddDeleteButtonToGrid(gCookbookDetail, deletecol);
-        }
 
+        }
+        private void FrmCookbookDetail_Activated(object? sender, EventArgs e)
+        {
+            //Why is it coming in not maximized that makes this necessary?
+            this.WindowState = FormWindowState.Maximized;
+            BindData();
+
+        }
         private void BtnCookbookDetailSave_Click(object? sender, EventArgs e)
         {
             SaveCookbookRecipe();

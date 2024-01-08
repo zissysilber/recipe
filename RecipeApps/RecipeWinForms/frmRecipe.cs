@@ -22,6 +22,7 @@ namespace RecipeWinForms
             btnIngredientsSave.Click += BtnIngredientsSave_Click;
             btnDirectionSave.Click += BtnDirectionSave_Click;
             this.Shown += FrmRecipe_Shown;
+            this.FormClosing += FrmRecipe_FormClosing;
         }
 
 
@@ -187,6 +188,30 @@ namespace RecipeWinForms
                 value = SQLUtility.GetValueFromFirstRowAsString(dtrecipe, "RecipeName");
             }
             return value;
+        }
+
+        private void FrmRecipe_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            if (SQLUtility.TableHasChanges(dtrecipe))
+            {
+                var res = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                switch (res)
+                {
+                    case DialogResult.Yes:
+                        bool b = false;
+                        Recipe.Save(dtrecipe);
+                        if (b == false)
+                        {
+                            e.Cancel = true;
+                            this.Activate();
+                        }
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        this.Activate();
+                        break;
+                }
+            }
         }
 
         private void BtnChangeStatus_Click(object? sender, EventArgs e)

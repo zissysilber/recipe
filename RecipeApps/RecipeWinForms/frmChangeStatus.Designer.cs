@@ -41,7 +41,7 @@
             lblDateDrafted = new Label();
             lblDatePublished = new Label();
             lblDateArchived = new Label();
-            tableLayoutPanel4 = new TableLayoutPanel();
+            tblButton = new TableLayoutPanel();
             btnDraft = new Button();
             btnPublish = new Button();
             btnArchive = new Button();
@@ -51,7 +51,7 @@
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
+            tblButton.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             SuspendLayout();
             // 
@@ -107,7 +107,7 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(lblRecipeName, 0, 0);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 3);
-            tableLayoutPanel2.Controls.Add(tableLayoutPanel4, 0, 5);
+            tableLayoutPanel2.Controls.Add(tblButton, 0, 5);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel5, 0, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(24, 41);
@@ -241,26 +241,26 @@
             lblDateArchived.TabIndex = 6;
             lblDateArchived.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel4
+            // tblButton
             // 
-            tableLayoutPanel4.ColumnCount = 7;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.688246F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.3611584F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5.962521F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.531517F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.85860348F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.8279381F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 4.23614168F));
-            tableLayoutPanel4.Controls.Add(btnDraft, 1, 0);
-            tableLayoutPanel4.Controls.Add(btnPublish, 3, 0);
-            tableLayoutPanel4.Controls.Add(btnArchive, 5, 0);
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(3, 380);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 1;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(587, 41);
-            tableLayoutPanel4.TabIndex = 3;
+            tblButton.ColumnCount = 7;
+            tblButton.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.688246F));
+            tblButton.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.3611584F));
+            tblButton.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5.962521F));
+            tblButton.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.531517F));
+            tblButton.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.85860348F));
+            tblButton.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.8279381F));
+            tblButton.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 4.23614168F));
+            tblButton.Controls.Add(btnDraft, 1, 0);
+            tblButton.Controls.Add(btnPublish, 3, 0);
+            tblButton.Controls.Add(btnArchive, 5, 0);
+            tblButton.Dock = DockStyle.Fill;
+            tblButton.Location = new Point(3, 380);
+            tblButton.Name = "tblButton";
+            tblButton.RowCount = 1;
+            tblButton.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tblButton.Size = new Size(587, 41);
+            tblButton.TabIndex = 3;
             // 
             // btnDraft
             // 
@@ -348,7 +348,7 @@
             tableLayoutPanel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
-            tableLayoutPanel4.ResumeLayout(false);
+            tblButton.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
             ResumeLayout(false);
@@ -361,7 +361,7 @@
         private Label lblRecipeName;
         private Label lblRecipeStatus;
         private TableLayoutPanel tableLayoutPanel3;
-        private TableLayoutPanel tableLayoutPanel4;
+        private TableLayoutPanel tblButton;
         private Label lblLightColor;
         private Label lblDarkColor;
         private Label lblStatusDates;

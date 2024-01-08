@@ -20,25 +20,24 @@
 
         private void CreateCookbook()
         {
-            
-            
-            int basedoncookbookid = WindowsFormUtility.GetIdFromComboBox(lstUsersName);
-            
-            
-            this.Tag = basedoncookbookid;
+
+            int basedonuserid = WindowsFormUtility.GetIdFromComboBox(lstUsersName);
+            this.Tag = basedonuserid;
 
             Cursor = Cursors.WaitCursor;
             try
             {
-                DataTable newcookbook = Cookbook.CreateCookbookBasedOnUser(basedoncookbookid);
+                DataTable newcookbook = Cookbook.CreateCookbookBasedOnUser(basedonuserid);
                 newcookbookid = Cookbook.GetCookbookIdFromTable(newcookbook);
                 DataTable dtcookbook = Cookbook.Load(newcookbookid);
+
                 bindsource.DataSource = dtcookbook;
 
                 LoadNewCookbookForm();
             }
             catch (Exception ex)
             {
+                //InvalidCastException
                 MessageBox.Show(ex.Message, Application.ProductName);
             }
             finally

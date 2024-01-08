@@ -5,13 +5,13 @@ create or alter proc.RecipeSummaryGet(
 
 as
 begin
-	select r.RecipeId, r.RecipeName, Status = r.RecipeStatus, Users = u.Usersname, r.Calories, [Num Ingredients] = count(distinct ri.IngredientId) 
+	select r.RecipeId, r.RecipeName, Status = r.RecipeStatus, [User] = concat(u.Firstname, ' ', u.LastName ), r.Calories, [Num Ingredients] = count(distinct ri.IngredientId) 
 	from Recipe r
 	join Users u
 	on u.UsersId = r.UsersId
 	left join RecipeIngredient ri
 	on ri.RecipeId = r.RecipeId
-	group by r.RecipeID, r.RecipeName, r.RecipeStatus, u.Usersname, r.Calories
+	group by r.RecipeID, r.RecipeName, r.RecipeStatus, u.FirstName, u.LastName, r.Calories
 	order by 
 		case r.RecipeStatus  
 			when  'published' then 1

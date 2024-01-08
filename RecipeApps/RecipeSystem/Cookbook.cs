@@ -18,6 +18,10 @@ namespace RecipeSystem
             SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookGet");
             cmd.Parameters["@CookbookId"].Value = cookbookid;
             dt = SQLUtility.GetDataTable(cmd);
+            //if (dt.Rows.Count == 0)
+            //{
+            //    throw new Exception("This user has no saved recipes. System cannot compile cookbook.");
+            //}
             return dt;
         }
         public static DataTable GetCookbookSummary()
@@ -73,12 +77,14 @@ namespace RecipeSystem
 
         public static DataTable CreateCookbookBasedOnUser(int basedonuserid)
         {
+            
             int newcookbookid = 0;
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookCreate");
             cmd.Parameters["@BasedOnUsersId"].Value = basedonuserid;
 
             SQLUtility.ExecuteSQL(cmd);
+            
 
             newcookbookid = (int)cmd.Parameters["@CookbookId"].Value;
             return dt = Load(newcookbookid);

@@ -22,7 +22,7 @@ namespace RecipeWinForms
         {
             recipeid = pkvalue;
             this.Tag = recipeid;
-            
+
             dtrecipe = Recipe.GetRecipeById(recipeid);
             bindsource.DataSource = dtrecipe;
 
@@ -31,8 +31,9 @@ namespace RecipeWinForms
             WindowsFormUtility.SetControlBinding(lblDateDrafted, bindsource);
             WindowsFormUtility.SetControlBinding(lblDatePublished, bindsource);
             WindowsFormUtility.SetControlBinding(lblDateArchived, bindsource);
-            ChangeButtonStatus();
-
+           
+            SetButtonsEnabledBasedOnStatus();
+            
             this.Text += " - " + GetRecipeDesc();
 
         }
@@ -71,6 +72,7 @@ namespace RecipeWinForms
                 Recipe.UpdateStatus(dtrecipe, changestatus);
                 dtrecipe = Recipe.GetRecipeById(recipeid);
                 bindsource.DataSource = dtrecipe;
+                SetButtonsEnabledBasedOnStatus();
             }
             catch (Exception ex)
             {
@@ -78,10 +80,17 @@ namespace RecipeWinForms
             }
 
         }
-        private void ChangeButtonStatus()
+        private void SetButtonsEnabledBasedOnStatus()
         {
+            
+            foreach (Button btn in tblButton.Controls)
+            {
+                btn.Enabled = true;
+            }
+
             switch (dtrecipe.Rows[0]["RecipeStatus"])
             {
+  
                 case "Drafted":
                     btnDraft.Enabled = false;
                     break;
@@ -91,7 +100,7 @@ namespace RecipeWinForms
                 case "Archived":
                     btnArchive.Enabled = false;
                     break;
-            }
+                }
         }
         private string GetRecipeDesc()
         {

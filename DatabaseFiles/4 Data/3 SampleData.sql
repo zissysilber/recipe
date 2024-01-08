@@ -584,4 +584,13 @@ join Recipe r
 on x.Recipe = r.RecipeName
 
 
-select * from recipe
+select r.RecipeName, c.CuisineName from recipe r
+join Cuisine c
+on c.CuisineId = r.CuisineId
+
+select cr.CookbookRecipeId, c.CookbookName, r.RecipeName
+from Cookbook c
+join cookbookrecipe cr
+on c.CookbookId = cr.CookbookId
+join Recipe r
+on cr.RecipeId = r.RecipeId
