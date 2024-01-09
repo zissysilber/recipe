@@ -1,7 +1,4 @@
-﻿using CPUFramework;
-using System.ComponentModel.DataAnnotations;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
     public partial class frmDataMaintenance : Form
     {
@@ -73,21 +70,21 @@ namespace RecipeWinForms
                         return;
                     }
                 }
-                    try
-                    {
-                        DataMaintenance.DeleteRow(currenttabletype.ToString(), id);
-                        BindData(currenttabletype);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, Application.ProductName);
-                    }
-                }
-                else if (id == 0 && rowindex < gData.Rows.Count)
+                try
                 {
-                    gData.Rows.Remove(gData.Rows[rowindex]);
+                    DataMaintenance.DeleteRow(currenttabletype.ToString(), id);
+                    BindData(currenttabletype);
                 }
-            
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, Application.ProductName);
+                }
+            }
+            else if (id == 0 && rowindex < gData.Rows.Count)
+            {
+                gData.Rows.Remove(gData.Rows[rowindex]);
+            }
+
         }
 
         private void SetupRadioButtons()
@@ -117,6 +114,7 @@ namespace RecipeWinForms
 
         private void FrmDataMaintenance_FormClosing(object? sender, FormClosingEventArgs e)
         {
+        
             if (SQLUtility.TableHasChanges(dtlist))
             {
                 var res = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);

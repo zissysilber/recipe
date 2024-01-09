@@ -57,8 +57,6 @@ namespace RecipeWinForms
             LoadIngredientDetails();
             LoadDirectionDetails();
 
-
-
         }
 
         private void LoadIngredientDetails()
@@ -199,7 +197,14 @@ namespace RecipeWinForms
                 {
                     case DialogResult.Yes:
                         bool b = false;
-                        Recipe.Save(dtrecipe);
+                        try
+                        {
+                            Recipe.Save(dtrecipe);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, Application.ProductName);
+                        }
                         if (b == false)
                         {
                             e.Cancel = true;

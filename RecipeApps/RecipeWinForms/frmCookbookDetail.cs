@@ -1,17 +1,4 @@
-﻿using CPUFramework;
-using RecipeSystem;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
     public partial class frmCookbookDetail : Form
     {
@@ -31,8 +18,10 @@ namespace RecipeWinForms
             btnCookbookDetailSave.Click += BtnCookbookDetailSave_Click;
             this.Shown += FrmCookbookDetail_Shown;
             this.Activated += FrmCookbookDetail_Activated;
+            this.FormClosing += FrmCookbookDetail_FormClosing;
 
         }
+
 
 
         public void LoadForm(int cookbookidval)
@@ -69,7 +58,7 @@ namespace RecipeWinForms
             WindowsFormUtility.AddComboboxToGrid(gCookbookDetail, DataMaintenance.GetDataList("Recipe"), "Recipe", "RecipeName");
             WindowsFormUtility.FormatGridForEdit(gCookbookDetail, "Recipe");
         }
-        private void Save()
+        private bool Save()
         {
             bool b = false;
             Application.UseWaitCursor = true;
@@ -91,6 +80,7 @@ namespace RecipeWinForms
             {
                 Application.UseWaitCursor = false;
             }
+            return b;
         }
 
         private void SaveCookbookRecipe()
@@ -116,7 +106,7 @@ namespace RecipeWinForms
             Application.UseWaitCursor = true;
             try
             {
-                Recipe.Delete(dtcookbook);
+                Cookbook.Delete(dtcookbook);
                 this.Close();
             }
             catch (Exception ex)
@@ -164,6 +154,30 @@ namespace RecipeWinForms
             this.WindowState = FormWindowState.Maximized;
             BindData();
 
+        }
+
+        private void FrmCookbookDetail_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            //not picking up changes of existing cookbooks
+            if (SQLUtility.TableHasChanges(dtcookbook))
+            {
+                var res = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                switch (res)
+                {
+                    case DialogResult.Yes:
+                        bool b = Save();
+                        if (b == false)
+                        {
+                            e.Cancel = true;
+                            this.Activate();
+                        }
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        this.Activate();
+                        break;
+                }
+            }
         }
         private void BtnCookbookDetailSave_Click(object? sender, EventArgs e)
         {

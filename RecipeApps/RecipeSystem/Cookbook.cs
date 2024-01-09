@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeSystem
 {
@@ -18,10 +13,6 @@ namespace RecipeSystem
             SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookGet");
             cmd.Parameters["@CookbookId"].Value = cookbookid;
             dt = SQLUtility.GetDataTable(cmd);
-            //if (dt.Rows.Count == 0)
-            //{
-            //    throw new Exception("This user has no saved recipes. System cannot compile cookbook.");
-            //}
             return dt;
         }
         public static DataTable GetCookbookSummary()
@@ -39,25 +30,22 @@ namespace RecipeSystem
             return dt;
         }
 
-        //public static DataTable GetCookbookbyId (int cookbookid)
-        //{
-        //    DataTable dt = new();
-        //    SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookGet");
-        //    cmd.Parameters["@CookbookId"].Value = cookbookid;
-        //    dt = SQLUtility.GetDataTable(cmd);
-        //    return dt;
-        //}
-
         public static void Save(DataTable dtcookbook)
         {
             if (dtcookbook.Rows.Count == 0)
             {
                 throw new Exception("Cannot call CookbookSave method because there are no rows in the table");
             }
-
             DataRow r = dtcookbook.Rows[0];
             SQLUtility.SaveDataRow(r, "CookbookUpdate");
+        }
 
+        public static void Delete(DataTable dtcookbook)
+        {
+            int id = (int)dtcookbook.Rows[0]["CookbookId"];
+            SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookDelete");
+            SQLUtility.SetParamValue(cmd, "@cookbookid", id);
+            SQLUtility.ExecuteSQL(cmd);
         }
 
         public static void SaveCookbookRecipeTable(DataTable dt, int cookbookid)
@@ -77,16 +65,12 @@ namespace RecipeSystem
 
         public static DataTable CreateCookbookBasedOnUser(int basedonuserid)
         {
-            
-            int newcookbookid = 0;
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookCreate");
             cmd.Parameters["@BasedOnUsersId"].Value = basedonuserid;
 
             SQLUtility.ExecuteSQL(cmd);
-            
-
-            newcookbookid = (int)cmd.Parameters["@CookbookId"].Value;
+            int newcookbookid = (int)cmd.Parameters["@CookbookId"].Value;
             return dt = Load(newcookbookid);
         }
     }

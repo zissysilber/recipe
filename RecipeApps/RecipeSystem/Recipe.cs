@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+
 namespace RecipeSystem
 {
     public class Recipe
@@ -14,21 +15,24 @@ namespace RecipeSystem
             return dt;
         }
 
-        public static void Save(DataTable dtrecipe)
+        public static bool Save(DataTable dtrecipe)
         {
+            bool b = false;
+            
             if (dtrecipe.Rows.Count == 0)
             {
                 throw new Exception("Cannot call RecipeSave method because there are no rows in the table");
             }
-            
-            DataRow r = dtrecipe.Rows[0];
-            SQLUtility.SaveDataRow(r, "RecipeUpdate");
+                DataRow r = dtrecipe.Rows[0];
+                SQLUtility.SaveDataRow(r, "RecipeUpdate");
+                b = true;
 
+            return b;
         }
 
         public static void Delete(DataTable dtrecipe)
         {
-            int id = (int)dtrecipe.Rows[0]["RecipeID"];
+            int id = (int)dtrecipe.Rows[0]["RecipeId"];
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeDelete");
             SQLUtility.SetParamValue(cmd, "@recipeid", id);
             SQLUtility.ExecuteSQL(cmd);
@@ -69,9 +73,8 @@ namespace RecipeSystem
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeClone");
             cmd.Parameters["@BasedOnRecipeId"].Value = basedonrecipeid;
-
+            
             SQLUtility.ExecuteSQL(cmd);
-            //need to do trycatch
 
             newrecipeid =  (int)cmd.Parameters["@RecipeId"].Value;
             return dt = GetRecipeById(newrecipeid);
@@ -96,7 +99,6 @@ namespace RecipeSystem
             DataRow r = dtrecipe.Rows[0];
             r[columnname] = newdate;
             SQLUtility.SaveDataRow(r, "RecipeUpdate");
-
         }
 
         public static DateTime SetCurrentDateAsValue(DataTable dt,  string columnname)
