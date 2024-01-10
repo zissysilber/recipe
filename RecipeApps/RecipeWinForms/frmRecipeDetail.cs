@@ -1,19 +1,17 @@
-﻿using CPUFramework;
-using RecipeSystem;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
-    public partial class frmRecipe : Form
+    public partial class frmRecipeDetail : Form
     {
 
-        DataTable dtrecipe = new ();
+        DataTable dtrecipe = new();
         DataTable dtrecipeingredient = new();
         DataTable dtrecipedirection = new();
-        BindingSource bindsource = new ();
+        BindingSource bindsource = new();
 
         string deletecolumnname = "deletecolumn";
         int recipeid = 0;
-        public frmRecipe()
+
+        public frmRecipeDetail()
         {
             InitializeComponent();
             btnSave.Click += BtnSave_Click;
@@ -24,7 +22,6 @@ namespace RecipeWinForms
             this.Shown += FrmRecipe_Shown;
             this.FormClosing += FrmRecipe_FormClosing;
         }
-
 
 
         public void LoadForm(int recipeidval)
@@ -56,7 +53,6 @@ namespace RecipeWinForms
 
             LoadIngredientDetails();
             LoadDirectionDetails();
-
         }
 
         private void LoadIngredientDetails()
@@ -82,17 +78,13 @@ namespace RecipeWinForms
         }
 
 
-
-
         public void LoadChangeStatusForm(int recipeid)
         {
             int id = recipeid;
 
             if (this.MdiParent != null && this.MdiParent is frmMain)
             {
-
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), id);
-
             }
         }
         private void Save()
@@ -121,6 +113,7 @@ namespace RecipeWinForms
 
         private void SaveRecipeIngredient()
         {
+            Application.UseWaitCursor = true;
             try
             {
                 RecipeDetail.SaveRecipeIngredientTable(dtrecipeingredient, recipeid);
@@ -129,11 +122,15 @@ namespace RecipeWinForms
             {
                 MessageBox.Show(ex.Message, Application.ProductName);
             }
-
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void SaveRecipeDirection()
         {
+            Application.UseWaitCursor = true;
             try
             {
                 RecipeDetail.SaveRecipeDirectionTable(dtrecipedirection, recipeid);
@@ -141,6 +138,10 @@ namespace RecipeWinForms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Application.ProductName);
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
             }
         }
 
@@ -165,7 +166,6 @@ namespace RecipeWinForms
             {
                 Application.UseWaitCursor = false;
             }
-
         }
 
         private void SetButtonsEnabledBasedOnNewRecord()
@@ -187,10 +187,11 @@ namespace RecipeWinForms
             }
             return value;
         }
-
-        private void FrmRecipe_FormClosing(object? sender, FormClosingEventArgs e)
+        private void PromptToSave(DataTable dt, FormClosingEventArgs e)
         {
-            if (SQLUtility.TableHasChanges(dtrecipe))
+            bindsource.EndEdit();
+
+            if (SQLUtility.TableHasChanges(dt))
             {
                 var res = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
                 switch (res)
@@ -218,6 +219,10 @@ namespace RecipeWinForms
                 }
             }
         }
+        private void FrmRecipe_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            PromptToSave(dtrecipe, e);
+        }
 
         private void BtnChangeStatus_Click(object? sender, EventArgs e)
         {
@@ -239,14 +244,10 @@ namespace RecipeWinForms
             SaveRecipeDirection();
         }
 
-
-
         private void BtnIngredientsSave_Click(object? sender, EventArgs e)
         {
             SaveRecipeIngredient();
         }
-
-
 
         private void FrmRecipe_Shown(object? sender, EventArgs e)
         {

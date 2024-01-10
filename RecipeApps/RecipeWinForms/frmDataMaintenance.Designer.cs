@@ -85,7 +85,7 @@
             lblDataMaintenance.Margin = new Padding(0);
             lblDataMaintenance.Name = "lblDataMaintenance";
             lblDataMaintenance.Size = new Size(199, 38);
-            lblDataMaintenance.TabIndex = 4;
+            lblDataMaintenance.TabIndex = 0;
             lblDataMaintenance.Text = "   Data Maintenance";
             lblDataMaintenance.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -113,7 +113,7 @@
             pnlOptionButtons.Location = new Point(31, 67);
             pnlOptionButtons.Name = "pnlOptionButtons";
             pnlOptionButtons.Size = new Size(165, 528);
-            pnlOptionButtons.TabIndex = 6;
+            pnlOptionButtons.TabIndex = 1;
             // 
             // optUsers
             // 
@@ -200,7 +200,7 @@
             gData.Name = "gData";
             gData.RowTemplate.Height = 25;
             gData.Size = new Size(465, 528);
-            gData.TabIndex = 7;
+            gData.TabIndex = 2;
             // 
             // tblSaveButton
             // 
@@ -214,7 +214,7 @@
             tblSaveButton.RowCount = 1;
             tblSaveButton.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tblSaveButton.Size = new Size(465, 45);
-            tblSaveButton.TabIndex = 8;
+            tblSaveButton.TabIndex = 3;
             // 
             // btnSave
             // 

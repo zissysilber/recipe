@@ -90,7 +90,9 @@ namespace RecipeWinForms
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             gRecipeSummary.RowsDefaultCellStyle = dataGridViewCellStyle1;
             gRecipeSummary.RowTemplate.Height = 25;
+            gRecipeSummary.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gRecipeSummary.Size = new Size(911, 415);
+            gRecipeSummary.StandardTab = true;
             gRecipeSummary.TabIndex = 1;
             // 
             // lblRecipeList

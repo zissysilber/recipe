@@ -11,9 +11,6 @@
             this.Activated += FrmCookbookList_Activated;
         }
 
-
-
-
         private void BindData()
         {
             gCookbook.DataSource = Cookbook.GetCookbookSummary();

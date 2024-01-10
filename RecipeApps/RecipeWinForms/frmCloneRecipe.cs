@@ -2,8 +2,6 @@
 {
     public partial class frmCloneRecipe : Form
     {
-
-
         BindingSource bindsource = new();
         int newrecipeid = 0;
 
@@ -12,10 +10,7 @@
             InitializeComponent();
             BindData();
             btnClone.Click += BtnClone_Click;
-
         }
-
-
 
         private void BindData()
         {
@@ -37,7 +32,6 @@
                 bindsource.DataSource = dtrecipe;
 
                 LoadClonedRecipeForm();
-
             }
             catch (Exception ex)
             {
@@ -53,7 +47,7 @@
         {
             if (this.MdiParent != null && this.MdiParent is frmMain)
             {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), newrecipeid);
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipeDetail), newrecipeid);
 
                 this.Close();
             }

@@ -2,7 +2,9 @@ create or alter proc dbo.CookbookRecipeUpdate(
 	@CookbookRecipeId int = 0  output,
 	@CookbookId int = 0 ,
 	@RecipeId int = 0 ,
-	@CookbookRecipeSequence int = 0)
+	@CookbookRecipeSequence int = 0,
+	@Message varchar (500)  = '' output
+)
 
 as
 begin

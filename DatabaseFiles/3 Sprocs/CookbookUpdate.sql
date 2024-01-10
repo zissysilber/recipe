@@ -4,7 +4,8 @@ create or alter proc dbo.CookbookUpdate (
 	@CookbookName varchar (100) = '',
 	@Price decimal = 0 ,
 	@DateCreated date = ' ' output,
-	@IsActive bit = 0 
+	@IsActive bit = 0 ,
+	@Message varchar (500)  = '' output
 )
 
 as 

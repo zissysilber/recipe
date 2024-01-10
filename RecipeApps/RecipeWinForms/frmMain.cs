@@ -19,8 +19,6 @@
             this.Shown += FrmMain_Shown;
         }
 
-
-
         private void FrmMain_Shown(object? sender, EventArgs e)
         {
             OpenForm(typeof(frmDashboard));
@@ -45,9 +43,9 @@
                     newfrm = f;
                 }
 
-                else if (frmtype == typeof(frmRecipe))
+                else if (frmtype == typeof(frmRecipeDetail))
                 {
-                    frmRecipe f = new();
+                    frmRecipeDetail f = new();
                     newfrm = f;
                     f.LoadForm(pkvalue);
                 }
@@ -148,7 +146,7 @@
 
         private void MnuNewRecipe_Click(object? sender, EventArgs e)
         {
-            OpenForm(typeof(frmRecipe));
+            OpenForm(typeof(frmRecipeDetail));
         }
 
         private void MnuRecipeList_Click(object? sender, EventArgs e)
@@ -170,9 +168,6 @@
         {
             LayoutMdi(MdiLayout.TileVertical);
         }
-
-
-
 
     }
 }

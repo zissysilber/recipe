@@ -99,7 +99,9 @@
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             gMeal.RowsDefaultCellStyle = dataGridViewCellStyle2;
             gMeal.RowTemplate.Height = 25;
+            gMeal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gMeal.Size = new Size(1129, 458);
+            gMeal.StandardTab = true;
             gMeal.TabIndex = 1;
             // 
             // lblMealList

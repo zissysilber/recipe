@@ -2,7 +2,13 @@ Use HeartyHearthDB
 go
 
 
-create or alter procedure dbo.CuisineGet(@CuisineId int = 0, @CuisineName varchar(50) = '', @All bit = 0)
+create or alter procedure dbo.CuisineGet(
+	@CuisineId int = 0, 
+	@CuisineName varchar(50) = '', 
+	@All bit = 0,
+	@Message varchar (500)  = '' output
+	)
+
 as
 begin
 	select c.CuisineId, c.CuisineName

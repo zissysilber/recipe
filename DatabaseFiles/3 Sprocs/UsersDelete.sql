@@ -20,7 +20,7 @@ begin
 
 			delete mr
 			from MealCourseRecipe mr
-			join Recipe r
+			left join Recipe r
 			on mr.RecipeId = r.RecipeId
 			where r.UsersId = @UsersId
 
@@ -49,17 +49,23 @@ begin
 			join Recipe r
 			on ri.RecipeId = r.RecipeId
 			where r.UsersId = @UsersId
-
+			
 			delete cr
-			from Cookbook c 
-			left join CookbookRecipe cr
-			on c.CookbookId = cr.CookbookId
+			from CookbookRecipe cr		
 			left join Recipe r
 			on cr.RecipeId = r.RecipeId
+			where r.UsersId = @UsersId
+
+			delete cr
+			from CookbookRecipe cr 			
+			left join Cookbook c
+			on c.CookbookId = cr.CookbookId
 			where c.UsersId = @UsersId
 
 			delete r
 			from Recipe r
+			join Users u
+			on u.UsersId = r.UsersId
 			where r.UsersId = @UsersId
 
 			delete c
@@ -80,4 +86,5 @@ begin
 
 end
 go
+
 

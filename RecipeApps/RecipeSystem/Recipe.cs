@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Data.SqlClient;
-
-namespace RecipeSystem
+﻿namespace RecipeSystem
 {
     public class Recipe
     {
@@ -95,10 +92,18 @@ namespace RecipeSystem
 
         public static void UpdateStatus(DataTable dtrecipe, string columnname)
         {
-            string newdate = SetCurrentDateAsValue(dtrecipe, columnname).ToString();
-            DataRow r = dtrecipe.Rows[0];
-            r[columnname] = newdate;
-            SQLUtility.SaveDataRow(r, "RecipeUpdate");
+            try
+            {
+                string newdate = SetCurrentDateAsValue(dtrecipe, columnname).ToString();
+                DataRow r = dtrecipe.Rows[0];
+                r[columnname] = newdate;
+                SQLUtility.SaveDataRow(r, "RecipeUpdate");
+            }
+            catch (SqlException ex)
+            {
+                string msg = SQLUtility.ParseConstraintMsg(ex.Message);
+                throw new Exception(msg);
+            }
         }
 
         public static DateTime SetCurrentDateAsValue(DataTable dt,  string columnname)

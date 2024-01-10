@@ -1,5 +1,3 @@
-
-
 create or alter procedure dbo.IngredientGet(
 	@IngredientId int = 0,
 	@All bit = 0,

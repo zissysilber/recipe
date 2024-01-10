@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
+            tblMain = new TableLayoutPanel();
+            tblCookbookBtn = new TableLayoutPanel();
+            btnCookbookSave = new Button();
+            btnCookbookDelete = new Button();
             lblName = new Label();
             label1 = new Label();
             lblCookbookName = new Label();
@@ -36,67 +39,101 @@
             lblPrice = new Label();
             lblActive = new Label();
             cbxIsActive = new CheckBox();
-            tableLayoutPanel4 = new TableLayoutPanel();
-            btnCookbookSave = new Button();
-            btnCookbookDelete = new Button();
             lstUsersName = new ComboBox();
             lblDateCreateCaption = new Label();
             lblDateCreated = new Label();
-            boxCookbookDetail = new GroupBox();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            btnCookbookDetailSave = new Button();
-            gCookbookDetail = new DataGridView();
             txtPrice = new TextBox();
             txtCookbookName = new TextBox();
+            boxCookbookDetail = new GroupBox();
+            tblCookbookDetail = new TableLayoutPanel();
+            btnCookbookDetailSave = new Button();
+            gCookbookDetail = new DataGridView();
             tblButton = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
-            tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
+            tblMain.SuspendLayout();
+            tblCookbookBtn.SuspendLayout();
             boxCookbookDetail.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
+            tblCookbookDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gCookbookDetail).BeginInit();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tblMain
             // 
-            tableLayoutPanel1.BackColor = Color.White;
-            tableLayoutPanel1.ColumnCount = 5;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 29F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.5925922F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.40741F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 34F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 41F));
-            tableLayoutPanel1.Controls.Add(lblName, 4, 2);
-            tableLayoutPanel1.Controls.Add(label1, 4, 0);
-            tableLayoutPanel1.Controls.Add(lblCookbookName, 1, 3);
-            tableLayoutPanel1.Controls.Add(lblUserName, 1, 4);
-            tableLayoutPanel1.Controls.Add(lblPrice, 1, 5);
-            tableLayoutPanel1.Controls.Add(lblActive, 1, 6);
-            tableLayoutPanel1.Controls.Add(cbxIsActive, 2, 6);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 1, 1);
-            tableLayoutPanel1.Controls.Add(lstUsersName, 2, 4);
-            tableLayoutPanel1.Controls.Add(lblDateCreateCaption, 1, 7);
-            tableLayoutPanel1.Controls.Add(lblDateCreated, 2, 7);
-            tableLayoutPanel1.Controls.Add(boxCookbookDetail, 1, 8);
-            tableLayoutPanel1.Controls.Add(txtPrice, 2, 5);
-            tableLayoutPanel1.Controls.Add(txtCookbookName, 2, 3);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(4);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 10;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 6.84210539F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.894737F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 6.140351F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.96491241F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.96491241F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.96491241F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 4.91228056F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.614035F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 46.4912262F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 3.966435F));
-            tableLayoutPanel1.Size = new Size(601, 570);
-            tableLayoutPanel1.TabIndex = 0;
+            tblMain.BackColor = Color.White;
+            tblMain.ColumnCount = 5;
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 29F));
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.5925922F));
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.40741F));
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 34F));
+            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 41F));
+            tblMain.Controls.Add(tblCookbookBtn, 1, 1);
+            tblMain.Controls.Add(lblName, 4, 2);
+            tblMain.Controls.Add(label1, 4, 0);
+            tblMain.Controls.Add(lblCookbookName, 1, 3);
+            tblMain.Controls.Add(lblUserName, 1, 4);
+            tblMain.Controls.Add(lblPrice, 1, 5);
+            tblMain.Controls.Add(lblActive, 1, 6);
+            tblMain.Controls.Add(cbxIsActive, 2, 6);
+            tblMain.Controls.Add(lstUsersName, 2, 4);
+            tblMain.Controls.Add(lblDateCreateCaption, 1, 7);
+            tblMain.Controls.Add(lblDateCreated, 2, 7);
+            tblMain.Controls.Add(txtPrice, 2, 5);
+            tblMain.Controls.Add(txtCookbookName, 2, 3);
+            tblMain.Controls.Add(boxCookbookDetail, 1, 8);
+            tblMain.Dock = DockStyle.Fill;
+            tblMain.Location = new Point(0, 0);
+            tblMain.Margin = new Padding(4);
+            tblMain.Name = "tblMain";
+            tblMain.RowCount = 10;
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.84210539F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 7.894737F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.140351F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 5.96491241F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 5.96491241F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 5.96491241F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 4.91228056F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 5.614035F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 46.4912262F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 3.966435F));
+            tblMain.Size = new Size(601, 570);
+            tblMain.TabIndex = 0;
+            // 
+            // tblCookbookBtn
+            // 
+            tblCookbookBtn.ColumnCount = 3;
+            tblMain.SetColumnSpan(tblCookbookBtn, 2);
+            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.3048019F));
+            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.7995815F));
+            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.8956146F));
+            tblCookbookBtn.Controls.Add(btnCookbookSave, 0, 0);
+            tblCookbookBtn.Controls.Add(btnCookbookDelete, 1, 0);
+            tblCookbookBtn.Dock = DockStyle.Fill;
+            tblCookbookBtn.Location = new Point(32, 42);
+            tblCookbookBtn.Name = "tblCookbookBtn";
+            tblCookbookBtn.RowCount = 1;
+            tblCookbookBtn.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tblCookbookBtn.Size = new Size(490, 39);
+            tblCookbookBtn.TabIndex = 6;
+            // 
+            // btnCookbookSave
+            // 
+            btnCookbookSave.Dock = DockStyle.Fill;
+            btnCookbookSave.Location = new Point(3, 3);
+            btnCookbookSave.Name = "btnCookbookSave";
+            btnCookbookSave.Size = new Size(122, 33);
+            btnCookbookSave.TabIndex = 0;
+            btnCookbookSave.Text = "&Save";
+            btnCookbookSave.UseVisualStyleBackColor = true;
+            // 
+            // btnCookbookDelete
+            // 
+            btnCookbookDelete.Dock = DockStyle.Fill;
+            btnCookbookDelete.Location = new Point(131, 3);
+            btnCookbookDelete.Name = "btnCookbookDelete";
+            btnCookbookDelete.Size = new Size(110, 33);
+            btnCookbookDelete.TabIndex = 1;
+            btnCookbookDelete.Text = "&Delete";
+            btnCookbookDelete.UseVisualStyleBackColor = true;
             // 
             // lblName
             // 
@@ -107,7 +144,7 @@
             lblName.Location = new Point(559, 84);
             lblName.Margin = new Padding(0);
             lblName.Name = "lblName";
-            tableLayoutPanel1.SetRowSpan(lblName, 8);
+            tblMain.SetRowSpan(lblName, 8);
             lblName.Size = new Size(42, 486);
             lblName.TabIndex = 49;
             // 
@@ -119,7 +156,7 @@
             label1.Location = new Point(559, 0);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
-            tableLayoutPanel1.SetRowSpan(label1, 2);
+            tblMain.SetRowSpan(label1, 2);
             label1.Size = new Size(42, 84);
             label1.TabIndex = 48;
             // 
@@ -179,46 +216,9 @@
             cbxIsActive.Margin = new Padding(4);
             cbxIsActive.Name = "cbxIsActive";
             cbxIsActive.Size = new Size(351, 20);
-            cbxIsActive.TabIndex = 4;
+            cbxIsActive.TabIndex = 3;
             cbxIsActive.TextAlign = ContentAlignment.BottomLeft;
             cbxIsActive.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.ColumnCount = 3;
-            tableLayoutPanel1.SetColumnSpan(tableLayoutPanel4, 2);
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.3048019F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.7995815F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.8956146F));
-            tableLayoutPanel4.Controls.Add(btnCookbookSave, 0, 0);
-            tableLayoutPanel4.Controls.Add(btnCookbookDelete, 1, 0);
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(32, 42);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 1;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(490, 39);
-            tableLayoutPanel4.TabIndex = 6;
-            // 
-            // btnCookbookSave
-            // 
-            btnCookbookSave.Dock = DockStyle.Fill;
-            btnCookbookSave.Location = new Point(3, 3);
-            btnCookbookSave.Name = "btnCookbookSave";
-            btnCookbookSave.Size = new Size(122, 33);
-            btnCookbookSave.TabIndex = 0;
-            btnCookbookSave.Text = "&Save";
-            btnCookbookSave.UseVisualStyleBackColor = true;
-            // 
-            // btnCookbookDelete
-            // 
-            btnCookbookDelete.Dock = DockStyle.Fill;
-            btnCookbookDelete.Location = new Point(131, 3);
-            btnCookbookDelete.Name = "btnCookbookDelete";
-            btnCookbookDelete.Size = new Size(110, 33);
-            btnCookbookDelete.TabIndex = 1;
-            btnCookbookDelete.Text = "&Delete";
-            btnCookbookDelete.UseVisualStyleBackColor = true;
             // 
             // lstUsersName
             // 
@@ -227,7 +227,7 @@
             lstUsersName.Location = new Point(169, 156);
             lstUsersName.Name = "lstUsersName";
             lstUsersName.Size = new Size(353, 29);
-            lstUsersName.TabIndex = 8;
+            lstUsersName.TabIndex = 1;
             // 
             // lblDateCreateCaption
             // 
@@ -250,10 +250,25 @@
             lblDateCreated.TabIndex = 10;
             lblDateCreated.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // txtPrice
+            // 
+            txtPrice.Location = new Point(169, 190);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(345, 29);
+            txtPrice.TabIndex = 2;
+            // 
+            // txtCookbookName
+            // 
+            txtCookbookName.Dock = DockStyle.Fill;
+            txtCookbookName.Location = new Point(169, 122);
+            txtCookbookName.Name = "txtCookbookName";
+            txtCookbookName.Size = new Size(353, 29);
+            txtCookbookName.TabIndex = 0;
+            // 
             // boxCookbookDetail
             // 
-            tableLayoutPanel1.SetColumnSpan(boxCookbookDetail, 2);
-            boxCookbookDetail.Controls.Add(tableLayoutPanel2);
+            tblMain.SetColumnSpan(boxCookbookDetail, 2);
+            boxCookbookDetail.Controls.Add(tblCookbookDetail);
             boxCookbookDetail.Dock = DockStyle.Fill;
             boxCookbookDetail.Location = new Point(29, 281);
             boxCookbookDetail.Margin = new Padding(0);
@@ -262,27 +277,27 @@
             boxCookbookDetail.TabIndex = 11;
             boxCookbookDetail.TabStop = false;
             // 
-            // tableLayoutPanel2
+            // tblCookbookDetail
             // 
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(btnCookbookDetailSave, 0, 0);
-            tableLayoutPanel2.Controls.Add(gCookbookDetail, 0, 1);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 25);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 2;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 19.791666F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 80.2083359F));
-            tableLayoutPanel2.Size = new Size(490, 237);
-            tableLayoutPanel2.TabIndex = 0;
+            tblCookbookDetail.ColumnCount = 1;
+            tblCookbookDetail.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tblCookbookDetail.Controls.Add(btnCookbookDetailSave, 0, 0);
+            tblCookbookDetail.Controls.Add(gCookbookDetail, 0, 1);
+            tblCookbookDetail.Dock = DockStyle.Fill;
+            tblCookbookDetail.Location = new Point(3, 25);
+            tblCookbookDetail.Name = "tblCookbookDetail";
+            tblCookbookDetail.RowCount = 2;
+            tblCookbookDetail.RowStyles.Add(new RowStyle(SizeType.Percent, 19.791666F));
+            tblCookbookDetail.RowStyles.Add(new RowStyle(SizeType.Percent, 80.2083359F));
+            tblCookbookDetail.Size = new Size(490, 237);
+            tblCookbookDetail.TabIndex = 0;
             // 
             // btnCookbookDetailSave
             // 
             btnCookbookDetailSave.Location = new Point(3, 3);
             btnCookbookDetailSave.Name = "btnCookbookDetailSave";
             btnCookbookDetailSave.Size = new Size(99, 32);
-            btnCookbookDetailSave.TabIndex = 1;
+            btnCookbookDetailSave.TabIndex = 0;
             btnCookbookDetailSave.Text = "&Save";
             btnCookbookDetailSave.UseVisualStyleBackColor = true;
             // 
@@ -295,22 +310,7 @@
             gCookbookDetail.Name = "gCookbookDetail";
             gCookbookDetail.RowTemplate.Height = 25;
             gCookbookDetail.Size = new Size(484, 185);
-            gCookbookDetail.TabIndex = 2;
-            // 
-            // txtPrice
-            // 
-            txtPrice.Location = new Point(169, 190);
-            txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(345, 29);
-            txtPrice.TabIndex = 50;
-            // 
-            // txtCookbookName
-            // 
-            txtCookbookName.Dock = DockStyle.Fill;
-            txtCookbookName.Location = new Point(169, 122);
-            txtCookbookName.Name = "txtCookbookName";
-            txtCookbookName.Size = new Size(353, 29);
-            txtCookbookName.TabIndex = 51;
+            gCookbookDetail.TabIndex = 1;
             // 
             // tblButton
             // 
@@ -343,30 +343,30 @@
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(601, 570);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(tblMain);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             MaximizeBox = false;
             Name = "frmCookbookDetail";
             Text = "Cookbook Detail";
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
-            tableLayoutPanel4.ResumeLayout(false);
+            tblMain.ResumeLayout(false);
+            tblMain.PerformLayout();
+            tblCookbookBtn.ResumeLayout(false);
             boxCookbookDetail.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
+            tblCookbookDetail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gCookbookDetail).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tblMain;
         private Label lblCookbookName;
         private Label lblUserName;
         private Label lblPrice;
         private Label lblActive;
         private CheckBox cbxIsActive;
-        private TableLayoutPanel tableLayoutPanel4;
+        private TableLayoutPanel tblCookbookBtn;
         private Button btnCookbookSave;
         private Button btnCookbookDelete;
         private TableLayoutPanel tblButton;
@@ -375,7 +375,7 @@
         private Label lblDateCreateCaption;
         private Label lblDateCreated;
         private GroupBox boxCookbookDetail;
-        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel tblCookbookDetail;
         private Button btnCookbookDetailSave;
         private DataGridView gCookbookDetail;
         private Label label1;

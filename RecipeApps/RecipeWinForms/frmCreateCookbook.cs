@@ -20,7 +20,6 @@
 
         private void CreateCookbook()
         {
-
             int basedonuserid = WindowsFormUtility.GetIdFromComboBox(lstUsersName);
             this.Tag = basedonuserid;
 
@@ -37,7 +36,6 @@
             }
             catch (Exception ex)
             {
-                //InvalidCastException
                 MessageBox.Show(ex.Message, Application.ProductName);
             }
             finally

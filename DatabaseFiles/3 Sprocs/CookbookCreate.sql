@@ -59,28 +59,7 @@ begin
 end
 go
 
-/*
-select * from Cookbook
-select * from CookbookRecipe
 
-delete CookbookRecipe
-from CookbookRecipe cr
-join Cookbook c
-on c.CookbookId = cr.CookbookId
-where c.CookbookName like '%Recipe%'
-
-delete Cookbook
-from Cookbook c
-where c.CookbookName like '%Recipe%'
-
-declare @BasedOnUsersId int
-select top 1 @BasedOnUsersId = u.UsersId from Users u
- 
-exec CookbookCreate 
-@BasedOnUsersId = @BasedOnUsersId
-
-select * from Cookbook
-*/
 
 
 

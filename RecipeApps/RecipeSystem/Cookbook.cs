@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Data.SqlClient;
-
-namespace RecipeSystem
+﻿namespace RecipeSystem
 {
     public class Cookbook
     {
@@ -73,5 +70,7 @@ namespace RecipeSystem
             int newcookbookid = (int)cmd.Parameters["@CookbookId"].Value;
             return dt = Load(newcookbookid);
         }
+
+
     }
 }

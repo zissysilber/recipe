@@ -15,7 +15,6 @@
             BindData(currenttabletype);
             gData.CellContentClick += GData_CellContentClick;
             this.FormClosing += FrmDataMaintenance_FormClosing;
-
         }
 
         private void BindData(TableTypeEnum tabletype)
@@ -84,7 +83,6 @@
             {
                 gData.Rows.Remove(gData.Rows[rowindex]);
             }
-
         }
 
         private void SetupRadioButtons()
@@ -102,26 +100,23 @@
             optMeasurement.Tag = TableTypeEnum.Measurement;
             optCourse.Tag = TableTypeEnum.Course;
         }
-
-        private void C_Click(object? sender, EventArgs e)
+        private void PromptToSave(DataTable dt, FormClosingEventArgs e)
         {
-            if (sender is Control && ((Control)sender).Tag is TableTypeEnum)
-            {
-                BindData((TableTypeEnum)((Control)sender).Tag);
-            }
-        }
-
-
-        private void FrmDataMaintenance_FormClosing(object? sender, FormClosingEventArgs e)
-        {
-        
-            if (SQLUtility.TableHasChanges(dtlist))
+            if (SQLUtility.TableHasChanges(dt))
             {
                 var res = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
                 switch (res)
                 {
                     case DialogResult.Yes:
-                        bool b = Save();
+                        bool b = false;
+                        try
+                        {
+                            b = Save();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, Application.ProductName);
+                        }
                         if (b == false)
                         {
                             e.Cancel = true;
@@ -134,6 +129,19 @@
                         break;
                 }
             }
+        }
+
+        private void C_Click(object? sender, EventArgs e)
+        {
+            if (sender is Control && ((Control)sender).Tag is TableTypeEnum)
+            {
+                BindData((TableTypeEnum)((Control)sender).Tag);
+            }
+        }
+
+        private void FrmDataMaintenance_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            PromptToSave(dtlist, e);
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)

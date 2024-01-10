@@ -1,6 +1,4 @@
-﻿using CPUFramework;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
     public partial class frmChangeStatus : Form
     {
@@ -31,9 +29,9 @@ namespace RecipeWinForms
             WindowsFormUtility.SetControlBinding(lblDateDrafted, bindsource);
             WindowsFormUtility.SetControlBinding(lblDatePublished, bindsource);
             WindowsFormUtility.SetControlBinding(lblDateArchived, bindsource);
-           
+
             SetButtonsEnabledBasedOnStatus();
-            
+
             this.Text += " - " + GetRecipeDesc();
 
         }
@@ -60,7 +58,6 @@ namespace RecipeWinForms
                     messagebox = "Archived";
                     break;
             }
-            //need to do error handling here - can't go back to archived - and changes it anyway!
 
             var response = MessageBox.Show("Are you sure you want to change this recipe to " + messagebox + "?", Application.ProductName, MessageBoxButtons.YesNo);
             if (response == DialogResult.No)
@@ -82,7 +79,7 @@ namespace RecipeWinForms
         }
         private void SetButtonsEnabledBasedOnStatus()
         {
-            
+
             foreach (Button btn in tblButton.Controls)
             {
                 btn.Enabled = true;
@@ -90,7 +87,7 @@ namespace RecipeWinForms
 
             switch (dtrecipe.Rows[0]["RecipeStatus"])
             {
-  
+
                 case "Drafted":
                     btnDraft.Enabled = false;
                     break;
@@ -100,7 +97,7 @@ namespace RecipeWinForms
                 case "Archived":
                     btnArchive.Enabled = false;
                     break;
-                }
+            }
         }
         private string GetRecipeDesc()
         {

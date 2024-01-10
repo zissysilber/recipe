@@ -13,8 +13,8 @@ on mr.MealCourseId = mc.MealCourseId
 left join meal m
 on mc.MealId = m.MealId
 join Users u
-on m.UserId = u.UserId
-where U.UserName = 'Betty101'
+on m.UsersId = u.UsersId
+where U.UsersName = 'Fay303'
 
 delete mr
 --select * 
@@ -22,8 +22,8 @@ from MealCourseRecipe mr
 join Recipe r
 on mr.RecipeId = r.RecipeId
 join Users u
-on r.UserId = U.UserId
-where u.UserName = 'Betty101'
+on r.UsersId = U.UsersId
+where u.UsersName = 'Fay303'
 
 delete mc
 --select *
@@ -33,15 +33,15 @@ on mc.MealId = m.MealId
 join Course c
 on mc.CourseId = c.CourseId
 join Users u
-on m.UserId = u.UserId
-where u.UserName = 'Betty101'
+on m.UsersId = u.UsersId
+where u.UsersName = 'Fay303'
 
 delete m
 --select *
 from Meal m
 join Users u
-on m.UserId = u.UserId
-where u.UserName = 'Betty101'
+on m.UsersId = u.UsersId
+where u.UsersName = 'Fay303'
 
 delete rd
 --select *
@@ -51,8 +51,8 @@ on rd.RecipeId = ri.RecipeId
 join Recipe r
 on rd.RecipeId = r.RecipeId
 join Users u
-on r.UserId = u.UserId
-where u.UserName = 'Betty101'
+on r.UsersId = u.UsersId
+where u.UsersName = 'Fay303'
 
 delete ri
 --select *
@@ -60,8 +60,8 @@ from RecipeIngredient ri
 join Recipe r
 on ri.RecipeId = r.RecipeId
 join Users u
-on r.UserId = u.UserId
-where u.UserName = 'Betty101'
+on r.UsersId = u.UsersId
+where u.UsersName = 'Fay303'
 
 delete cr
 --select * 
@@ -71,33 +71,33 @@ on c.CookbookId = cr.CookbookId
 left join Recipe r
 on cr.RecipeId = r.RecipeId
 left join Users u
-on c.UserId = u.UserId
-where u.UserName = 'Betty101'
+on c.UsersId = u.UsersId
+where u.UsersName = 'Fay303'
 
 delete r
 --select *
 from Recipe r
 join Users u
-on r.UserId = u.UserId
-where u.UserName = 'Betty101'
+on r.UsersId = u.UsersId
+where u.UsersName = 'Fay303'
 
 delete c
 --select *
 from Cookbook c
 join Users u
-on c.UserId = u.UserId
-where u.UserName = 'Betty101'
+on c.UsersId = u.UsersId
+where u.UsersName = 'Fay303'
 
 delete u
 --select *
 from Users u
-where u.UserName = 'Betty101'
+where u.UsersName = 'Fay303'
 
 
 
 --2) Sometimes we want to clone a recipe as a starting point and then edit it. For example we have a complex recipe (steps and ingredients) and want to make a modified version. Write the SQL that clones a specific recipe, add " - clone" to its name.
-Insert Recipe(UserId, CuisineId, RecipeName, Calories)
-select r.UserId, r.CuisineId, concat(r.RecipeName, ' - clone'), r.Calories
+Insert Recipe(UsersId, CuisineId, RecipeName, Calories)
+select r.UsersId, r.CuisineId, concat(r.RecipeName, ' - clone'), r.Calories
 from Recipe r
 where r.RecipeName = 'Butter Muffins'
 
@@ -113,29 +113,29 @@ Sequence the book by recipe name.
 
 ;
 with x as(
-	select Users = u.Username, TotalRecipes = Count(r.RecipeId)
+	select Users = u.Usersname, TotalRecipes = Count(r.RecipeId)
 	from Recipe r
 	join Users u
-	on r.UserId = u.UserId
-	where u.UserName = 'Betty101'
-	group by u.UserName
+	on r.UsersId = u.UsersId
+	where u.UsersName = 'Betty101'
+	group by u.UsersName
 )
-Insert Cookbook(UserId, CookbookName, Price, IsActive)
-select u.UserId, concat('Recipes by ', u.FirstName, ' ', u.LastName), x.TotalRecipes * 1.33, 1
+Insert Cookbook(UsersId, CookbookName, Price, IsActive)
+select u.UsersId, concat('Recipes by ', u.FirstName, ' ', u.LastName), x.TotalRecipes * 1.33, 1
 from x
 join Users u
-on x.Users = u.UserName
-where u.UserName = 'Betty101'
+on x.Users = u.UsersName
+where u.UsersName = 'Betty101'
 
 Insert CookBookRecipe(CookbookId, RecipeId, CookbookRecipeSequence)
 select c.CookbookId, r.RecipeId, ROW_NUMBER() over (order by r.RecipeName)
 from Cookbook c
 join Users u
-on c.UserId = u.UserId
+on c.UsersId = u.UsersId
 join Recipe r
-on u.UserId = r.UserId
+on u.UsersId = r.UsersId
 where c.CookbookName = concat('Recipes by ', u.FirstName, ' ', u.LastName) 
-and u.Username = 'Betty101'
+and u.Usersname = 'Betty101'
 
 /*
 Tip: To get a unique sequential number for each row in the result set use the ROW_NUMBER() function. See Microsoft Docs.
@@ -168,8 +168,8 @@ where i.IngredientName = 'Butter'
 /*
 5) We need to send out alerts to users that have recipes sitting in draft longer the average amount of time that recipes have taken to be published.
 Produce a result set that has 4 columns (Data values in brackets should be replaced with actual data)
-	User First Name, 
-	User Last Name, 
+	Users First Name, 
+	Users Last Name, 
 	email address (first initial + lastname@heartyhearth.com),
 	Alert: 
 		Your recipe [recipe name] is sitting in draft for [X] hours.
@@ -190,7 +190,7 @@ Select	u.FirstName,
 		Alert = concat('Your recipe ', r.RecipeName, ' is sitting in draft for ', datediff(hour, r.DateDrafted, getdate()), ' hours.  That is ', datediff(hour, r.DateDrafted, getdate()) - x.TimeLapse, ' hours more than the average ', x.TimeLapse,' hours all other recipes took to be published.') 
 	from users u
 	join Recipe r
-	on u.UserId = r.UserId
+	on u.UsersId = r.UsersId
 	join x
 	on (datediff(hour, r.DateDrafted, getdate())) > x.TimeLapse
 	where r.RecipeStatus = 'Drafted'

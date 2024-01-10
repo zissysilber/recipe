@@ -113,7 +113,9 @@
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             gCookbook.RowsDefaultCellStyle = dataGridViewCellStyle2;
             gCookbook.RowTemplate.Height = 25;
+            gCookbook.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gCookbook.Size = new Size(1129, 417);
+            gCookbook.StandardTab = true;
             gCookbook.TabIndex = 1;
             // 
             // lblCookbookList

@@ -1,7 +1,4 @@
-﻿using System.Data.SqlClient;
-using System.Data;
-
-namespace RecipeSystem
+﻿namespace RecipeSystem
 {
     public static class DataMaintenance
     {

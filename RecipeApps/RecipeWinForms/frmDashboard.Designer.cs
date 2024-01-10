@@ -91,7 +91,6 @@
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle1.NullValue = null;
             gSummary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            gSummary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             gSummary.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             gSummary.BackgroundColor = Color.White;
@@ -113,6 +112,7 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             gSummary.DefaultCellStyle = dataGridViewCellStyle3;
+            gSummary.Dock = DockStyle.Fill;
             gSummary.EnableHeadersVisualStyles = false;
             gSummary.GridColor = Color.FromArgb(188, 200, 135);
             gSummary.Location = new Point(59, 284);
@@ -137,6 +137,7 @@
             gSummary.ScrollBars = ScrollBars.Vertical;
             gSummary.Size = new Size(409, 161);
             gSummary.TabIndex = 6;
+            gSummary.TabStop = false;
             // 
             // lblGreatFood
             // 
@@ -196,7 +197,7 @@
             tblListButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tblListButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tblListButtons.Size = new Size(414, 166);
-            tblListButtons.TabIndex = 8;
+            tblListButtons.TabIndex = 0;
             // 
             // btnRecipeList
             // 

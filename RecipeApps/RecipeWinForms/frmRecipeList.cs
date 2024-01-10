@@ -9,10 +9,7 @@
             this.Activated += FrmRecipeList_Activated;
             gRecipeSummary.CellDoubleClick += GRecipeSummary_CellDoubleClick;
             gRecipeSummary.KeyDown += GRecipeSummary_KeyDown;
-
         }
-
-
 
         private void BindData()
         {
@@ -31,7 +28,7 @@
             if (this.MdiParent != null && this.MdiParent is frmMain)
             {
 
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipeDetail), id);
             }
         }
 

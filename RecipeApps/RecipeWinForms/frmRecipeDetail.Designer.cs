@@ -1,6 +1,6 @@
 ﻿namespace RecipeWinForms
 {
-    partial class frmRecipe
+    partial class frmRecipeDetail
     {
         /// <summary>
         /// Required designer variable.
@@ -136,7 +136,7 @@
             tblButtons.RowCount = 1;
             tblButtons.RowStyles.Add(new RowStyle());
             tblButtons.Size = new Size(689, 38);
-            tblButtons.TabIndex = 43;
+            tblButtons.TabIndex = 0;
             // 
             // btnDelete
             // 
@@ -147,7 +147,7 @@
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(92, 31);
-            btnDelete.TabIndex = 3;
+            btnDelete.TabIndex = 1;
             btnDelete.Text = "&Delete";
             btnDelete.UseVisualStyleBackColor = true;
             // 
@@ -161,7 +161,7 @@
             btnSave.Margin = new Padding(3, 4, 3, 4);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(99, 31);
-            btnSave.TabIndex = 1;
+            btnSave.TabIndex = 0;
             btnSave.Text = "&Save";
             btnSave.UseVisualStyleBackColor = false;
             // 
@@ -173,7 +173,7 @@
             btnChangeStatus.Location = new Point(490, 3);
             btnChangeStatus.Name = "btnChangeStatus";
             btnChangeStatus.Size = new Size(196, 33);
-            btnChangeStatus.TabIndex = 4;
+            btnChangeStatus.TabIndex = 2;
             btnChangeStatus.Text = "&Change Status...";
             btnChangeStatus.UseVisualStyleBackColor = true;
             // 
@@ -214,7 +214,7 @@
             txtCalories.MinimumSize = new Size(2, 25);
             txtCalories.Name = "txtCalories";
             txtCalories.Size = new Size(448, 29);
-            txtCalories.TabIndex = 41;
+            txtCalories.TabIndex = 3;
             // 
             // lstCuisineName
             // 
@@ -225,7 +225,7 @@
             lstCuisineName.Margin = new Padding(0);
             lstCuisineName.Name = "lstCuisineName";
             lstCuisineName.Size = new Size(448, 29);
-            lstCuisineName.TabIndex = 39;
+            lstCuisineName.TabIndex = 2;
             // 
             // lstUsersName
             // 
@@ -236,7 +236,7 @@
             lstUsersName.Margin = new Padding(0);
             lstUsersName.Name = "lstUsersName";
             lstUsersName.Size = new Size(448, 29);
-            lstUsersName.TabIndex = 37;
+            lstUsersName.TabIndex = 1;
             // 
             // lblUser
             // 
@@ -264,7 +264,7 @@
             txtRecipeName.Margin = new Padding(0);
             txtRecipeName.Name = "txtRecipeName";
             txtRecipeName.Size = new Size(448, 29);
-            txtRecipeName.TabIndex = 35;
+            txtRecipeName.TabIndex = 0;
             // 
             // lblRecipeName
             // 
@@ -628,7 +628,7 @@
             tableLayoutPanel6.Size = new Size(200, 100);
             tableLayoutPanel6.TabIndex = 0;
             // 
-            // frmRecipe
+            // frmRecipeDetail
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -636,7 +636,7 @@
             Controls.Add(tblMain);
             Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "frmRecipe";
+            Name = "frmRecipeDetail";
             Text = "Recipe Info";
             tblMain.ResumeLayout(false);
             tblMain.PerformLayout();
