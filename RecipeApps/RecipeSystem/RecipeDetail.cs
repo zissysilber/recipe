@@ -38,5 +38,21 @@
             SQLUtility.SaveDataTable(dt, "RecipeDirectionUpdate");
         }
 
+        public static void DeleteRecipeDirectionRow (int recipedirectionid)
+        {
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeDirectionDelete");
+            cmd.Parameters["@RecipeDirectionId"].Value = recipedirectionid;
+            SQLUtility.ExecuteSQL(cmd);
+        }
+
+        public static void DeleteRecipeIngredientRow(int recipeingredientid)
+        {
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeIngredientDelete");
+            cmd.Parameters["@RecipeIngredientId"].Value = recipeingredientid;
+            SQLUtility.ExecuteSQL(cmd);
+        }
+
+
+
     }
 }

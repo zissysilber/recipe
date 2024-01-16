@@ -87,8 +87,8 @@ create table dbo.RecipeIngredient(
     RecipeId int not null constraint f_Recipe_RecipeIngredients foreign key references Recipe(RecipeId),
     IngredientId int not null constraint f_Ingredient_RecipeIngredients foreign key references Ingredient(IngredientId),
     MeasurementId int null constraint f_Measurement_RecipeIngredient foreign key references Measurement(MeasurementId), 
-    MeasurementAmt varchar(10) not null,
-    IngredientSequence int not null 
+    MeasurementAmt decimal (4,2) null,
+	IngredientSequence int not null 
         constraint ck_RecipeIngredient_IngredientSequence_must_be_greater_than_zero check(IngredientSequence > 0),
     constraint u_RecipeIngredient_Recipe_IngredientSequence unique(RecipeId, IngredientSequence)    
 )

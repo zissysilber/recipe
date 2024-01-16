@@ -6,10 +6,11 @@
         {
             InitializeComponent();
             btnNewRecipe.Click += BtnNewRecipe_Click;
-            this.Activated += FrmRecipeList_Activated;
             gRecipeSummary.CellDoubleClick += GRecipeSummary_CellDoubleClick;
             gRecipeSummary.KeyDown += GRecipeSummary_KeyDown;
+            this.Activated += FrmRecipeList_Activated;
         }
+
 
         private void BindData()
         {

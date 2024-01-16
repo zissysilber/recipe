@@ -97,7 +97,7 @@
             btnNewCookbook.Location = new Point(24, 72);
             btnNewCookbook.Margin = new Padding(4);
             btnNewCookbook.Name = "btnNewCookbook";
-            btnNewCookbook.Size = new Size(165, 33);
+            btnNewCookbook.Size = new Size(269, 33);
             btnNewCookbook.TabIndex = 0;
             btnNewCookbook.Text = "New Cookbook";
             btnNewCookbook.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             lblCookbookList.Location = new Point(0, 0);
             lblCookbookList.Margin = new Padding(0);
             lblCookbookList.Name = "lblCookbookList";
-            lblCookbookList.Size = new Size(193, 46);
+            lblCookbookList.Size = new Size(297, 46);
             lblCookbookList.TabIndex = 2;
             lblCookbookList.Text = "    Cookbook List";
             lblCookbookList.TextAlign = ContentAlignment.MiddleLeft;
@@ -140,10 +140,10 @@
             lblColorLight.BackColor = Color.FromArgb(188, 200, 135);
             tableLayoutPanel2.SetColumnSpan(lblColorLight, 2);
             lblColorLight.Dock = DockStyle.Fill;
-            lblColorLight.Location = new Point(193, 0);
+            lblColorLight.Location = new Point(297, 0);
             lblColorLight.Margin = new Padding(0);
             lblColorLight.Name = "lblColorLight";
-            lblColorLight.Size = new Size(985, 46);
+            lblColorLight.Size = new Size(881, 46);
             lblColorLight.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -152,8 +152,8 @@
             tableLayoutPanel2.BackColor = Color.White;
             tableLayoutPanel2.ColumnCount = 4;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.23395F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84.76605F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.3623562F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75.63764F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Controls.Add(btnNewCookbook, 1, 2);
             tableLayoutPanel2.Controls.Add(gCookbook, 1, 4);

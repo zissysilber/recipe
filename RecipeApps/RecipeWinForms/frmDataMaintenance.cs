@@ -1,4 +1,7 @@
-﻿namespace RecipeWinForms
+﻿using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace RecipeWinForms
 {
     public partial class frmDataMaintenance : Form
     {
@@ -15,7 +18,10 @@
             BindData(currenttabletype);
             gData.CellContentClick += GData_CellContentClick;
             this.FormClosing += FrmDataMaintenance_FormClosing;
+            //gData.DataError += GData_DataError;
         }
+
+
 
         private void BindData(TableTypeEnum tabletype)
         {
@@ -25,6 +31,7 @@
             gData.DataSource = dtlist;
             WindowsFormUtility.AddDeleteButtonToGrid(gData, deletecol);
             WindowsFormUtility.FormatGridForEdit(gData, currenttabletype.ToString());
+            
         }
 
         private bool Save()
@@ -139,6 +146,7 @@
             }
         }
 
+
         private void FrmDataMaintenance_FormClosing(object? sender, FormClosingEventArgs e)
         {
             PromptToSave(dtlist, e);
@@ -156,6 +164,14 @@
                 Delete(e.RowIndex);
             }
         }
+        //private void GData_DataError(object? sender, DataGridViewDataErrorEventArgs e)
+        //{
+        //    if (e.Context == DataGridViewDataErrorContexts.Parsing | e.Context == DataGridViewDataErrorContexts.Commit | e.Context == DataGridViewDataErrorContexts.)
+
+        //    {
+        //        MessageBox.Show("System can only accept digits in this column", Application.ProductName);
+        //        }
+        //}
 
     }
 }

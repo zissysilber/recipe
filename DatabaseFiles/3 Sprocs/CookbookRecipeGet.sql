@@ -2,7 +2,6 @@ create or alter proc dbo.CookbookRecipeGet(
 	@CookbookRecipeId int = 0  output,
 	@CookbookId int = 0 ,
 	@RecipeId int = 0 ,
-	@CookbookRecipeSequence int = 0 ,
 	@All bit = 0,
 	@IncludeBlank bit = 0,
 	@Message varchar (500)  = '' output
@@ -14,7 +13,7 @@ begin
 
 	select @CookbookRecipeId = isnull(@CookbookRecipeId, 0), @CookbookId = isnull(@CookbookId,0), @RecipeId = isnull(@RecipeId, 0)
 
-	select cr.CookbookId, cr.RecipeId, cr.CookbookRecipeSequence 
+	select cr.CookbookRecipeId, cr.CookbookId, cr.RecipeId, cr.CookbookRecipeSequence 
 	from CookbookRecipe cr
 	join Recipe r
 	on r.RecipeId = cr.RecipeId

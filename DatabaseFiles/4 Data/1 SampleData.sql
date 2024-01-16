@@ -139,14 +139,14 @@ on x.Cuisine = c.CuisineName
 
 ;
 with x as(
-    select RecipeName = 'Chocolate Chip Cookies', MsmtAmt = '1', Msmt = 'cup', Ingredient = 'sugar', IngSeq = 1
-    union select 'Chocolate Chip Cookies', '1/2', 'cup', 'oil', 2
-    union select 'Chocolate Chip Cookies', '3', null, 'eggs', 3
-    union select 'Chocolate Chip Cookies', '2', 'cups', 'flour', 4
-    union select 'Chocolate Chip Cookies', '1', 'tsp', 'vanilla sugar', 5
-    union select 'Chocolate Chip Cookies', '2', 'tsp', 'baking powder', 6
-    union select 'Chocolate Chip Cookies', '1/2', 'tsp', 'baking soda', 7
-    union select 'Chocolate Chip Cookies', '1', 'cup', 'chocolate chips', 8
+    select RecipeName = 'Chocolate Chip Cookies', MsmtAmt = 1, Msmt = 'cup', Ingredient = 'sugar', IngSeq = 1
+    union select 'Chocolate Chip Cookies', .5, 'cup', 'oil', 2
+    union select 'Chocolate Chip Cookies', 3, null, 'eggs', 3
+    union select 'Chocolate Chip Cookies', 2, 'cups', 'flour', 4
+    union select 'Chocolate Chip Cookies', 1, 'tsp', 'vanilla sugar', 5
+    union select 'Chocolate Chip Cookies', 2, 'tsp', 'baking powder', 6
+    union select 'Chocolate Chip Cookies', .5, 'tsp', 'baking soda', 7
+    union select 'Chocolate Chip Cookies', 1, 'cup', 'chocolate chips', 8
 )
 Insert RecipeIngredient(RecipeId, MeasurementAmt, MeasurementId, IngredientId, IngredientSequence)
 select r.RecipeId, x.MsmtAmt, m.MeasurementId, i.IngredientId, x.IngSeq
@@ -160,12 +160,12 @@ on x.Ingredient = i.IngredientName
 
 ;
 with x as(
-    select RecipeName = 'Apple Yogurt Smoothie', MsmtAmt = '3', Msmt = null, Ingredient = 'granny smith apples', IngSeq = 1
-    union select 'Apple Yogurt Smoothie', '2', 'cups', 'vanilla yogurt', 2
-    union select 'Apple Yogurt Smoothie', '2', 'tsp', 'sugar', 3
-    union select 'Apple Yogurt Smoothie', '1/2', 'cup', 'orange juice', 4
-    union select 'Apple Yogurt Smoothie', '2', 'tbsp', 'honey', 5
-    union select 'Apple Yogurt Smoothie', '5-6', null, 'ice cubes', 6
+    select RecipeName = 'Apple Yogurt Smoothie', MsmtAmt = 3, Msmt = null, Ingredient = 'granny smith apples', IngSeq = 1
+    union select 'Apple Yogurt Smoothie', 2, 'cups', 'vanilla yogurt', 2
+    union select 'Apple Yogurt Smoothie', 2, 'tsp', 'sugar', 3
+    union select 'Apple Yogurt Smoothie', .5, 'cup', 'orange juice', 4
+    union select 'Apple Yogurt Smoothie', 2, 'tbsp', 'honey', 5
+    union select 'Apple Yogurt Smoothie', 5, null, 'ice cubes', 6
 )
 Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
 select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
@@ -180,12 +180,12 @@ on x.Msmt = m.MeasurementName
 
 ;
 with x as(
-    select RecipeName = 'Cheese Bread', MsmtAmt = '1', Msmt = 'club', Ingredient = 'bread', IngSeq = 1
-    union select 'Cheese Bread', '4', 'oz', 'butter', 2
-    union select 'Cheese Bread', '8', 'oz', 'shredded cheese', 3
-    union select 'Cheese Bread', '2', 'cloves', 'garlic (crushed)', 4
-    union select 'Cheese Bread', '1/4', 'tsp', 'black pepper', 5
-    union select 'Cheese Bread', 'pinch', 'of', 'salt', 6
+    select RecipeName = 'Cheese Bread', MsmtAmt = 1, Msmt = 'club', Ingredient = 'bread', IngSeq = 1
+    union select 'Cheese Bread', 4, 'oz', 'butter', 2
+    union select 'Cheese Bread', 8, 'oz', 'shredded cheese', 3
+    union select 'Cheese Bread', 2, 'cloves', 'garlic (crushed)', 4
+    union select 'Cheese Bread', .25, 'tsp', 'black pepper', 5
+    union select 'Cheese Bread', .25, 'tsp', 'salt', 6
 
 )
 Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
@@ -200,14 +200,14 @@ on x.Msmt = m.MeasurementName
 
 ;
 with x as(
-    select RecipeName = 'Butter Muffins', MsmtAmt = '1', Msmt = 'stick', Ingredient = 'butter', IngSeq = 1
-    union select 'Butter Muffins', '3', 'cups', 'sugar', 2
-    union select 'Butter Muffins', '2', 'tbsp', 'vanilla pudding', 3
-    union select 'Butter Muffins', '4', null, 'eggs', 4
-    union select 'Butter Muffins', '8', 'oz', 'whipped cream cheese', 5
-    union select 'Butter Muffins', '8', 'oz', 'sour cream', 6
-    union select 'Butter Muffins', '1', 'cup', 'flour', 7
-    union select 'Butter Muffins', '2', 'tsp', 'baking powder', 8
+    select RecipeName = 'Butter Muffins', MsmtAmt = 1, Msmt = 'stick', Ingredient = 'butter', IngSeq = 1
+    union select 'Butter Muffins', 3, 'cups', 'sugar', 2
+    union select 'Butter Muffins', 2, 'tbsp', 'vanilla pudding', 3
+    union select 'Butter Muffins', 4, null, 'eggs', 4
+    union select 'Butter Muffins', 8, 'oz', 'whipped cream cheese', 5
+    union select 'Butter Muffins', 8, 'oz', 'sour cream', 6
+    union select 'Butter Muffins', 1, 'cup', 'flour', 7
+    union select 'Butter Muffins', 2, 'tsp', 'baking powder', 8
 
 )
 Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
@@ -222,13 +222,13 @@ on x.Msmt = m.MeasurementName
 
 ;
 with x as(
-    select RecipeName = 'Meat Stew', MsmtAmt = '1', Msmt = null, Ingredient = 'onion', IngSeq = 1
-    union select 'Meat Stew', '1', 'tsp', 'garlic powder', 2
-    union select 'Meat Stew', '3', 'tbsp', 'oil', 3
-    union select 'Meat Stew', '1', 'package', 'beef stew meat', 4
-    union select 'Meat Stew', '1/2', 'cup', 'ketchup', 5
-    union select 'Meat Stew', '3/4', 'cup', 'brown sugar', 6
-    union select 'Meat Stew', '2', 'tbsp', 'vinegar', 7
+    select RecipeName = 'Meat Stew', MsmtAmt = 1, Msmt = null, Ingredient = 'onion', IngSeq = 1
+    union select 'Meat Stew', 1, 'tsp', 'garlic powder', 2
+    union select 'Meat Stew', 3, 'tbsp', 'oil', 3
+    union select 'Meat Stew', 1, 'package', 'beef stew meat', 4
+    union select 'Meat Stew', .5, 'cup', 'ketchup', 5
+    union select 'Meat Stew', .75, 'cup', 'brown sugar', 6
+    union select 'Meat Stew', 2, 'tbsp', 'vinegar', 7
 )
 Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
 select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
@@ -242,33 +242,11 @@ on x.Msmt = m.MeasurementName
 
 ;
 with x as(
-    select RecipeName = 'Meatball Bites', MsmtAmt = '1', Msmt = 'package', Ingredient = 'puff pastry sheets', IngSeq = 1
-    union select 'Meatball Bites', '1', 'pound', 'ground beef', 2
-    union select 'Meatball Bites', '3', 'tbsp', 'meatball spice', 3
-    union select 'Meatball Bites', '2', 'tbsp', 'chopped parsley', 4
-    union select 'Meatball Bites', '1', null, 'egg', 5
-
-)
-Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
-select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
-from x
-join Recipe r
-on x.RecipeName = r.RecipeName
-join Ingredient i
-on x.Ingredient = i.IngredientName
-left join Measurement m
-on x.Msmt = m.MeasurementName
-
-;
-with x as(
-    select RecipeName = 'Red Potato Salad', MsmtAmt = '2 to 3', Msmt = 'pounds', Ingredient = 'small red potatoes', IngSeq = 1
-    union select 'Red Potato Salad', '1', 'tbsp', 'mustard', 2
-    union select 'Red Potato Salad', '1/2', 'cup', 'mayonnaise', 3
-    union select 'Red Potato Salad', '2 to 3', 'tbsp', 'pickle juice', 4
-    union select 'Red Potato Salad', '1', 'small', 'purple onion', 5
-    union select 'Red Potato Salad', '6', null, 'scallions', 6
-    union select 'Red Potato Salad', '2', null, 'sour pickles', 7
-    union select 'Red Potato Salad', '2 to 3', 'sprigs', 'fresh dill', 8
+    select RecipeName = 'Meatball Bites', MsmtAmt = 1, Msmt = 'package', Ingredient = 'puff pastry sheets', IngSeq = 1
+    union select 'Meatball Bites', 1, 'pound', 'ground beef', 2
+    union select 'Meatball Bites', 3, 'tbsp', 'meatball spice', 3
+    union select 'Meatball Bites', 2, 'tbsp', 'chopped parsley', 4
+    union select 'Meatball Bites', 1, null, 'egg', 5
 
 )
 Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
@@ -283,15 +261,37 @@ on x.Msmt = m.MeasurementName
 
 ;
 with x as(
-    select RecipeName = 'Express Doughless Knishes', MsmtAmt = '4', MsmtName = null, Ingredient = 'onions (diced)', IngSeq = 1
-    union select 'Express Doughless Knishes', '1/2', 'cup', 'oil', 2
-    union select 'Express Doughless Knishes', '8 ', null, 'potatoes', 3
-    union select 'Express Doughless Knishes', '4', null, 'eggs', 4
-    union select 'Express Doughless Knishes', '2 1/2', 'cups', 'flour', 5
-    union select 'Express Doughless Knishes', '6', 'oz', 'margarine', 6
-    union select 'Express Doughless Knishes', '1', 'tbsp', 'salt', 7
-    union select 'Express Doughless Knishes', '1/2', 'tsp', 'black pepper', 8
-    union select 'Express Doughless Knishes', ' ', null, 'sesame seeds', 9
+    select RecipeName = 'Red Potato Salad', MsmtAmt = 2, Msmt = 'pounds', Ingredient = 'small red potatoes', IngSeq = 1
+    union select 'Red Potato Salad', 1, 'tbsp', 'mustard', 2
+    union select 'Red Potato Salad', .5, 'cup', 'mayonnaise', 3
+    union select 'Red Potato Salad', 2, 'tbsp', 'pickle juice', 4
+    union select 'Red Potato Salad', 1, 'small', 'purple onion', 5
+    union select 'Red Potato Salad', 6, null, 'scallions', 6
+    union select 'Red Potato Salad', 2, null, 'sour pickles', 7
+    union select 'Red Potato Salad', 2, 'sprigs', 'fresh dill', 8
+
+)
+Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
+select r.RecipeId, i.IngredientId, m.MeasurementId, x.MsmtAmt, x.IngSeq
+from x
+join Recipe r
+on x.RecipeName = r.RecipeName
+join Ingredient i
+on x.Ingredient = i.IngredientName
+left join Measurement m
+on x.Msmt = m.MeasurementName
+
+;
+with x as(
+    select RecipeName = 'Express Doughless Knishes', MsmtAmt = 4, MsmtName = null, Ingredient = 'onions (diced)', IngSeq = 1
+    union select 'Express Doughless Knishes', .5, 'cup', 'oil', 2
+    union select 'Express Doughless Knishes', 6, null, 'potatoes', 3
+    union select 'Express Doughless Knishes', 4, null, 'eggs', 4
+    union select 'Express Doughless Knishes', 2.5, 'cups', 'flour', 5
+    union select 'Express Doughless Knishes', 6, 'oz', 'margarine', 6
+    union select 'Express Doughless Knishes', 1, 'tbsp', 'salt', 7
+    union select 'Express Doughless Knishes', .5, 'tsp', 'black pepper', 8
+    union select 'Express Doughless Knishes', 1, 'tbsp', 'sesame seeds', 9
 
 )
 Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
@@ -307,9 +307,9 @@ on x.MsmtName = m.MeasurementName
 
 ;
 with x as(
-    select RecipeName = 'Cantaloupe and Feta Salad', MsmtAmt = '18', Msmt = 'bite-sized', Ingredient = 'cantaloupe balls', IngSeq = 1
-    union select 'Cantaloupe and Feta Salad', '2', 'tbsp', 'feta cheese', 2
-    union select 'Cantaloupe and Feta Salad', '1/4 ', null, 'English cucumber', 3
+    select RecipeName = 'Cantaloupe and Feta Salad', MsmtAmt = 18, Msmt = 'bite-sized', Ingredient = 'cantaloupe balls', IngSeq = 1
+    union select 'Cantaloupe and Feta Salad', 2, 'tbsp', 'feta cheese', 2
+    union select 'Cantaloupe and Feta Salad', .25, null, 'English cucumber', 3
 
 )
 Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)
@@ -324,10 +324,10 @@ on x.Msmt = m.MeasurementName
 
 ;
 with x as(
-    select RecipeName = 'Basic Balsamic Dressing', MsmtAmt = '3/4', Msmt = 'cup', Ingredient = 'olive oil', IngSeq = 1
-    union select 'Basic Balsamic Dressing', '1/4', 'cup', 'balsamic vinegar', 2
-    union select 'Basic Balsamic Dressing', 'pinch', 'of', 'salt', 3
-    union select 'Basic Balsamic Dressing', 'pinch', 'of', 'black pepper', 4
+    select RecipeName = 'Basic Balsamic Dressing', MsmtAmt = .75, Msmt = 'cup', Ingredient = 'olive oil', IngSeq = 1
+    union select 'Basic Balsamic Dressing', .25, 'cup', 'balsamic vinegar', 2
+    union select 'Basic Balsamic Dressing', .5, 'tsp', 'salt', 3
+    union select 'Basic Balsamic Dressing', .5, 'tsp', 'black pepper', 4
 
 )
 Insert RecipeIngredient(RecipeId, IngredientId, MeasurementId, MeasurementAmt, IngredientSequence)

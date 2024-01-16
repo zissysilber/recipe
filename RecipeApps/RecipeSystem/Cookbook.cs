@@ -54,6 +54,13 @@
             SQLUtility.SaveDataTable(dt, "CookbookRecipeUpdate");
         }
 
+        public static void DeleteCookbookRecipe(int cookbookrecipeid)
+        {
+            SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookRecipeDelete");
+            cmd.Parameters["@CookbookRecipeId"].Value = cookbookrecipeid;
+            SQLUtility.ExecuteSQL(cmd);
+        }
+
         public static int GetCookbookIdFromTable(DataTable dt)
         {
             int cookbookid = SQLUtility.GetValueFromFirstRowAsInt(dt, "cookbookid");

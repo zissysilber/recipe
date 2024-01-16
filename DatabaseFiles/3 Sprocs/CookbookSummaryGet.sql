@@ -1,4 +1,5 @@
 create or alter procedure dbo.CookbookSummaryGet(
+	@All bit = 0,
 	@Message varchar (500) = '' output
 )
 
@@ -12,6 +13,8 @@ begin
 	on cr.CookbookId = c.CookbookId
 	group by c.CookbookId, c.CookbookName, u.UsersName, c.Price
 	order by c.CookbookName
+
+	select @All = 1
 
 end
 go

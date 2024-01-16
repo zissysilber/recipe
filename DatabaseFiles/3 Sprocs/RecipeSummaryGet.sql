@@ -14,12 +14,14 @@ begin
 	group by r.RecipeID, r.RecipeName, r.RecipeStatus, u.FirstName, u.LastName, r.Calories
 	order by 
 		case r.RecipeStatus  
-			when  'published' then 1
-			when  'draft' then 2
-			else 3
+			when  'Published' then 1
+			when  'Drafted' then 2
+			when 'Archived' then 3
 			end
 
 	select @All = 1
 end
 go
+
+select * from Recipe
 

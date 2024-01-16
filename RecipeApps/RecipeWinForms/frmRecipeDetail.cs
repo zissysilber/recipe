@@ -1,4 +1,6 @@
-﻿namespace RecipeWinForms
+﻿using RecipeSystem;
+
+namespace RecipeWinForms
 {
     public partial class frmRecipeDetail : Form
     {
@@ -21,8 +23,16 @@
             btnDirectionSave.Click += BtnDirectionSave_Click;
             this.Shown += FrmRecipe_Shown;
             this.FormClosing += FrmRecipe_FormClosing;
+            gDirection.CellContentClick += GDirection_CellContentClick;
+            gIngredients.CellContentClick += GIngredients_CellContentClick;
+            //gIngredients.DataError += GIngredients_DataError;
         }
 
+        private void GIngredients_DataError(object? sender, DataGridViewDataErrorEventArgs e)
+        {
+
+            MessageBox.Show("System can only accept digits in this column", Application.ProductName);
+        }
 
         public void LoadForm(int recipeidval)
         {
@@ -51,8 +61,6 @@
 
             this.Text = GetRecipeDesc();
 
-            LoadIngredientDetails();
-            LoadDirectionDetails();
         }
 
         private void LoadIngredientDetails()
@@ -66,6 +74,7 @@
             WindowsFormUtility.FormatGridForEdit(gIngredients, "Measurement");
             WindowsFormUtility.AddComboboxToGrid(gIngredients, DataMaintenance.GetDataList("Ingredient"), "Ingredient", "IngredientName");
             WindowsFormUtility.FormatGridForEdit(gIngredients, "Ingredient");
+            WindowsFormUtility.AddDeleteButtonToGrid(gIngredients, deletecolumnname);
         }
 
         private void LoadDirectionDetails()
@@ -167,6 +176,49 @@
                 Application.UseWaitCursor = false;
             }
         }
+        private void DeleteRecipeDirection(int rowIndex)
+        {
+            int id = WindowsFormUtility.GetIdFromGrid(gDirection, rowIndex, "RecipeDirectionId");
+            if (id > 0)
+            {
+                try
+                {
+                    RecipeDetail.DeleteRecipeDirectionRow(id);
+                    LoadDirectionDetails();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, Application.ProductName);
+                }
+            }
+            else if (id < gDirection.Rows.Count)
+            {
+                gDirection.Rows.RemoveAt(rowIndex);
+            }
+        }
+
+        private void DeleteRecipeIngredient(int rowIndex)
+        {
+            int id = WindowsFormUtility.GetIdFromGrid(gIngredients, rowIndex, "RecipeIngredientId");
+            if (id > 0)
+            {
+                try
+                {
+                    RecipeDetail.DeleteRecipeIngredientRow(id);
+                    LoadIngredientDetails();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, Application.ProductName);
+                }
+            }
+            else if (id < gIngredients.Rows.Count)
+            {
+                gIngredients.Rows.RemoveAt(rowIndex);
+            }
+        }
 
         private void SetButtonsEnabledBasedOnNewRecord()
         {
@@ -251,8 +303,21 @@
 
         private void FrmRecipe_Shown(object? sender, EventArgs e)
         {
-            WindowsFormUtility.AddDeleteButtonToGrid(gIngredients, deletecolumnname);
+            LoadIngredientDetails();
+            LoadDirectionDetails();
 
         }
+
+        private void GIngredients_CellContentClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            DeleteRecipeIngredient(e.RowIndex);
+        }
+
+        private void GDirection_CellContentClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            DeleteRecipeDirection(e.RowIndex);
+        }
+
+
     }
 }

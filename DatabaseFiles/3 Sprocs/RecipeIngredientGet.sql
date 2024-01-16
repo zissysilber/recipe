@@ -17,12 +17,9 @@ begin
 	select @RecipeId = isnull(@RecipeId, 0), @RecipeIngredientId = isnull(@RecipeIngredientId, 0)
 
 
-	select ri.RecipeIngredientId, ri.RecipeId, i.IngredientId, m.MeasurementId,   ri.MeasurementAmt,   ri.IngredientSequence   
+	select ri.RecipeIngredientId, ri.RecipeId, ri.IngredientId, ri.MeasurementId, 
+	ri.MeasurementAmt,   ri.IngredientSequence   
 	from RecipeIngredient ri
-	join Ingredient i
-	on i.IngredientId = ri.IngredientId
-	join Measurement m
-	on ri.MeasurementId = m.MeasurementId
 	where @RecipeId = ri.RecipeId
 	or @All = 1
 	return @return

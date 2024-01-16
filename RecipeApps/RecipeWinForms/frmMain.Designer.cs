@@ -191,7 +191,6 @@
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4, 5, 4, 5);
-            MaximizeBox = false;
             Name = "frmMain";
             Text = "Hearty Hearth";
             menuStrip1.ResumeLayout(false);
