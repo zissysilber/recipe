@@ -12,7 +12,6 @@
 
         public frmCookbookDetail()
         {
-
             InitializeComponent();
             btnCookbookSave.Click += BtnCookbookSave_Click;
             btnCookbookDelete.Click += BtnCookbookDelete_Click;
@@ -20,10 +19,9 @@
             this.Activated += FrmCookbookDetail_Activated;
             this.FormClosing += FrmCookbookDetail_FormClosing;
             gCookbookDetail.CellContentClick += GCookbookDetail_CellContentClick;
+            gCookbookDetail.DataError += GCookbookDetail_DataError;
             this.Shown += FrmCookbookDetail_Shown;
         }
-
-
 
         public void LoadForm(int cookbookidval)
         {
@@ -45,9 +43,6 @@
             WindowsFormUtility.SetControlBinding(lblDateCreated, bindsource);
             WindowsFormUtility.SetControlBinding(cbxIsActive, bindsource);
             this.Text = GetCookbookDesc();
-
-            // LoadCookbookRecipe();
-
         }
 
         private void LoadCookbookRecipe()
@@ -59,13 +54,7 @@
             WindowsFormUtility.AddComboboxToGrid(gCookbookDetail, DataMaintenance.GetDataList("Recipe"), "Recipe", "RecipeName");
             WindowsFormUtility.FormatGridForEdit(gCookbookDetail, "Recipe");
             WindowsFormUtility.AddDeleteButtonToGrid(gCookbookDetail, deletecol);
-
         }
-
-        //public void BindData()
-        //{
-        //    LoadCookbookRecipe();
-        //}
 
         private bool Save()
         {
@@ -102,7 +91,6 @@
             {
                 MessageBox.Show(ex.Message, Application.ProductName);
             }
-
         }
 
         private void Delete()
@@ -177,7 +165,6 @@
         private void FrmCookbookDetail_Activated(object? sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            //BindData();
 
         }
 
@@ -233,7 +220,10 @@
         {
             DeleteCookbookRecipe(e.RowIndex);
         }
-
+        private void GCookbookDetail_DataError(object? sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Sorry. Content is not valid.", Application.ProductName);
+        }
 
     }
 }

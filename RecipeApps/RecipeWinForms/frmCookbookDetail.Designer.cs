@@ -102,9 +102,9 @@
             // 
             tblCookbookBtn.ColumnCount = 3;
             tblMain.SetColumnSpan(tblCookbookBtn, 2);
-            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.3048019F));
-            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.7995815F));
-            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.8956146F));
+            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle());
+            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle());
+            tblCookbookBtn.ColumnStyles.Add(new ColumnStyle());
             tblCookbookBtn.Controls.Add(btnCookbookSave, 0, 0);
             tblCookbookBtn.Controls.Add(btnCookbookDelete, 1, 0);
             tblCookbookBtn.Dock = DockStyle.Fill;
@@ -117,6 +117,7 @@
             // 
             // btnCookbookSave
             // 
+            btnCookbookSave.AutoSize = true;
             btnCookbookSave.Dock = DockStyle.Fill;
             btnCookbookSave.Location = new Point(3, 3);
             btnCookbookSave.Name = "btnCookbookSave";
@@ -127,6 +128,7 @@
             // 
             // btnCookbookDelete
             // 
+            btnCookbookDelete.AutoSize = true;
             btnCookbookDelete.Dock = DockStyle.Fill;
             btnCookbookDelete.Location = new Point(131, 3);
             btnCookbookDelete.Name = "btnCookbookDelete";
@@ -254,7 +256,7 @@
             // 
             txtPrice.Location = new Point(169, 190);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(345, 29);
+            txtPrice.Size = new Size(353, 29);
             txtPrice.TabIndex = 2;
             // 
             // txtCookbookName
@@ -279,6 +281,7 @@
             // 
             // tblCookbookDetail
             // 
+            tblCookbookDetail.AutoSize = true;
             tblCookbookDetail.ColumnCount = 1;
             tblCookbookDetail.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tblCookbookDetail.Controls.Add(btnCookbookDetailSave, 0, 0);
@@ -303,6 +306,7 @@
             // 
             // gCookbookDetail
             // 
+            gCookbookDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             gCookbookDetail.BackgroundColor = Color.WhiteSmoke;
             gCookbookDetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gCookbookDetail.Dock = DockStyle.Fill;
@@ -352,7 +356,9 @@
             tblMain.ResumeLayout(false);
             tblMain.PerformLayout();
             tblCookbookBtn.ResumeLayout(false);
+            tblCookbookBtn.PerformLayout();
             boxCookbookDetail.ResumeLayout(false);
+            boxCookbookDetail.PerformLayout();
             tblCookbookDetail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gCookbookDetail).EndInit();
             ResumeLayout(false);

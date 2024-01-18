@@ -53,8 +53,8 @@
             tblMain.BackColor = Color.White;
             tblMain.ColumnCount = 4;
             tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.13613F));
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85.86387F));
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 471F));
+            tblMain.ColumnStyles.Add(new ColumnStyle());
+            tblMain.ColumnStyles.Add(new ColumnStyle());
             tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 24F));
             tblMain.Controls.Add(lblDataMaintenance, 0, 0);
             tblMain.Controls.Add(lblColorLight, 2, 0);
@@ -84,7 +84,7 @@
             lblDataMaintenance.Location = new Point(0, 0);
             lblDataMaintenance.Margin = new Padding(0);
             lblDataMaintenance.Name = "lblDataMaintenance";
-            lblDataMaintenance.Size = new Size(199, 38);
+            lblDataMaintenance.Size = new Size(200, 38);
             lblDataMaintenance.TabIndex = 0;
             lblDataMaintenance.Text = "   Data Maintenance";
             lblDataMaintenance.TextAlign = ContentAlignment.MiddleLeft;
@@ -95,10 +95,10 @@
             lblColorLight.BackColor = Color.FromArgb(188, 200, 135);
             tblMain.SetColumnSpan(lblColorLight, 2);
             lblColorLight.Dock = DockStyle.Fill;
-            lblColorLight.Location = new Point(199, 0);
+            lblColorLight.Location = new Point(200, 0);
             lblColorLight.Margin = new Padding(0);
             lblColorLight.Name = "lblColorLight";
-            lblColorLight.Size = new Size(496, 38);
+            lblColorLight.Size = new Size(495, 38);
             lblColorLight.TabIndex = 5;
             // 
             // pnlOptionButtons
@@ -110,7 +110,7 @@
             pnlOptionButtons.Controls.Add(optCourse);
             pnlOptionButtons.Dock = DockStyle.Fill;
             pnlOptionButtons.FlowDirection = FlowDirection.TopDown;
-            pnlOptionButtons.Location = new Point(31, 67);
+            pnlOptionButtons.Location = new Point(32, 67);
             pnlOptionButtons.Name = "pnlOptionButtons";
             pnlOptionButtons.Size = new Size(165, 528);
             pnlOptionButtons.TabIndex = 1;
@@ -196,7 +196,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             gData.DefaultCellStyle = dataGridViewCellStyle2;
             gData.Dock = DockStyle.Fill;
-            gData.Location = new Point(202, 67);
+            gData.Location = new Point(203, 67);
             gData.Name = "gData";
             gData.RowTemplate.Height = 25;
             gData.Size = new Size(465, 528);
@@ -209,7 +209,7 @@
             tblSaveButton.ColumnStyles.Add(new ColumnStyle());
             tblSaveButton.Controls.Add(btnSave, 1, 0);
             tblSaveButton.Dock = DockStyle.Fill;
-            tblSaveButton.Location = new Point(202, 601);
+            tblSaveButton.Location = new Point(203, 601);
             tblSaveButton.Name = "tblSaveButton";
             tblSaveButton.RowCount = 1;
             tblSaveButton.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));

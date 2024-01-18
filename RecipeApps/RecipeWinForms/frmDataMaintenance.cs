@@ -1,7 +1,4 @@
-﻿using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
     public partial class frmDataMaintenance : Form
     {
@@ -18,9 +15,8 @@ namespace RecipeWinForms
             BindData(currenttabletype);
             gData.CellContentClick += GData_CellContentClick;
             this.FormClosing += FrmDataMaintenance_FormClosing;
-            //gData.DataError += GData_DataError;
+            gData.DataError += GData_DataError;
         }
-
 
 
         private void BindData(TableTypeEnum tabletype)
@@ -31,7 +27,6 @@ namespace RecipeWinForms
             gData.DataSource = dtlist;
             WindowsFormUtility.AddDeleteButtonToGrid(gData, deletecol);
             WindowsFormUtility.FormatGridForEdit(gData, currenttabletype.ToString());
-            
         }
 
         private bool Save()
@@ -52,7 +47,6 @@ namespace RecipeWinForms
                 Cursor = Cursors.Default;
             }
             return b;
-
         }
 
         private void Delete(int rowindex)
@@ -88,7 +82,14 @@ namespace RecipeWinForms
             }
             else if (id == 0 && rowindex < gData.Rows.Count)
             {
-                gData.Rows.Remove(gData.Rows[rowindex]);
+                try
+                {
+                    gData.Rows.Remove(gData.Rows[rowindex]);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, Application.ProductName);
+                }
             }
         }
 
@@ -164,14 +165,10 @@ namespace RecipeWinForms
                 Delete(e.RowIndex);
             }
         }
-        //private void GData_DataError(object? sender, DataGridViewDataErrorEventArgs e)
-        //{
-        //    if (e.Context == DataGridViewDataErrorContexts.Parsing | e.Context == DataGridViewDataErrorContexts.Commit | e.Context == DataGridViewDataErrorContexts.)
-
-        //    {
-        //        MessageBox.Show("System can only accept digits in this column", Application.ProductName);
-        //        }
-        //}
+        private void GData_DataError(object? sender, DataGridViewDataErrorEventArgs e)
+        {
+                MessageBox.Show("Sorry. Content is not valid.", Application.ProductName);
+        }
 
     }
 }

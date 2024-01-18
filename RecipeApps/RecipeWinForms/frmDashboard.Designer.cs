@@ -72,11 +72,11 @@
             tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 6.754772F));
             tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 7.048458F));
             tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 13.80323F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.0969162F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 24.0822315F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 3.100881F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 25.1275711F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 5.462516F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 19.6463661F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 32.80943F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 1.57170928F));
+            tblMain.RowStyles.Add(new RowStyle());
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 18.27112F));
             tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tblMain.Size = new Size(801, 681);
             tblMain.TabIndex = 1;
@@ -115,7 +115,7 @@
             gSummary.Dock = DockStyle.Fill;
             gSummary.EnableHeadersVisualStyles = false;
             gSummary.GridColor = Color.FromArgb(188, 200, 135);
-            gSummary.Location = new Point(59, 284);
+            gSummary.Location = new Point(59, 238);
             gSummary.Margin = new Padding(5, 0, 6, 3);
             gSummary.Name = "gSummary";
             gSummary.ReadOnly = true;
@@ -135,7 +135,7 @@
             gSummary.RowTemplate.DividerHeight = 2;
             gSummary.RowTemplate.Height = 25;
             gSummary.ScrollBars = ScrollBars.Vertical;
-            gSummary.Size = new Size(409, 161);
+            gSummary.Size = new Size(409, 163);
             gSummary.TabIndex = 6;
             gSummary.TabStop = false;
             // 
@@ -146,10 +146,10 @@
             lblGreatFood.Dock = DockStyle.Fill;
             lblGreatFood.Font = new Font("Garet Book", 24F, FontStyle.Regular, GraphicsUnit.Point);
             lblGreatFood.ForeColor = Color.White;
-            lblGreatFood.Location = new Point(59, 46);
+            lblGreatFood.Location = new Point(59, 34);
             lblGreatFood.Margin = new Padding(5, 0, 6, 0);
             lblGreatFood.Name = "lblGreatFood";
-            lblGreatFood.Size = new Size(409, 48);
+            lblGreatFood.Size = new Size(409, 35);
             lblGreatFood.TabIndex = 0;
             lblGreatFood.Text = "     Great\r\n";
             // 
@@ -160,10 +160,10 @@
             lblFood.Dock = DockStyle.Fill;
             lblFood.Font = new Font("Twister", 47.9999962F, FontStyle.Regular, GraphicsUnit.Point);
             lblFood.ForeColor = Color.White;
-            lblFood.Location = new Point(59, 94);
+            lblFood.Location = new Point(59, 69);
             lblFood.Margin = new Padding(5, 0, 6, 0);
             lblFood.Name = "lblFood";
-            lblFood.Size = new Size(409, 94);
+            lblFood.Size = new Size(409, 70);
             lblFood.TabIndex = 1;
             lblFood.Text = "  Food";
             // 
@@ -174,15 +174,16 @@
             lblStartsHere.Dock = DockStyle.Fill;
             lblStartsHere.Font = new Font("Garet Book", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             lblStartsHere.ForeColor = Color.White;
-            lblStartsHere.Location = new Point(59, 188);
+            lblStartsHere.Location = new Point(59, 139);
             lblStartsHere.Margin = new Padding(5, 0, 6, 0);
             lblStartsHere.Name = "lblStartsHere";
-            lblStartsHere.Size = new Size(409, 96);
+            lblStartsHere.Size = new Size(409, 99);
             lblStartsHere.TabIndex = 2;
             lblStartsHere.Text = "     Starts\r\n     Here";
             // 
             // tblListButtons
             // 
+            tblListButtons.AutoSize = true;
             tblListButtons.ColumnCount = 1;
             tblListButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tblListButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
@@ -190,47 +191,50 @@
             tblListButtons.Controls.Add(btnMealList, 0, 1);
             tblListButtons.Controls.Add(btnCookbookList, 0, 2);
             tblListButtons.Dock = DockStyle.Fill;
-            tblListButtons.Location = new Point(57, 472);
+            tblListButtons.Location = new Point(57, 414);
             tblListButtons.Name = "tblListButtons";
             tblListButtons.RowCount = 3;
-            tblListButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tblListButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tblListButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tblListButtons.Size = new Size(414, 166);
+            tblListButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblListButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblListButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblListButtons.Size = new Size(414, 168);
             tblListButtons.TabIndex = 0;
             // 
             // btnRecipeList
             // 
+            btnRecipeList.AutoSize = true;
             btnRecipeList.BackColor = Color.FromArgb(188, 200, 135);
             btnRecipeList.Dock = DockStyle.Fill;
             btnRecipeList.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnRecipeList.Location = new Point(3, 3);
             btnRecipeList.Name = "btnRecipeList";
-            btnRecipeList.Size = new Size(408, 44);
+            btnRecipeList.Size = new Size(408, 50);
             btnRecipeList.TabIndex = 0;
             btnRecipeList.Text = "&Recipe List";
             btnRecipeList.UseVisualStyleBackColor = false;
             // 
             // btnMealList
             // 
+            btnMealList.AutoSize = true;
             btnMealList.BackColor = Color.FromArgb(188, 200, 135);
             btnMealList.Dock = DockStyle.Fill;
             btnMealList.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMealList.Location = new Point(3, 53);
+            btnMealList.Location = new Point(3, 59);
             btnMealList.Name = "btnMealList";
-            btnMealList.Size = new Size(408, 44);
+            btnMealList.Size = new Size(408, 50);
             btnMealList.TabIndex = 1;
             btnMealList.Text = "&Meal List";
             btnMealList.UseVisualStyleBackColor = false;
             // 
             // btnCookbookList
             // 
+            btnCookbookList.AutoSize = true;
             btnCookbookList.BackColor = Color.FromArgb(188, 200, 135);
             btnCookbookList.Dock = DockStyle.Fill;
             btnCookbookList.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCookbookList.Location = new Point(3, 103);
+            btnCookbookList.Location = new Point(3, 115);
             btnCookbookList.Name = "btnCookbookList";
-            btnCookbookList.Size = new Size(408, 60);
+            btnCookbookList.Size = new Size(408, 50);
             btnCookbookList.TabIndex = 2;
             btnCookbookList.Text = "&Cookbook List";
             btnCookbookList.UseVisualStyleBackColor = false;
@@ -259,6 +263,7 @@
             tblMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gSummary).EndInit();
             tblListButtons.ResumeLayout(false);
+            tblListButtons.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

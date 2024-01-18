@@ -31,8 +31,8 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             lblUserName = new Label();
             lblPassword = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtUserId = new TextBox();
+            txtPassword = new TextBox();
             tableLayoutPanel2 = new TableLayoutPanel();
             btnLogin = new Button();
             btnCancel = new Button();
@@ -50,8 +50,8 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(lblUserName, 0, 1);
             tableLayoutPanel1.Controls.Add(lblPassword, 0, 2);
-            tableLayoutPanel1.Controls.Add(textBox1, 1, 1);
-            tableLayoutPanel1.Controls.Add(textBox2, 1, 2);
+            tableLayoutPanel1.Controls.Add(txtUserId, 1, 1);
+            tableLayoutPanel1.Controls.Add(txtPassword, 1, 2);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 3);
             tableLayoutPanel1.Controls.Add(label1, 1, 0);
             tableLayoutPanel1.Controls.Add(label2, 0, 0);
@@ -92,24 +92,24 @@
             lblPassword.Text = "Password";
             lblPassword.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // txtUserId
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(100, 38);
-            textBox1.Margin = new Padding(4);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(331, 29);
-            textBox1.TabIndex = 3;
+            txtUserId.Dock = DockStyle.Fill;
+            txtUserId.Location = new Point(100, 38);
+            txtUserId.Margin = new Padding(4);
+            txtUserId.Name = "txtUserId";
+            txtUserId.Size = new Size(331, 29);
+            txtUserId.TabIndex = 3;
             // 
-            // textBox2
+            // txtPassword
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(100, 75);
-            textBox2.Margin = new Padding(4);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(331, 29);
-            textBox2.TabIndex = 5;
+            txtPassword.Dock = DockStyle.Fill;
+            txtPassword.Location = new Point(100, 75);
+            txtPassword.Margin = new Padding(4);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(331, 29);
+            txtPassword.TabIndex = 5;
             // 
             // tableLayoutPanel2
             // 
@@ -126,7 +126,7 @@
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
             tableLayoutPanel2.Size = new Size(208, 40);
-            tableLayoutPanel2.TabIndex = 4;
+            tableLayoutPanel2.TabIndex = 6;
             // 
             // btnLogin
             // 
@@ -199,8 +199,8 @@
         private TableLayoutPanel tableLayoutPanel1;
         private Label lblUserName;
         private Label lblPassword;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtUserId;
+        private TextBox txtPassword;
         private TableLayoutPanel tableLayoutPanel2;
         private Button btnLogin;
         private Button btnCancel;
