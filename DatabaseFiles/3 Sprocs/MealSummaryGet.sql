@@ -3,7 +3,7 @@ create or alter proc dbo.MealSummaryGet(
 	)
 as
 begin
-	select [Meal Name] = m.MealName, [User] = concat(u.Firstname, ' ', u.LastName ), [Num Calories] = sum(r.Calories), [Num Courses] = count(distinct mc.MealCourseId), [Num Recipes] = count(mr.RecipeId)
+	select [Meal Name/Calories] = dbo.MealCalories(m.MealId), [User] = concat(u.Firstname, ' ', u.LastName ),  [Num Courses] = count(distinct mc.MealCourseId), [Num Recipes] = count(mr.RecipeId)
 	from Meal m
 	join Users u
 	on m.UsersId = u.UsersId
@@ -13,7 +13,7 @@ begin
 	on mc.MealCourseId = mr.MealCourseId
 	join Recipe r
 	on mr.RecipeId = r.RecipeId
-	group by m.MealName, u.FirstName, u.LastName
+	group by m.MealId, m.MealName, u.FirstName, u.LastName
 	order by m.MealName
 end
 go

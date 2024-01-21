@@ -5,7 +5,7 @@ create or alter proc.RecipeSummaryGet(
 
 as
 begin
-	select r.RecipeId, r.RecipeName, Status = r.RecipeStatus, [User] = concat(u.Firstname, ' ', u.LastName ), r.Calories, [Num Ingredients] = count(distinct ri.IngredientId) 
+	select r.RecipeId, [Recipe Name]=dbo.RecipeInfo(r.RecipeId), Status = r.RecipeStatus, [User] = concat(u.Firstname, ' ', u.LastName ), r.Calories 
 	from Recipe r
 	join Users u
 	on u.UsersId = r.UsersId
@@ -23,5 +23,5 @@ begin
 end
 go
 
-select * from Recipe
+
 
