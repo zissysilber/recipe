@@ -3,11 +3,15 @@ as
 begin
 	select  @RecipeName = nullif(@RecipeName, '')
 
-	select r.RecipeID, r.UsersID, r.CuisineID, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage
+
+
+	select r.RecipeID, r.UsersID, r.CuisineID, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage, RecipeInfo = dbo.RecipeInfo(@RecipeID)
 	from Recipe r
 	where r.RecipeID = @RecipeID
 	or r.RecipeName like '%'+ @RecipeName +'%'
 	or @All = 1
+
+		 
 end 
 go
 

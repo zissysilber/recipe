@@ -32,8 +32,8 @@
             WindowsFormUtility.SetControlBinding(txtDateDrafted, bindsource);
             WindowsFormUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormUtility.SetControlBinding(txtDatePublished, bindsource);
-            WindowsFormUtility.SetControlBinding(lblRecipeImage, bindsource);
             WindowsFormUtility.SetControlBinding(lblRecipeStatus, bindsource);
+            WindowsFormUtility.SetControlBinding(lblRecipeInfo, bindsource);
 
             this.Show();
         }
