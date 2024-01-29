@@ -15,7 +15,7 @@
             btnDraft.Click += BtnDraft_Click;
             btnPublish.Click += BtnPublish_Click;
         }
-
+        //test
         public void LoadForm(int pkvalue)
         {
             recipeid = pkvalue;
