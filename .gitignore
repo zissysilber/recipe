@@ -353,3 +353,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/RecipeApps/RecipeWinForms/app.secret.config
+/RecipeApps/RecipeWinForms/app.secret.config
