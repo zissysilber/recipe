@@ -10,10 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="app.secret.config" />
     <None Remove="Images\shutterstock_370298699.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="app.secret.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\shutterstock_370298699.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
