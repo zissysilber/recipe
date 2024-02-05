@@ -5,10 +5,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:RecipeMAUI"
     Shell.FlyoutBehavior="Disabled">
+    <TabBar>
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:Home}"
+        Route="Home" />
+
+        <ShellContent
+        Title="Recipe List"
+        ContentTemplate="{DataTemplate local:RecipeList}"
+        Route="RecipeList" />
+    </TabBar>
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+        Title="Login"
+        ContentTemplate="{DataTemplate local:Login}"
+        Route="Login" />
 </Shell>
