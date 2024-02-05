@@ -7,7 +7,7 @@
         {
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
-            cmd.Parameters["@recipename"].Value = recipename;
+            SQLUtility.SetParamValue(cmd, "@RecipeName", recipename);
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }

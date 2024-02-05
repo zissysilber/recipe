@@ -25,6 +25,6 @@ public partial class Login : ContentPage
 
     private void CancelBtn_Clicked(object sender, EventArgs e)
     {
-
+        Application.Current.Quit();
     }
 }
