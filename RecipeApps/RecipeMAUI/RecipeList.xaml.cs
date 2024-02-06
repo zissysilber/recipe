@@ -12,7 +12,7 @@ public partial class RecipeList : ContentPage
 
     private void SearchRecipe()
     {
-        DataTable dt = Recipe.GetRecipeList();
+        DataTable dt = Recipe.SearchRecipeByName(RecipeNameTxt.Text);
         RecipeLst.ItemsSource = dt.Rows;
 
     }

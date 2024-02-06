@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <Content Include="testhost.dll.secret.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
