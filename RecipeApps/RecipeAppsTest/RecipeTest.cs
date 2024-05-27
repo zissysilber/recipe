@@ -60,6 +60,7 @@ namespace RecipeAppsTest
             TestContext.WriteLine("search for recipename that contains (" + recipename + ")");
             TestContext.WriteLine("ensure that app returns recipe with name that contains (" + recipename + ")");
 
+            
             DataTable dt = Recipe.SearchRecipeByName(recipename);
 
             Assume.That(dt.Rows.Count > 0, "no recipes found, can't run test");
@@ -77,7 +78,7 @@ namespace RecipeAppsTest
             TestContext.WriteLine("existing recipe with id = (" + recipeid + ")");
             TestContext.WriteLine("Ensure that app loads recipe (" + recipeid + ")");
 
-            DataTable dt = Recipe.GetRecipeById(recipeid);
+            DataTable dt = Recipe.Load(recipeid);
 
             int loadedid = (int)dt.Rows[0]["recipeid"];
             Assert.IsTrue(loadedid == recipeid, loadedid + " <> " + recipeid);
@@ -114,7 +115,8 @@ namespace RecipeAppsTest
             r["DatePublished"] = "2021-10-10";
             r["DateArchived"] = "2022-10-10";
 
-            Recipe.Save(dt);
+            bizRecipe recipe = new();
+            recipe.Save(dt);
 
             TestContext.WriteLine("insert recipe with recipename = " + testrecipename);
 
@@ -131,8 +133,8 @@ namespace RecipeAppsTest
             string sql = @"
     select top 1  r.recipeid, r.recipename
 	from recipe r
-	left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
-	left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
+	left join MealCourseRecipe mcr on mcr.RecipeId = r.RecipeId
+	left join CookbookRecipe cr on cr.RecipeId = r.RecipeId
 	where mcr.RecipeID is null
 	and cr.RecipeID is null 
 	and ((r.RecipeStatus = 'Drafted') 
@@ -150,8 +152,8 @@ namespace RecipeAppsTest
             Assume.That(recipeid > 0, "No recipe in DB, can't run test");
             TestContext.WriteLine("existing recipe with name " + recipename + " and recipe id (" + recipeid + ")");
             TestContext.WriteLine("ensure that app deletes recipe (" + recipeid + ")");
-
-            Recipe.Delete(dt);
+            bizRecipe recipe = new();
+            recipe.Delete(dt);
             DataTable dtafterdelete = GetDataTable("select * from Recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid (" + recipeid + ") exists in DB");
             TestContext.WriteLine("record with recipeid (" + recipeid + ") does not exist in DB");
@@ -197,10 +199,11 @@ namespace RecipeAppsTest
 
             calories = calories + 10;
             TestContext.WriteLine("change calories to (" + calories + ")");
-            DataTable dt = Recipe.GetRecipeById(recipeid);
+            DataTable dt = Recipe.Load(recipeid);
 
             dt.Rows[0]["calories"] = calories;
-            Recipe.Save(dt);
+            bizRecipe recipe = new();
+            recipe.Save(dt);
 
             int newcalories = GetFirstColumnFirstRowValue("select calories from recipe where recipeid = " + recipeid);
             Assert.IsTrue(newcalories == calories, "calories for recipeid (" + recipeid + ") <> (" + calories + ")");
@@ -217,7 +220,9 @@ namespace RecipeAppsTest
 
             recipename = recipename + "!!";
             TestContext.WriteLine("change recipename to (" + recipename + ")");
-            DataTable dt = Recipe.GetRecipeById(recipeid);
+
+            bizRecipe recipe = new();
+            DataTable dt = recipe.Load(recipeid);
 
             dt.Rows[0]["recipename"] = recipename;
             Recipe.Save(dt);
@@ -306,30 +311,31 @@ namespace RecipeAppsTest
         public void DeleteRecipeArchivedLessThan30Days()
         {
             string sql = @"
-select top 1 r.RecipeID, r.RecipeName
-from recipe r
-left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
-left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
-where mcr.RecipeID is null
-and cr.RecipeID is null and 
-(r.RecipeStatus != 'Drafted' 
-or DateAdd(day, 30, r.DateArchived) >= GetDate())
-                ";
+            select top 1 r.RecipeID, r.RecipeName
+            from recipe r
+            left join MealCourseRecipe mcr on mcr.RecipeID = r.RecipeID
+            left join CookbookRecipe cr on cr.RecipeID = r.RecipeID
+            where mcr.RecipeID is null
+            and cr.RecipeID is null and 
+            (r.RecipeStatus != 'Drafted' 
+            or DateAdd(day, 30, r.DateArchived) >= GetDate())
+                            ";
 
             DataTable dt = GetDataTable(sql);
             int recipeid = 0;
             string recipename = "";
+
             if (dt.Rows.Count > 0)
             {
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipename = (string)dt.Rows[0]["recipename"];
+
             }
             Assume.That(recipeid > 0, "No recipe in DB, can't run test");
             TestContext.WriteLine("recipe with name " + recipename + " and recipe id (" + recipeid + ") archived less than 30 days.");
             TestContext.WriteLine("ensure that app cannot delete recipe (" + recipeid + ")");
 
             Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
-            
             TestContext.WriteLine(ex.Message);
         }
 

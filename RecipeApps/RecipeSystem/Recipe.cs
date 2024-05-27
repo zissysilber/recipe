@@ -44,7 +44,7 @@
             return dt;
         }
 
-        public static DataTable GetRecipeById(int recipeid)
+        public static DataTable Load(int recipeid)
         {
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
@@ -74,7 +74,7 @@
             SQLUtility.ExecuteSQL(cmd);
 
             newrecipeid =  (int)cmd.Parameters["@RecipeId"].Value;
-            return dt = GetRecipeById(newrecipeid);
+            return dt = Load(newrecipeid);
    
         }
 

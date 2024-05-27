@@ -28,7 +28,7 @@
             {
                 DataTable clonedrecipe = Recipe.CloneRecipeBasedOnId(basedonrecipeid);
                 newrecipeid = Recipe.GetRecipeIdFromTable(clonedrecipe);
-                DataTable dtrecipe = Recipe.GetRecipeById(newrecipeid);
+                DataTable dtrecipe = Recipe.Load(newrecipeid);
                 bindsource.DataSource = dtrecipe;
 
                 LoadClonedRecipeForm();

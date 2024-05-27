@@ -35,7 +35,7 @@ namespace RecipeWinForms
             recipeid = recipeidval;
             this.Tag = recipeid;
 
-            dtrecipe = Recipe.GetRecipeById(recipeid);
+            dtrecipe = Recipe.Load(recipeid);
             bindsource.DataSource = dtrecipe;
 
             if (recipeid == 0)

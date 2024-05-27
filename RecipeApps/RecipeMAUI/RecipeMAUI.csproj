@@ -78,6 +78,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Update="Resources\Images\recipe_appleyogurtsmoothie.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Home.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

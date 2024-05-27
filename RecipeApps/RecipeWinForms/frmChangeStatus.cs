@@ -21,7 +21,7 @@
             recipeid = pkvalue;
             this.Tag = recipeid;
 
-            dtrecipe = Recipe.GetRecipeById(recipeid);
+            dtrecipe = Recipe.Load(recipeid);
             bindsource.DataSource = dtrecipe;
 
             WindowsFormUtility.SetControlBinding(lblRecipeName, bindsource);
@@ -67,7 +67,7 @@
             try
             {
                 Recipe.UpdateStatus(dtrecipe, changestatus);
-                dtrecipe = Recipe.GetRecipeById(recipeid);
+                dtrecipe = Recipe.Load(recipeid);
                 bindsource.DataSource = dtrecipe;
                 SetButtonsEnabledBasedOnStatus();
             }

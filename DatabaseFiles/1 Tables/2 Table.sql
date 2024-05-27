@@ -70,7 +70,7 @@ create table dbo.Recipe(
 		constraint ck_Recipe_date_archived_cannot_be_future_date check(getdate()>= DateArchived),
     constraint ck_Recipe_dates_must_progress_sequentially check (DatePublished between DateDrafted and DateArchived),
 	constraint ck_Recipe_date_archived_must_be_after_date_drafted check(DateArchived>= DateDrafted),
-	RecipeImage as concat('recipe_', replace(RecipeName, ' ', '_'), '.jpg'),
+	RecipeImage as concat('recipe_', lower(replace(RecipeName, ' ', '')), '.jpg'),
     RecipeStatus as case
       when DateArchived is not null then 'Archived'
 		 else case 
