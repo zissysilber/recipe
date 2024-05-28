@@ -71,6 +71,22 @@ namespace RecipeAppsTest
 
 
         [Test]
+        public void LoadRecipe()
+        {
+            int recipeid = GetExistingRecipeId();
+            Assume.That(recipeid > 0, "No recipes in DB, can't run test");
+            TestContext.WriteLine("existing recipe with id = (" + recipeid + ")");
+            TestContext.WriteLine("Ensure that app loads recipe (" + recipeid + ")");
+
+            bizRecipe recipe = new();
+            recipe.Load(recipeid);
+
+            int loadedid = recipe.RecipeId;
+            Assert.IsTrue(loadedid == recipeid, loadedid + " <> " + recipeid);
+            TestContext.WriteLine("Loaded recipe (" + recipeid + ")");
+        }
+
+        [Test]
         public void LoadSpecificRecipe()
         {
             int recipeid = GetExistingRecipeId();
@@ -91,11 +107,7 @@ namespace RecipeAppsTest
         [Test]
         public void InsertNewRecipe()
         {
-            DataTable dt = GetDataTable("select * from recipe where recipeid  = 0");
-            DataRow r = dt.Rows.Add();
-            Assume.That(dt.Rows.Count == 1);
-
-            int cuisineid = GetFirstColumnFirstRowValue("select top 1 cuisineid from cuisine");
+                        int cuisineid = GetFirstColumnFirstRowValue("select top 1 cuisineid from cuisine");
             Assume.That(cuisineid > 0, "can't run test, no cuisine in DB");
             int userid = GetFirstColumnFirstRowValue("select top 1 usersid from users");
             Assume.That(userid > 0, "can't run test, no users in DB");
@@ -106,17 +118,18 @@ namespace RecipeAppsTest
 
 
             testrecipename += currenttime.ToString();
-
-            r["cuisineid"] = cuisineid;
-            r["usersid"] = userid;
-            r["RecipeName"] = testrecipename;
-            r["Calories"] = 20;
-            r["DateDrafted"] = "2020-10-10";
-            r["DatePublished"] = "2021-10-10";
-            r["DateArchived"] = "2022-10-10";
-
             bizRecipe recipe = new();
-            recipe.Save(dt);
+
+            recipe.CuisineId = cuisineid;
+            recipe.UsersId = userid;
+            recipe.RecipeName = testrecipename;
+            recipe.Calories = 20;
+            recipe.DateDrafted = DateTime.Now.AddYears(-10);
+            recipe.DatePublished = DateTime.Now.AddYears(-5);
+            recipe.DateArchived = DateTime.Now;
+
+            
+            recipe.Save();
 
             TestContext.WriteLine("insert recipe with recipename = " + testrecipename);
 
@@ -126,7 +139,7 @@ namespace RecipeAppsTest
 
 
         }
-
+        
         [Test]
         public void DeleteRecipe()
         {
@@ -153,7 +166,8 @@ namespace RecipeAppsTest
             TestContext.WriteLine("existing recipe with name " + recipename + " and recipe id (" + recipeid + ")");
             TestContext.WriteLine("ensure that app deletes recipe (" + recipeid + ")");
             bizRecipe recipe = new();
-            recipe.Delete(dt);
+            recipe.Load(recipeid);
+            recipe.Delete();
             DataTable dtafterdelete = GetDataTable("select * from Recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid (" + recipeid + ") exists in DB");
             TestContext.WriteLine("record with recipeid (" + recipeid + ") does not exist in DB");

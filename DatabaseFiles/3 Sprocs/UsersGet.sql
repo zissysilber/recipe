@@ -26,7 +26,7 @@ exec UsersGet
 
 exec UsersGet @All = 1
 
-exec UsersGet @UsersId = 3
+exec UsersGet @UsersId = 33
 
 exec UsersGet @UsersName = ''
 
@@ -39,4 +39,6 @@ select top 1 @UsersName = u.UsersName from Users U
 exec UsersGet @UsersName = @UsersName
 
 */
+
+select * from Users
 

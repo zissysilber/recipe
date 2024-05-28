@@ -7,12 +7,12 @@ create or alter procedure dbo.RecipeGet(
 	@All bit = 0)
 as 
 begin
-	select  @RecipeIngredientId  = isnull(@RecipeIngredientId, 0)
+	select @RecipeName = nullif(@RecipeName, ''), @RecipeIngredientId  = isnull(@RecipeIngredientId, 0)
 
 	select r.RecipeId, r.UsersId, r.CuisineId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage
 	from Recipe r
-	where r.RecipeId = @RecipeId
-	or r.RecipeName like '%'+ @RecipeName +'%'
+	where (r.RecipeId = @RecipeId)
+	or (r.RecipeName like '%'+ @RecipeName +'%')
 	or @All = 1
 	order by r.RecipeName
 end 
@@ -25,11 +25,11 @@ exec RecipeGet
 
 exec RecipeGet @All = 1
 
-exec RecipeGet @RecipeId = 2
+exec RecipeGet @RecipeId = 129
 
 exec RecipeGet @RecipeName = ''
 
-exec RecipeGet @RecipeName = 'ea'
+exec RecipeGet @RecipeName = 'ee'
 
 declare @RecipeName varchar
 select top 1 @RecipeName = r.RecipeName from Recipe r
