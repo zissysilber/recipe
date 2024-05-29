@@ -6,21 +6,27 @@ using System.Threading.Tasks;
 
 namespace RecipeSystem
 {
-    public class bizRecipe : bizObject
+    public class bizRecipe : bizObject <bizRecipe>
     {
-        public bizRecipe()
-        {
-        }
+        public bizRecipe(){}
+
         private int _recipeId;
         private int _usersId;
         private int _cuisineId;
         private string _recipename = "";
         private int _calories;
-        private int _recipeingredientId;
         private DateTime _datedrafted;
         private DateTime? _datepublished;
         private DateTime? _datearchived;
         private string _recipestatus;
+
+        public List<bizRecipe> Search(string recipenameval)
+        {
+            SqlCommand cmd = SQLUtility.GetSqlCommand(this.GetSprocName);
+            SQLUtility.SetParamValue(cmd, "RecipeName", recipenameval);
+            DataTable dt = SQLUtility.GetDataTable(cmd);
+            return this.GetListFromDataTable(dt);
+        }
 
         public int RecipeId
         {

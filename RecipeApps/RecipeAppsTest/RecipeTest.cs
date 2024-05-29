@@ -51,24 +51,52 @@ namespace RecipeAppsTest
             DBManager.SetConnectionString(connstring, false);
         }
 
+        //[Test]
+        //public void SearchRecipes()
+        //{
+        //    string recipename = GetFirstColumnFirstRowString("select top 1 recipename from recipe");
+        //    recipename = recipename.Substring(0, 1);
+        //    Assume.That(recipename is not null, "No recipe in DB, can't run test");
+        //    TestContext.WriteLine("search for recipename that contains (" + recipename + ")");
+        //    TestContext.WriteLine("ensure that app returns recipe with name that contains (" + recipename + ")");
+
+
+        //    DataTable dt = Recipe.SearchRecipeByName(recipename);
+
+        //    Assume.That(dt.Rows.Count > 0, "no recipes found, can't run test");
+        //    string foundrecipename = dt.Rows[0]["recipename"].ToString();
+        //    Assert.IsTrue(dt.Rows.Count > 0, "no recipename in DB that contains (" + recipename + ")");
+        //    TestContext.WriteLine("found recipename (" + foundrecipename + ") that contains (" + recipename + ")");
+        //}
+
         [Test]
-        public void SearchRecipes()
+        public void GetListOfRecipes()
         {
-            string recipename = GetFirstColumnFirstRowString("select top 1 recipename from recipe");
-            recipename = recipename.Substring(0, 1);
-            Assume.That(recipename is not null, "No recipe in DB, can't run test");
-            TestContext.WriteLine("search for recipename that contains (" + recipename + ")");
-            TestContext.WriteLine("ensure that app returns recipe with name that contains (" + recipename + ")");
+            int recipecount = GetFirstColumnFirstRowValue("select total = count (*) from recipe");
+            Assume.That(recipecount > 0, "No recipes in DB, can't test");
+            TestContext.WriteLine("Num of recipes in DB = " + recipecount);
+            TestContext.WriteLine("Ensure that num of rows return by app matches " + recipecount);
+            bizRecipe recipe = new();
+            var lst = recipe.GetList();
 
-            
-            DataTable dt = Recipe.SearchRecipeByName(recipename);
+            Assert.IsTrue(lst.Count == recipecount, "num rows returned by app (" + lst.Count + ") <>" + recipecount);
+            TestContext.WriteLine("Number of rows in Recipe returned by app = " + lst.Count);
 
-            Assume.That(dt.Rows.Count > 0, "no recipes found, can't run test");
-            string foundrecipename = dt.Rows[0]["recipename"].ToString();
-            Assert.IsTrue(dt.Rows.Count > 0, "no recipename in DB that contains (" + recipename + ")");
-            TestContext.WriteLine("found recipename (" + foundrecipename + ") that contains (" + recipename + ")");
         }
 
+        [Test]
+        public void GetListOfIngredients()
+        {
+            int ingredientcount = GetFirstColumnFirstRowValue("select total = count (*) from Ingredient");
+            Assume.That(ingredientcount > 0, "No ingredients in DB, can't test");
+            TestContext.WriteLine("Num of ingredients in DB = " + ingredientcount);
+            TestContext.WriteLine("Ensure that num of rows return by app matches " + ingredientcount);
+            bizIngredient ingredient = new();
+            var lst = ingredient.GetList(false);
+
+            Assert.IsTrue(lst.Count == ingredientcount, "num rows returned by app (" + lst.Count + ") <>" + ingredientcount);
+            TestContext.WriteLine("Number of rows in Ingredient returned by app = " + lst.Count);
+        }
 
         [Test]
         public void LoadRecipe()
@@ -87,22 +115,33 @@ namespace RecipeAppsTest
         }
 
         [Test]
-        public void LoadSpecificRecipe()
-        {
-            int recipeid = GetExistingRecipeId();
-            Assume.That(recipeid > 0, "No recipes in DB, can't run test");
-            TestContext.WriteLine("existing recipe with id = (" + recipeid + ")");
-            TestContext.WriteLine("Ensure that app loads recipe (" + recipeid + ")");
+        public void SearchRecipe() {
+            string recipename = "a";
+            int recipecount = GetFirstColumnFirstRowValue($"select total = count(*) from recipe where recipename like '%{recipename}%'");
+            TestContext.WriteLine("Num of search results in DB = " + recipecount);
+            TestContext.WriteLine("Ensure that num of rows returned by app matches " + recipecount);
 
-            DataTable dt = Recipe.Load(recipeid);
+            bizRecipe recipe = new();
+            var lst = recipe.Search(recipename);
 
-            int loadedid = (int)dt.Rows[0]["recipeid"];
-            Assert.IsTrue(loadedid == recipeid, loadedid + " <> " + recipeid);
-            TestContext.WriteLine("Loaded recipe (" + recipeid + ")");
+            Assert.IsTrue(lst.Count == recipecount, "num of rows returned by app (" + lst.Count + ") <>" + recipecount);
+            TestContext.WriteLine("Number of rows in Recipe returned by app = " + lst.Count);
         }
 
+        [Test]
+        public void SearchIngredient()
+        {
+            string ingredientname = "ch";
+            int ingredientcount = GetFirstColumnFirstRowValue($"select total = count(*) from ingredient where ingredientname like '%{ingredientname}%'");
+            TestContext.WriteLine("Num of search results in DB = " + ingredientcount);
+            TestContext.WriteLine("Ensure that num of rows returned by app matches " + ingredientcount);
 
+            bizIngredient ing = new();
+            var lst = ing.Search(ingredientname);
 
+            Assert.IsTrue(lst.Count == ingredientcount, "num of rows returned by app (" + lst.Count + ") <>" + ingredientcount);
+            TestContext.WriteLine("Number of rows in Ingredient returned by app = " + lst.Count);
+        }
 
         [Test]
         public void InsertNewRecipe()
