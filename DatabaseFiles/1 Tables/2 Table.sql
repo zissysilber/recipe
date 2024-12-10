@@ -81,6 +81,8 @@ create table dbo.Recipe(
 )
 go
 
+alter table recipe add Vegan bit not null default 0;
+go
 
 create table dbo.RecipeIngredient(
     RecipeIngredientId int not null identity primary key,
@@ -158,6 +160,8 @@ create table dbo.Cookbook(
     IsActive bit not null default 1,
     CookbookImage as concat('cookbook_', replace(CookbookName, ' ', '_'), '.jpg')
 )
+go
+alter table cookbook add CookbookSkill int not null default 1;
 go
 
 create table dbo.CookbookRecipe(

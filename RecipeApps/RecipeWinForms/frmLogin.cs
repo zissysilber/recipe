@@ -35,6 +35,7 @@ namespace RecipeWinForms
                 string connstringkey = "";
 #if DEBUG
                 connstringkey = "devconn";
+                //connstringkey = "liveconn";
 
 #else
                 connstringkey = "liveconn";

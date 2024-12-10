@@ -26,3 +26,6 @@ begin
 
 end
 go
+
+
+exec RecipeIngredientGet @RecipeId = 122

@@ -7,8 +7,13 @@ namespace RecipeAppsTest
 {
     public class Tests
     {
-        string connstring = ConfigurationManager.ConnectionStrings["devconn"].ConnectionString;
-        string testconnstring = ConfigurationManager.ConnectionStrings["unittestconn"].ConnectionString;
+        //string connstring = ConfigurationManager.ConnectionStrings["devconn"].ConnectionString;
+        //string testconnstring = ConfigurationManager.ConnectionStrings["unittestconn"].ConnectionString;
+
+        //for hmwk submissions
+        string connstring = ConfigurationManager.ConnectionStrings["hmwkunittestconn"].ConnectionString;
+        string testconnstring = ConfigurationManager.ConnectionStrings["hmwkunittestconn"].ConnectionString;
+
 
         [SetUp]
         public void Setup()

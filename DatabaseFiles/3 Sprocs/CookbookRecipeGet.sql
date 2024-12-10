@@ -25,3 +25,5 @@ begin
 
 end
 go
+
+execute CookbookRecipeGet @All = 1

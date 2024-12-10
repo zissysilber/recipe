@@ -12,7 +12,12 @@ begin
 
 	select rd.RecipeDirectionId, rd.RecipeId, rd.DirectionDesc, rd.DirectionSequence 
 	from RecipeDirection rd
-	where @RecipeId = rd.RecipeId
+	where rd.RecipeId = @RecipeId
 
 end
 go
+/*
+exec RecipeDirectionGet @RecipeId = 122
+*/
+
+select * from Recipe r where r.RecipeName like '%Apple Yogurt Smoothie%'

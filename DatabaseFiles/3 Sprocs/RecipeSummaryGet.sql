@@ -25,4 +25,4 @@ end
 go
 
 
-
+exec RecipeSummaryGet @All = 1
