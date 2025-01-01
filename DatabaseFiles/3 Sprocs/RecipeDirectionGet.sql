@@ -17,7 +17,7 @@ begin
 end
 go
 /*
-exec RecipeDirectionGet @RecipeId = 122
+exec RecipeDirectionGet @RecipeId = 2
 */
 
 select * from Recipe r where r.RecipeName like '%Apple Yogurt Smoothie%'

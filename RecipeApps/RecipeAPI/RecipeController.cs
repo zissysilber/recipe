@@ -21,5 +21,13 @@ namespace RecipeAPI
             r.Load(recipeid);
             return r;
         }
+
+        [HttpGet("GetbyCuisine/{cuisineName}")]
+        public List<bizRecipe> GetByCuisine(string cuisineName)
+        {
+            bizRecipe r = new bizRecipe();
+            r.SearchByCuisine(cuisineName);
+            return r.GetList();
+        }
     }
 }

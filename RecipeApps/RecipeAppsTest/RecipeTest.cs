@@ -96,7 +96,7 @@ namespace RecipeAppsTest
             Assume.That(ingredientcount > 0, "No ingredients in DB, can't test");
             TestContext.WriteLine("Num of ingredients in DB = " + ingredientcount);
             TestContext.WriteLine("Ensure that num of rows return by app matches " + ingredientcount);
-            bizIngredient ingredient = new();
+            bizRecipeIngredient ingredient = new();
             var lst = ingredient.GetList(false);
 
             Assert.IsTrue(lst.Count == ingredientcount, "num rows returned by app (" + lst.Count + ") <>" + ingredientcount);
@@ -141,7 +141,7 @@ namespace RecipeAppsTest
             TestContext.WriteLine("Num of search results in DB = " + ingredientcount);
             TestContext.WriteLine("Ensure that num of rows returned by app matches " + ingredientcount);
 
-            bizIngredient ing = new();
+            bizRecipeIngredient ing = new();
             var lst = ing.Search(ingredientname);
 
             Assert.IsTrue(lst.Count == ingredientcount, "num of rows returned by app (" + lst.Count + ") <>" + ingredientcount);

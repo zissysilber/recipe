@@ -3,7 +3,7 @@ create or alter proc dbo.RecipeIngredientGet(
 	@RecipeId int = 0 ,
 	@IngredientId int = 0 ,
 	@MeasurementId int = 0 ,
-	@MeasurementAmt varchar (10) = '' output,
+	@MeasurementAmt varchar(10) = '' output,
 	@IngredientSequence int = 0 output,
 	@All bit = 0,
 	@IncludeBlank bit = 0,
@@ -17,9 +17,13 @@ begin
 	select @RecipeId = isnull(@RecipeId, 0), @RecipeIngredientId = isnull(@RecipeIngredientId, 0)
 
 
-	select ri.RecipeIngredientId, ri.RecipeId, ri.IngredientId, ri.MeasurementId, 
+	select ri.RecipeIngredientId, ri.RecipeId, ri.IngredientId, i.IngredientName, ri.MeasurementId, m.MeasurementName,
 	ri.MeasurementAmt,   ri.IngredientSequence   
 	from RecipeIngredient ri
+	join Ingredient i
+	on ri.IngredientId = i.IngredientId
+	join Measurement m
+	on ri.MeasurementId = m.MeasurementId
 	where @RecipeId = ri.RecipeId
 	or @All = 1
 	return @return
@@ -28,4 +32,4 @@ end
 go
 
 
-exec RecipeIngredientGet @RecipeId = 122
+exec RecipeIngredientGet @RecipeId = 2
