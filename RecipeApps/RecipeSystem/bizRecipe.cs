@@ -25,7 +25,7 @@ namespace RecipeSystem
         private string _vegan;
         private List<bizRecipeIngredient> _lstingredient;
         private List<bizRecipeDirection> _lstdirection;
-        
+        private string _cuisinename;
 
         public List<bizRecipe> Search(string recipenameval)
         {
@@ -37,7 +37,7 @@ namespace RecipeSystem
 
         public List<bizRecipe> SearchByCuisine(string cuisinenameval)
         {
-            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeCuisineGet");
+            SqlCommand cmd = SQLUtility.GetSqlCommand(this.GetSprocName);
             SQLUtility.SetParamValue(cmd, "CuisineName", cuisinenameval);
             DataTable dt = SQLUtility.GetDataTable(cmd);
             return this.GetListFromDataTable(dt);
@@ -92,6 +92,19 @@ namespace RecipeSystem
                 if (_cuisineId != value)
                 {
                     _cuisineId = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public string CuisineName
+        {
+            get => _cuisinename;
+            set
+            {
+                if (_cuisinename != value)
+                {
+                    _cuisinename = value;
                     InvokePropertyChanged();
                 }
             }

@@ -7,18 +7,18 @@ namespace RecipeAppsTest
 {
     public class Tests
     {
-        //string connstring = ConfigurationManager.ConnectionStrings["devconn"].ConnectionString;
-        //string testconnstring = ConfigurationManager.ConnectionStrings["unittestconn"].ConnectionString;
+        string connstring = ConfigurationManager.ConnectionStrings["devconn"].ConnectionString;
+        string testconnstring = ConfigurationManager.ConnectionStrings["unittestconn"].ConnectionString;
 
         //for hmwk submissions
-        string connstring = ConfigurationManager.ConnectionStrings["hmwkunittestconn"].ConnectionString;
-        string testconnstring = ConfigurationManager.ConnectionStrings["hmwkunittestconn"].ConnectionString;
+        //string connstring = ConfigurationManager.ConnectionStrings["hmwkunittestconn"].ConnectionString;
+        //string testconnstring = ConfigurationManager.ConnectionStrings["hmwkunittestconn"].ConnectionString;
 
 
         [SetUp]
         public void Setup()
         {
-            
+
             DBManager.SetConnectionString(connstring, true);
         }
 
@@ -83,12 +83,35 @@ namespace RecipeAppsTest
             TestContext.WriteLine("Ensure that num of rows return by app matches " + recipecount);
             bizRecipe recipe = new();
             var lst = recipe.GetList();
-
-            Assert.IsTrue(lst.Count == recipecount, "num rows returned by app (" + lst.Count + ") <>" + recipecount);
+            Assert.That(lst.Count == recipecount, "num rows returned by app (" + lst.Count + ") <>" + recipecount);
+            //Assert.IsTrue();
             TestContext.WriteLine("Number of rows in Recipe returned by app = " + lst.Count);
 
         }
 
+
+        [Test]
+        public void SearchRecipeByCuisine()
+        {
+            string cuisinename = "American";  // Cuisine to search for
+
+            int cuisinecount = GetFirstColumnFirstRowValue($"SELECT COUNT(DISTINCT r.RecipeId) FROM Recipe r JOIN Cuisine c ON r.CuisineId = c.CuisineId WHERE c.CuisineName LIKE '%{cuisinename}%'");
+
+            TestContext.WriteLine("Number of search results in DB = " + cuisinecount);
+            TestContext.WriteLine("Ensure that the number of rows returned by the app matches the expected count (" + cuisinecount + ")");
+
+           
+            bizRecipe recipe = new();
+            var lst = recipe.SearchByCuisine(cuisinename);
+
+                        Assert.That(lst.Count, Is.EqualTo(cuisinecount),
+                        $"Number of rows returned by app ({lst.Count}) does not match DB count ({cuisinecount})");
+
+            TestContext.WriteLine("Number of rows in Recipe returned by app = " + lst.Count);
+        }
+    }
+}
+    /*
         [Test]
         public void GetListOfIngredients()
         {
@@ -445,3 +468,4 @@ namespace RecipeAppsTest
         }
     }
 }
+*/

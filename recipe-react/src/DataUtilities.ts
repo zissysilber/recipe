@@ -1,4 +1,4 @@
-import { ICuisine } from "./DataInterfaces";
+import { ICuisine, IRecipe } from "./DataInterfaces";
 const baseurl = "https://zsrecipeapi.azurewebsites.net/api/"
 
 async function fetchData<T>(url: string): Promise<T> {
@@ -10,4 +10,9 @@ async function fetchData<T>(url: string): Promise<T> {
 
 export async function fetchCuisine() {
     return await fetchData<ICuisine[]>("cuisine");
+}
+
+export async function fetchRecipeByCuisine(cuisineName: string) {
+    const data = await fetchData<IRecipe[]>(`Recipe/GetByCuisine/${cuisineName}`);
+    return data;
 }

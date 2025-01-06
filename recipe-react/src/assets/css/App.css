@@ -4,3 +4,39 @@
         margin-bottom: 40px;
     }
 }
+
+.carousel-control-prev,
+.carousel-control-next {
+    color: black;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.container,
+.container-fluid {
+    overflow-x: hidden;
+}
+
+
+.cuisine-button {
+    width: 100%;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+.cuisine-button img {
+    max-width: 80px;
+    height: auto;
+}
+
+.cuisine-button .figure-caption {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cuisine-button .figure {
+    margin-bottom: 0.5rem;
+}

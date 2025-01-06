@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/8b8ad3f7-f765-4900-bc40-11dd99c475f9/resourceGroups/WebRecipe/providers/Microsoft.Web/sites/zs-react-recipe",
+    "appService.deploySubpath": "recipe-react\\dist"
+}

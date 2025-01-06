@@ -22,12 +22,20 @@ namespace RecipeAPI
             return r;
         }
 
-        [HttpGet("GetbyCuisine/{cuisineName}")]
+        [HttpGet("Cuisine")]
+        public List<bizCuisine> GetCuisine()
+        {
+            return new bizCuisine().GetList();
+        }
+
+        [HttpGet("GetByCuisine/{cuisineName}")]
         public List<bizRecipe> GetByCuisine(string cuisineName)
         {
             bizRecipe r = new bizRecipe();
-            r.SearchByCuisine(cuisineName);
-            return r.GetList();
+            return r.SearchByCuisine(cuisineName);
+            
         }
+
+
     }
 }
