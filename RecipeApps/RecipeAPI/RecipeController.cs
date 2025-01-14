@@ -33,7 +33,42 @@ namespace RecipeAPI
         {
             bizRecipe r = new bizRecipe();
             return r.SearchByCuisine(cuisineName);
-            
+
+        }
+
+        [HttpGet("Users")]
+        public List<bizUsers> GetUsers()
+        {
+            return new bizUsers().GetList();
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromForm] bizRecipe recipe)
+        {
+            try
+            {
+                recipe.Save();
+                return Ok(new { message = $"Recipe \"{recipe.RecipeName}\" saved successfully.", recipeid = recipe.RecipeId, recipestatus = recipe.RecipeStatus });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                bizRecipe r = new();
+                r.Delete(id);
+                return Ok(new { message = "Recipe deleted" });
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
         }
 
 

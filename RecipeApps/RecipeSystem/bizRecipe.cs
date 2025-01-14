@@ -8,21 +8,21 @@ namespace RecipeSystem
 {
     public class bizRecipe : bizObject <bizRecipe>
     {
-        public bizRecipe(){}
+        public bizRecipe() { }
 
         private int _recipeId;
         private int _usersId;
-        private string _username;
+        private string _usersname;
         private int _cuisineId;
         private string _recipename = "";
         private int _calories;
         private int _numingredients;
-        private DateTime _datedrafted;
+        private DateTime? _datedrafted;
         private DateTime? _datepublished;
         private DateTime? _datearchived;
         private string _recipestatus;
         private int _recipecount;
-        private string _vegan;
+        private bool _vegan;
         private List<bizRecipeIngredient> _lstingredient;
         private List<bizRecipeDirection> _lstdirection;
         private string _cuisinename;
@@ -71,14 +71,14 @@ namespace RecipeSystem
             }
         }
 
-        public string UserName
+        public string? UsersName
         {
-            get => _username;
+            get => _usersname;
             set
             {
-                if (_username != value)
+                if (_usersname != value)
                 {
-                    _username = value;
+                    _usersname = value;
                     InvokePropertyChanged();
                 }
             }
@@ -97,7 +97,7 @@ namespace RecipeSystem
             }
         }
 
-        public string CuisineName
+        public string? CuisineName
         {
             get => _cuisinename;
             set
@@ -149,7 +149,7 @@ namespace RecipeSystem
             }
         }
 
-        public DateTime DateDrafted
+        public DateTime? DateDrafted
         {
             get => _datedrafted;
             set
@@ -187,7 +187,7 @@ namespace RecipeSystem
             }
         }
 
-        public string RecipeStatus
+        public string? RecipeStatus
         {
             get => _recipestatus;
             set
@@ -213,7 +213,7 @@ namespace RecipeSystem
             }
         }
 
-        public string Vegan
+        public bool Vegan
         {
             get => _vegan;
             set

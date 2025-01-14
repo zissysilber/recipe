@@ -30,13 +30,15 @@ function Sidebar({ onCuisineSelected }: Props) {
     return (
         <div>
             <h2> Cuisine</h2>
-            <div className="row d-flex flex-column flex-sm-row flex-lg-column justify-content-between">
-                {cuisineList.map(c =>
-                    <div className="col-6 col-lg-6 col-sm-2 col-md-2 mb-3 d-flex "
-                        key={c.cuisineId}
-                    >
-                        <CuisineButton key={c.cuisineId} cuisine={c} onSelected={handleSelectedCuisine} isSelected={c.cuisineName == selectedCuisineName} />
-                    </div>)}
+            <div className="flex align-items-center">
+                <div className="row d-flex flex-column flex-sm-row flex-lg-column justify-content-between align-items-center">
+                    {cuisineList.map(c =>
+                        <div className="col-6 col-lg-6 col-sm-2 col-md-2 mb-3 d-flex  "
+                            key={c.cuisineId}
+                        >
+                            <CuisineButton key={c.cuisineId} cuisine={c} onSelected={handleSelectedCuisine} isSelected={c.cuisineName == selectedCuisineName} />
+                        </div>)}
+                </div>
             </div>
         </div>
     )

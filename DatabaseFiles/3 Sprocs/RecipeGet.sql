@@ -6,7 +6,7 @@ create or alter procedure dbo.RecipeGet(
 	@DatePublished date = '' output,
 	@RecipeCount int = 0 output,
 	@IncludeBlank bit = 0,
-	@Vegan varchar(3) = '',
+	@Vegan bit = 0,
 	@All bit = 0)
 as 
 begin
@@ -15,8 +15,6 @@ begin
 	select @RecipeCount = count(distinct r.RecipeId)
 	from Recipe r
 
-	select @Vegan = case when r.Vegan = 0 then 'No' else 'Yes' end
-	from recipe r
 
 	select  r.RecipeId, r.UsersId, UserName = concat(u.FirstName, ' ', u.LastName), r.CuisineId, c.CuisineName, r.RecipeName, r.Calories, 
 			r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage, 

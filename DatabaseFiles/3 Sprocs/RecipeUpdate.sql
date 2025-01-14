@@ -4,6 +4,7 @@ create or alter proc dbo.RecipeUpdate(
 	@CuisineId int = 0,
 	@RecipeName varchar (100) = ' ',
 	@Calories int = 0,
+	@Vegan bit = false,
 	@DateDrafted datetime = ' ' output,
 	@DatePublished datetime,
 	@DateArchived datetime,
@@ -13,17 +14,23 @@ as
 begin
 	declare @return int = 0
 
-	select @RecipeId = isnull(@RecipeId, 0), @UsersId = isnull(@UsersId, 0), @CuisineId = isnull(@CuisineId, 0), @DateDrafted = isnull(@DateDrafted, GETDATE()), @DatePublished = nullif(@DatePublished, 0), @DateArchived = nullif(@DateArchived, 0)
+	select @RecipeId = isnull(@RecipeId, 0), 
+	@UsersId = isnull(@UsersId, 0), 
+	@CuisineId = isnull(@CuisineId, 0), 
+	@DateDrafted = isnull(@DateDrafted, GETDATE()), 
+	@DatePublished = nullif(@DatePublished, 0), 
+	@DateArchived = nullif(@DateArchived, 0),
+	@RecipeStatus = isnull(@RecipeStatus, '');
 	
 	
 	if @RecipeId = 0
 	begin
-		insert Recipe(UsersId, CuisineId, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
-		values(@UsersId, @CuisineId, @RecipeName, @Calories, @DateDrafted, @DatePublished, @DateArchived)
+		insert Recipe(UsersId, CuisineId, RecipeName, Calories, Vegan, DateDrafted, DatePublished, DateArchived)
+		values(@UsersId, @CuisineId, @RecipeName, @Calories, @Vegan, @DateDrafted, @DatePublished, @DateArchived)
 
 		select @RecipeId = SCOPE_IDENTITY()
 		select @DateDrafted = GetDate();
-		select @RecipeStatus = 'Drafted'
+
 	end
 	
 	else
@@ -52,6 +59,10 @@ begin
 			DateArchived = @DateArchived
 			where RecipeId = @RecipeId
 	end
+
+			select @RecipeStatus = RecipeStatus
+			from Recipe
+			where RecipeId = @RecipeId;
 
 	return @return
 	
