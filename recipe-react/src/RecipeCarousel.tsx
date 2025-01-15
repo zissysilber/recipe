@@ -7,7 +7,7 @@ interface Props {
 export default function RecipeCarousel({ recipeList }: Props) {
     return (
         <>
-            <div id="carouselExample" className="carousel slide col col-lg-12 col-md-12 col-sm-12" data-bs-ride="carousel">
+            <div id="carouselRecipe" className="carousel slide col col-lg-12 col-md-12 col-sm-12" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     {recipeList.map((r, index) => {
                         const isActive = index === 0 ? 'active' : '';
@@ -56,7 +56,7 @@ export default function RecipeCarousel({ recipeList }: Props) {
                 <button
                     className="carousel-control-prev position-absolute top-50 start-0 translate-middle-y"
                     type="button"
-                    data-bs-target="#carouselExample"
+                    data-bs-target="#carouselRecipe"
                     data-bs-slide="prev"
                 >
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -65,7 +65,7 @@ export default function RecipeCarousel({ recipeList }: Props) {
                 <button
                     className="carousel-control-next position-absolute top-50 end-0 translate-middle-y"
                     type="button"
-                    data-bs-target="#carouselExample"
+                    data-bs-target="#carouselRecipe"
                     data-bs-slide="next"
                 >
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>

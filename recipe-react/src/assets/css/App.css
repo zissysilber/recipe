@@ -40,3 +40,27 @@ body {
 .cuisine-button .figure {
     margin-bottom: 0.5rem;
 }
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+}
