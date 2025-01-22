@@ -1,7 +1,7 @@
 import { FieldValues } from "react-hook-form";
 import { ICuisine, IRecipe, IUsers } from "./DataInterfaces";
-let baseurl = "https://zsrecipeapi.azurewebsites.net/api/";
-baseurl = "http://localhost:5002/api/"
+let baseurl = import.meta.env.VITE_API_URL;
+
 async function fetchData<T>(url: string): Promise<T> {
     url = baseurl + url;
     const r = await fetch(url);

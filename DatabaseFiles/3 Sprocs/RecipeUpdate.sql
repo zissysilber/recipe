@@ -54,6 +54,7 @@ begin
 			CuisineId = @CuisineId, 
 			RecipeName = @RecipeName, 
 			Calories = @Calories, 
+			Vegan = @Vegan,
 			DateDrafted = @DateDrafted, 
 			DatePublished = @DatePublished, 
 			DateArchived = @DateArchived

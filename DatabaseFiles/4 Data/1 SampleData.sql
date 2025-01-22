@@ -596,6 +596,7 @@ join Recipe r
 on cr.RecipeId = r.RecipeId
 
 --Sample Data without related records:
+
 ;
 with x as(
     select UsersName = 'Betty101', Cuisine = 'American', RecipeName = 'Hot Chocolate', Calories = 75, DateDrafted = '10/01/2005', DatePublished = '12/01/2005', DateArchived = '12/12/2021' 
