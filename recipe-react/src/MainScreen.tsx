@@ -5,23 +5,16 @@ import { fetchRecipeByCuisine } from "./DataUtilities";
 
 
 interface Props {
-    cuisineName: string
+    cuisineName: string,
+    onRecipeSelectedForEdit: (recipe: IRecipe) => void
 }
 
-
-
-
-
-
-export default function MainScreen({ cuisineName }: Props) {
+export default function MainScreen({ cuisineName, onRecipeSelectedForEdit }: Props) {
     const [recipeList, setRecipeList] = useState<IRecipe[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
-
-
-
     useEffect(() => {
-        if (cuisineName != "") {
+        if (cuisineName != '') {
             setIsLoading(true);
             const fetchdata = async () => {
                 const data = await fetchRecipeByCuisine(cuisineName);
@@ -34,18 +27,18 @@ export default function MainScreen({ cuisineName }: Props) {
     },
         [cuisineName])
 
-
     return (
         <>
-
             <div className="row">
                 <div className={isLoading ? "placeholder-glow" : ""}>
-                    <h2 className="mt-2 bg-light col-lg-12 col-md-12 col-sm-12">
-                        <span className={isLoading ? "placeholder" : ""}>{recipeList.length} Recipes in {cuisineName} Cuisine</span>
-                    </h2>
+                    <h4 className="mt-2 bg-light col-lg-12 col-md-12 col-sm-12 p-3">
+                        <span className={`${isLoading ? "placeholder" : ""} d-flex justify-content-center align-items-center`}>
+                            {recipeList.length == 0 ? (<>No recipes in {cuisineName} cuisine. More great recipes coming soon!</>) : `${recipeList.length} Recipes in ${cuisineName} Cuisine`} </span>
+                    </h4>
                     <div>
-                        <RecipeCarousel recipeList={recipeList} isLoading={isLoading} />
+                        <RecipeCarousel recipeList={recipeList} isLoading={isLoading} onRecipeSelectedForEdit={onRecipeSelectedForEdit} />
                     </div>
+
                 </div>
             </div>
         </>

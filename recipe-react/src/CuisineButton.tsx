@@ -1,4 +1,3 @@
-
 import { ICuisine } from "./DataInterfaces";
 
 interface Props {
@@ -19,4 +18,5 @@ export default function CuisineButton({ cuisine, isSelected, onSelected }: Props
         </div>
     )
 }
+
 

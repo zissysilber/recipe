@@ -16,6 +16,8 @@ begin
 	where c.CuisineId = @CuisineId
 	or (@CuisineName <> '' and c.CuisineName like '%' + @CuisineName + '%')
 	or @All = 1
+	union select 0, ''
+	order by c.CuisineName
 end
 go
 

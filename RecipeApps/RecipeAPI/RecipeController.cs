@@ -25,7 +25,7 @@ namespace RecipeAPI
         [HttpGet("Cuisine")]
         public List<bizCuisine> GetCuisine()
         {
-            return new bizCuisine().GetList();
+            return new bizCuisine().GetList(true);
         }
 
         [HttpGet("GetByCuisine/{cuisineName}")]
@@ -39,35 +39,38 @@ namespace RecipeAPI
         [HttpGet("Users")]
         public List<bizUsers> GetUsers()
         {
-            return new bizUsers().GetList();
+            return new bizUsers().GetList(true);
         }
 
         [HttpPost]
-        public IActionResult Post([FromForm] bizRecipe recipe)
+        public IActionResult Post(bizRecipe recipe)
         {
             try
             {
                 recipe.Save();
-                return Ok(new { message = $"Recipe \"{recipe.RecipeName}\" saved successfully.", recipeid = recipe.RecipeId, recipestatus = recipe.RecipeStatus });
+                recipe.ErrorMessage = "Recipe saved successfully!";
+                return Ok(recipe);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { ex.Message });
+                recipe.ErrorMessage = ex.Message;
+                return BadRequest(recipe);
             }
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
+            bizRecipe r = new();
             try
             {
-                bizRecipe r = new();
                 r.Delete(id);
-                return Ok(new { message = "Recipe deleted" });
+                return Ok(r);
             }
             catch(Exception ex)
             {
-                return BadRequest(new { ex.Message });
+                r.ErrorMessage = ex.Message;
+                return BadRequest(r);
             }
         }
 

@@ -17,9 +17,9 @@ begin
 
 
 	select  r.RecipeId, r.UsersId, UserName = concat(u.FirstName, ' ', u.LastName), r.CuisineId, c.CuisineName, r.RecipeName, r.Calories, 
-			r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage, 
+			r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage, r.Vegan,
 			NumIngredients = count(distinct ri.IngredientSequence),
-			Vegan = @Vegan, RecipeCount = @RecipeCount
+			RecipeCount = @RecipeCount
 	from Recipe r
 	join Users u on u.UsersId = r.UsersId
 	join Cuisine c on c.CuisineId = r.CuisineId
@@ -29,7 +29,7 @@ begin
 	or (c.CuisineName like '%'+@CuisineName+'%')
 	or @All = 1
 	group by r.RecipeId, r.UsersId, u.FirstName, u.LastName, r.CuisineId, r.RecipeName, 
-    r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage, c.CuisineName 
+    r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipeImage, r.Vegan, c.CuisineName 
 	order by r.RecipeName
 end 
 go

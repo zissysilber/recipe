@@ -2,9 +2,17 @@ import { IRecipe } from "./DataInterfaces";
 interface Props {
     recipeList: IRecipe[];
     isLoading: boolean;
+    onRecipeSelectedForEdit: (recipe: IRecipe) => void
 }
 
-export default function RecipeCarousel({ recipeList }: Props) {
+export default function RecipeCarousel({ recipeList, onRecipeSelectedForEdit }: Props) {
+    if (recipeList.length === 0) {
+        return (
+            <div className="container" style={{ maxWidth: '80%' }}>
+                <img src="/images/fourplates.jpg" alt="No recipes available" className="img-fluid" />
+            </div>
+        );
+    }
     return (
         <>
             <div id="carouselRecipe" className="carousel slide col col-lg-12 col-md-12 col-sm-12" data-bs-ride="carousel">
@@ -19,6 +27,7 @@ export default function RecipeCarousel({ recipeList }: Props) {
                                             src={`/images/RecipeImages/recipe_${r.recipeName.toLowerCase().replace(/\s+/g, '')}.jpg`}
                                             className="d-block w-100"
                                             alt={r.recipeName}
+                                            onError={(e) => (e.currentTarget.src = "/images/placeholder.jpg")}
                                         />
                                     </div>
 
@@ -27,24 +36,30 @@ export default function RecipeCarousel({ recipeList }: Props) {
                                             <h2>{r.recipeName}</h2>
                                         </div>
 
-                                        <div className="mb-3">
-                                            <h5>Ingredients:</h5>
-                                            <ul>
-                                                {r.ingredientList.map((ingredient, iindex) => (
-                                                    <li key={iindex}>
-                                                        {ingredient.measurementAmt} {ingredient.measurementName} {ingredient.ingredientName}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        <div className="mb-3">
-                                            <h5>Directions:</h5>
-                                            <ol>
-                                                {r.directionList.map((direction) => (
-                                                    <li key={direction.directionSequence}>{direction.directionDesc}</li>
-                                                ))}
-                                            </ol>
+                                        {r.ingredientList.length == 0 ? "Recipe coming soon..." :
+                                            <div className="mb-3">
+                                                <h5>Ingredients:</h5>
+                                                <ul>
+                                                    {r.ingredientList.map((ingredient, iindex) => (
+                                                        <li key={iindex}>
+                                                            {ingredient.measurementAmt} {ingredient.measurementName} {ingredient.ingredientName}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        }
+                                        {r.directionList.length == 0 ? "" :
+                                            <div className="mb-3">
+                                                <h5>Directions:</h5>
+                                                <ol>
+                                                    {r.directionList.map((direction) => (
+                                                        <li key={direction.directionSequence}>{direction.directionDesc}</li>
+                                                    ))}
+                                                </ol>
+                                            </div>
+                                        }
+                                        <div className="mt-4">
+                                            <button onClick={() => onRecipeSelectedForEdit(r)} type="button" className="btn btn-outline-primary">Edit Recipe</button>
                                         </div>
                                     </div>
                                 </div>
@@ -57,8 +72,7 @@ export default function RecipeCarousel({ recipeList }: Props) {
                     className="carousel-control-prev position-absolute top-50 start-0 translate-middle-y"
                     type="button"
                     data-bs-target="#carouselRecipe"
-                    data-bs-slide="prev"
-                >
+                    data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
@@ -66,8 +80,7 @@ export default function RecipeCarousel({ recipeList }: Props) {
                     className="carousel-control-next position-absolute top-50 end-0 translate-middle-y"
                     type="button"
                     data-bs-target="#carouselRecipe"
-                    data-bs-slide="next"
-                >
+                    data-bs-slide="next">
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>
