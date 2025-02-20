@@ -33,7 +33,7 @@ export default function MainScreen({ cuisineName, onRecipeSelectedForEdit }: Pro
                 <div className={isLoading ? "placeholder-glow" : ""}>
                     <h4 className="mt-2 bg-light col-lg-12 col-md-12 col-sm-12 p-3">
                         <span className={`${isLoading ? "placeholder" : ""} d-flex justify-content-center align-items-center`}>
-                            {recipeList.length == 0 ? (<>No recipes in {cuisineName} cuisine. More great recipes coming soon!</>) : `${recipeList.length} Recipes in ${cuisineName} Cuisine`} </span>
+                            {recipeList.length == 0 ? (<>No recipes in {cuisineName} cuisine.</>) : `${recipeList.length} Recipes in ${cuisineName} Cuisine`} </span>
                     </h4>
                     <div>
                         <RecipeCarousel recipeList={recipeList} isLoading={isLoading} onRecipeSelectedForEdit={onRecipeSelectedForEdit} />

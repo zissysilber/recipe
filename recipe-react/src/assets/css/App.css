@@ -74,9 +74,63 @@ body {
 }
 
 .toast {
-    /* position: fixed;
-    top: 0;
-    transform: translateX(-50%); */
     z-index: 9999;
 
+}
+
+.img-full-viewport {
+    width: 100%;
+    height: auto;
+}
+
+.landing-page {
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.landing-page .text-overlay {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+
+.landing-page h1,
+.landing-page h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.landing-page h1 {
+    font-size: 8rem;
+
+}
+
+.landing-page h2 {
+    font-size: 6.5rem;
+
+}
+
+.shadow-text {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+
+}
+
+@media (max-width: 768px) {
+    .landing-page h1 {
+        font-size: 4rem;
+    }
+
+    .landing-page h2 {
+        font-size: 3rem;
+    }
 }

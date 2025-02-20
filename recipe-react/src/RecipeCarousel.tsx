@@ -27,7 +27,7 @@ export default function RecipeCarousel({ recipeList, onRecipeSelectedForEdit }: 
                                             src={`/images/RecipeImages/recipe_${r.recipeName.toLowerCase().replace(/\s+/g, '')}.jpg`}
                                             className="d-block w-100"
                                             alt={r.recipeName}
-                                            onError={(e) => (e.currentTarget.src = "/images/placeholder.jpg")}
+                                            onError={(e) => (e.currentTarget.src = "/images/imageComingSoon.jpg")}
                                         />
                                     </div>
 
@@ -36,7 +36,7 @@ export default function RecipeCarousel({ recipeList, onRecipeSelectedForEdit }: 
                                             <h2>{r.recipeName}</h2>
                                         </div>
 
-                                        {r.ingredientList.length == 0 ? "Recipe coming soon..." :
+                                        {r.ingredientList.length == 0 ? "Great things take time. Our recipe is on its way!" :
                                             <div className="mb-3">
                                                 <h5>Ingredients:</h5>
                                                 <ul>
@@ -59,7 +59,7 @@ export default function RecipeCarousel({ recipeList, onRecipeSelectedForEdit }: 
                                             </div>
                                         }
                                         <div className="mt-4">
-                                            <button onClick={() => onRecipeSelectedForEdit(r)} type="button" className="btn btn-outline-primary">Edit Recipe</button>
+                                            <button onClick={() => onRecipeSelectedForEdit(r)} type="button" className="btn btn-outline-secondary">Edit Recipe</button>
                                         </div>
                                     </div>
                                 </div>
